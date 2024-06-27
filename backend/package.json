@@ -1,0 +1,11 @@
+{
+  "name": "avvise",
+  "version": "1.0.0",
+  "description": "webapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
