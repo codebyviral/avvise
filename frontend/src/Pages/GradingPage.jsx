@@ -67,15 +67,15 @@ const GradingPage = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-row justify-center mt-20">
+      <div className="flex displayOMR justify-center mt-20">
         <div className="grading-page">
-          <h1 className="title">Your Answer Key</h1>
+          <h1 className="title text-xl">Your Answer Key</h1>
           <div className="omr-sheet">
             {correctAnswers.map((_, index) => renderOMRRow(index))}
           </div>
         </div>
         <div className="grading-page">
-          <h1 className="title">Real Answer Key</h1>
+          <h1 className="title text-xl">Real Answer Key</h1>
           <div className="omr-sheet">
             {correctAnswers.map((_, index) => renderCorrectKey(index))}
           </div>

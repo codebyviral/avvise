@@ -1,0 +1,16 @@
+.inputKeys {
+  flex-direction: column;
+}
+
+.displayOMR{
+  flex-direction: row;
+}
+
+@media screen and (max-width: 768px) {
+    .inputKeys {
+      flex-direction: row;
+    }
+    .displayOMR{
+      flex-direction: column;
+    }
+}
