@@ -1,9 +1,10 @@
-import { Navbar } from "../Components/compIndex";
+import { Navbar, Container } from "../Components/compIndex";
 
 const Home = () => {
   return (
     <>
       <Navbar />
+      <Container />
     </>
   );
 };
