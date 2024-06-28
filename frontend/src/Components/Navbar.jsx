@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from "react-router-dom";
 import {
   Disclosure,
   DisclosureButton,
@@ -9,12 +9,14 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import AvviseLogo from "../assets/avvise.jpeg";
+import { useLocation } from "react-router-dom";
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Home", href: "/" },
+  { name: "Team", href: "/team" },
+  { name: "Projects", href: "/projects" },
+  { name: "Scan ✨", href: "/scanai" },
+  { name: "Calculator", href: "/calculator" },
 ];
 
 function classNames(...classes) {
@@ -22,6 +24,7 @@ function classNames(...classes) {
 }
 
 const Navbar = () => {
+  const location = useLocation();
   return (
     <Disclosure as="nav" className="bg-blue-500 shadow-lg">
       {({ open }) => (
@@ -42,29 +45,34 @@ const Navbar = () => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://gradiebuddyold.netlify.app/images/pro.png"
-                    alt="Your Company"
-                  />
+                  <Link to="/">
+                    <img
+                      className="h-10 w-auto rounded-full"
+                      src={AvviseLogo}
+                      alt="Your Company"
+                    />
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-blue-700 text-white"
-                            : "text-white hover:bg-blue-600 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    {navigation.map((item) => {
+                      const current = location.pathname === item.href;
+                      return (
+                        <Link
+                          key={item.name}
+                          to={item.href}
+                          className={classNames(
+                            current
+                              ? "bg-white text-blue-500"
+                              : "text-white hover:bg-blue-600 hover:text-white",
+                            "rounded-md px-3 py-2 text-sm font-medium"
+                          )}
+                          aria-current={current ? "page" : undefined}
+                        >
+                          {item.name}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

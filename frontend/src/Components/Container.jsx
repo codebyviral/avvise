@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Container = () => {
   return (
     <>
@@ -6,20 +7,19 @@ const Container = () => {
         <header className="bg-white py-20">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900">
+              <h1 className="text-4xl mt-20 font-bold text-gray-900">
                 Welcome to our Grading MCQ Web App
               </h1>
               <p className="mt-4 text-lg text-gray-700">
                 Streamline your grading process with our intuitive MCQ
                 evaluation tool.
               </p>
-              <div className="mt-6">
-                <a
-                  href="/"
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium inline-block"
-                >
-                  Get Started
-                </a>
+              <div className="mt-6 animate-bounce">
+                <Link to="/calculator">
+                  <div className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg inline-block">
+                    Get Started
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

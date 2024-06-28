@@ -1,10 +1,24 @@
 import "./App.css";
-import { Home } from "./Pages/pageIndex";
-
+import {
+  Calculator,
+  Home,
+  GradingPage,
+  NotFoundPage,
+  ComingSoon,
+} from "./Pages/pageIndex";
+import { Routes, Route } from "react-router-dom";
+import "./app.js";
 function App() {
   return (
     <>
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/calculator" element={<Calculator />} />
+        <Route path="/team" element={<ComingSoon />} />
+        <Route path="/projects" element={<GradingPage />} />
+        <Route path="/scanai" element={<ComingSoon />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   );
 }
