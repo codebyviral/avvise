@@ -11,6 +11,8 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import AvviseLogo from "../assets/avvise.jpeg";
 import { useLocation } from "react-router-dom";
+import { darkImgURL } from "../assets/URLs";
+import { useState } from "react";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Team", href: "/team" },
@@ -24,9 +26,15 @@ function classNames(...classes) {
 }
 
 const Navbar = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.body.classList.toggle("dark");
+    console.log(darkMode);
+  };
   const location = useLocation();
   return (
-    <Disclosure as="nav" className="bg-blue-500 shadow-lg">
+    <Disclosure as="nav" className="bg-blue-500 shadow-lg dark:bg-gray-900">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -53,6 +61,7 @@ const Navbar = () => {
                     />
                   </Link>
                 </div>
+
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => {
@@ -76,14 +85,23 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
+
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
+                  onClick={toggleDarkMode}
                   type="button"
                   className="relative rounded-full bg-blue-700 p-1 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-700"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  {/* darkmode button */}
+                  <div>
+                    <img
+                      className="h-6 w-auto"
+                      src={darkImgURL}
+                      alt="Dark mode button"
+                    />
+                  </div>
                 </button>
 
                 {/* Profile dropdown */}

@@ -1,21 +1,18 @@
 import "./OMRSheet.css";
 import { Navbar } from "../Components/compIndex";
-import { appData } from "../app";
-import { useEffect } from "react";
 const GradingPage = () => {
-  useEffect(() => {
-    setTimeout(() => {
-      console.log(appData.appMarksData);
-    }, 1000);
-  }, []);
-  const userAnswers = ["A", "B", "A", "A", "C"];
-  const correctAnswers = ["A", "B", "C", "D", "C"];
+  const userAnswers = ["A", "", "C", "D"];
+  const correctAnswers = ["A", "B", "A", "D"];
 
   const renderOMRRow = (index) => {
     const options = ["A", "B", "C", "D"];
+    const spans = [];
+    for (let i = 1; i <= correctAnswers.length; i++) {
+      spans.push(<span key={i}>{`${i}`}</span>);
+    }
     return (
       <div className="omr-row" key={index}>
-        <div className="question-number">{String.fromCharCode(65 + index)}</div>
+        <div className="question-number">{spans[index]}</div>
         {options.map((option) => {
           let bubbleClass = "bubble";
           if (userAnswers[index] === option) {
@@ -49,7 +46,6 @@ const GradingPage = () => {
         {options.map((options) => {
           let keyBubbleClass = "bubble";
           if (correctAnswers[index] === options) {
-            console.log(`options : ${options}`);
             if (correctAnswers[index] === correctAnswers[index]) {
               keyBubbleClass += " correct"; // Correct answer marked by user
             }

@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 function handleEnter() {
 
     const inputs = document.querySelectorAll("input");
@@ -18,10 +20,6 @@ function handleEnter() {
 const totalQues = [1, 2, 3, 4];
 const userAnswers = [];
 const realAnswers = [];
-
-const appData = {
-    appMarksData: [],
-}
 
 const finalAnswers = [{
     id: 0,
@@ -58,17 +56,19 @@ const Calculate = () => {
                 unAttempted++;
             }
         })
-        let totalCorrect = console.log(`Correct answers: ${correct}`);
-        let totalIncorrect = console.log(`Incorrect answers: ${incorrect}`);
-        let totalUnattempted = console.log(`Unattempted questions: ${unAttempted}`);
+        console.log(`Correct answers: ${correct}`);
+        let totalCorrect = correct
+        console.log(`Incorrect answers: ${incorrect}`);
+        let totalIncorrect = incorrect
+        console.log(`Unattempted questions: ${unAttempted}`);
+        let totalUnattempted = unAttempted
         return [
             { name: 'totalCorrect', corrects: totalCorrect, },
             { name: 'totalIncorrect', incorrects: totalIncorrect },
             { name: 'totalUnattempted', unattempted: totalUnattempted, }
         ]
     }
-    appData.appMarksData = compareAnswers(appUserAnsweryKey, appRealAnswerKey,)
-    return appData.appMarksData
+    const appMarksData = compareAnswers(appUserAnsweryKey, appRealAnswerKey,)
 }
 
-export { handleEnter, Calculate, appData }
+export { handleEnter, Calculate, }
