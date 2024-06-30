@@ -3,12 +3,18 @@ import { Navbar } from "../Components/compIndex";
 import { handleEnter } from "../app.js";
 import "../App.css";
 import CalculateFinal from "../Components/CalculateFinal.jsx";
-const totalQues = [1, 2, 3, 4];
+import { useAppContext } from "../context/AppContext.jsx";
 
 const Calculator = () => {
+  const totalQues = [1, 2, 3, 4, 5, 6, 7];
   useEffect(() => {
     handleEnter();
   });
+  const { setAppQuestions } = useAppContext();
+  useEffect(() => {
+    setAppQuestions(totalQues);
+  }, []);
+
   const renderInputs = () => {
     return totalQues.map((num, index) => (
       <div key={index} className="m-2">
@@ -50,7 +56,7 @@ const Calculator = () => {
           </div>
         </div>
       </div>
-      <CalculateFinal />
+      <CalculateFinal questions={totalQues} />
     </>
   );
 };

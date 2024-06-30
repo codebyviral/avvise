@@ -2,11 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 
 const CalculateFinal = () => {
-  const { setAppMarksData } = useAppContext();
+  const { setAppMarksData, appQuestions } = useAppContext();
   const navigate = useNavigate();
 
   const handleCalculation = () => {
-    const totalQues = [1, 2, 3, 4];
+    console.log(appQuestions);
+    const totalQues = appQuestions;
     const userAnswers = [];
     const realAnswers = [];
 
@@ -17,7 +18,6 @@ const CalculateFinal = () => {
 
     const appUserAnsweryKey = userAnswers.map((el) => el.toUpperCase());
     const appRealAnswerKey = realAnswers.map((el) => el.toUpperCase());
-
     const compareAnswers = (u, r) => {
       let correct = 0;
       let incorrect = 0;

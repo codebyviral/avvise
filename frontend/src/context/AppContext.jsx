@@ -6,9 +6,12 @@ const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [appMarksData, setAppMarksData] = useState(null);
+  const [appQuestions, setAppQuestions] = useState([]);
 
   return (
-    <AppContext.Provider value={{ appMarksData, setAppMarksData }}>
+    <AppContext.Provider
+      value={{ appMarksData, setAppMarksData, appQuestions, setAppQuestions }}
+    >
       {children}
     </AppContext.Provider>
   );

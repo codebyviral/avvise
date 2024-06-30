@@ -6,7 +6,6 @@ const GradingPage = () => {
   const { appMarksData } = useAppContext();
   const [userAnswers, setUserAnswers] = useState([]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
-  
   useEffect(() => {
     console.log(`appData : ${JSON.stringify(appMarksData)}`);
     if (appMarksData) {
@@ -18,18 +17,6 @@ const GradingPage = () => {
       setCorrectAnswers(["", "", "", ""]);
     }
   }, [appMarksData]);
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-        e.preventDefault();
-        e.returnValue = "Changes you made may not be saved."; // This message is necessary for some browsers to display the alert
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-        window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-}, []);
 
   const renderOMRRow = (index) => {
     const options = ["A", "B", "C", "D"];
