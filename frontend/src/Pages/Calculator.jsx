@@ -10,7 +10,7 @@ const Calculator = () => {
   useEffect(() => {
     handleEnter();
   });
-  const { setAppQuestions } = useAppContext();
+  const { setAppQuestions, setNoOfQues } = useAppContext();
 
   const renderInputs = () => {
     return totalQues.map((num, index) => (
@@ -40,9 +40,11 @@ const Calculator = () => {
   const handleQuestionsNums = (e) => {
     const num = parseInt(e.target.value, 10);
     if (!isNaN(num) && num > 0) {
-      const newTotalQues = Array.from({ length: num }, (_, i) => i + 1);
+      let newTotalQues = Array.from({ length: num }, (_, i) => i + 1);
       setTotalQues(newTotalQues);
       setAppQuestions(newTotalQues);
+      console.log(`this is num : ${num}`);
+      setNoOfQues(num);
       console.log(`totalQues Array : ${newTotalQues}`);
     }
   };

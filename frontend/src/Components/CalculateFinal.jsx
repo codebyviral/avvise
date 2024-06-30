@@ -1,11 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import { useEffect } from "react";
 
 const CalculateFinal = () => {
-  const { setAppMarksData, appQuestions } = useAppContext();
+  const { setAppMarksData, appQuestions, noOfQues } = useAppContext();
   const navigate = useNavigate();
 
   const handleCalculation = () => {
+    if (noOfQues === 0) {
+      console.log(noOfQues);
+      alert("No. of Questions cannot be Zero!");
+      return;
+    } else if (noOfQues === "" || noOfQues === null) {
+      console.log(noOfQues);
+      alert("No. of Questions cannot be Empty!");
+      return;
+    }
     console.log(appQuestions);
     const totalQues = appQuestions;
     const userAnswers = [];
