@@ -26,12 +26,6 @@ function classNames(...classes) {
 }
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(false);
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle("dark");
-    console.log(darkMode);
-  };
   const location = useLocation();
   return (
     <Disclosure as="nav" className="bg-blue-500 shadow-lg dark:bg-gray-900">
@@ -87,22 +81,22 @@ const Navbar = () => {
               </div>
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  onClick={toggleDarkMode}
+                {/* <button
+                  onClick={""}
                   type="button"
-                  className="relative rounded-full bg-blue-700 p-1 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-700"
+                  className="relative rounded-full bg-blue-700 dark:bg-slate-800 p-1"
                 >
                   <span className="absolute -inset-1.5" />
-                  <span className="sr-only">View notifications</span>
+                  <span className="sr-only">View notifications</span> */}
                   {/* darkmode button */}
-                  <div>
+                  {/* <div>
                     <img
                       className="h-6 w-auto"
                       src={darkImgURL}
                       alt="Dark mode button"
                     />
-                  </div>
-                </button>
+                  </div> */}
+                {/* </button> */}
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">

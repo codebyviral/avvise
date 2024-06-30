@@ -1,8 +1,35 @@
 import "./OMRSheet.css";
 import { Navbar } from "../Components/compIndex";
+import { useAppContext } from "../context/AppContext";
+import { useEffect, useState } from "react";
 const GradingPage = () => {
-  const userAnswers = ["A", "", "C", "D"];
-  const correctAnswers = ["A", "B", "A", "D"];
+  const { appMarksData } = useAppContext();
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [correctAnswers, setCorrectAnswers] = useState([]);
+  
+  useEffect(() => {
+    console.log(`appData : ${JSON.stringify(appMarksData)}`);
+    if (appMarksData) {
+      setUserAnswers(appMarksData?.[0]?.Key || []);
+      setCorrectAnswers(appMarksData?.[1]?.Key || []);
+    } else {
+      // Handle default data or loading state
+      setUserAnswers(["", "", "", ""]);
+      setCorrectAnswers(["", "", "", ""]);
+    }
+  }, [appMarksData]);
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+        e.preventDefault();
+        e.returnValue = "Changes you made may not be saved."; // This message is necessary for some browsers to display the alert
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+        window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+}, []);
 
   const renderOMRRow = (index) => {
     const options = ["A", "B", "C", "D"];

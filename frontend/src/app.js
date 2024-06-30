@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from './context/AppContext';
 function handleEnter() {
 
     const inputs = document.querySelectorAll("input");
@@ -29,7 +30,8 @@ const finalAnswers = [{
     real: [],
 }]
 
-const Calculate = () => {
+const Calculate = ({ userAnswers, realAnswers, totalQues }) => {
+    const { setAppMarksData } = useAppContext();
     totalQues.map((num, index) => {
         userAnswers[index] = document.getElementById(`que-${num}`).value;
         realAnswers[index] = document.getElementById(`answer-${num}`).value
@@ -68,7 +70,10 @@ const Calculate = () => {
             { name: 'totalUnattempted', unattempted: totalUnattempted, }
         ]
     }
-    const appMarksData = compareAnswers(appUserAnsweryKey, appRealAnswerKey,)
+    const newappMarkData = compareAnswers(appUserAnsweryKey, appRealAnswerKey,)
+    setAppMarksData(newappMarkData)
 }
+
+
 
 export { handleEnter, Calculate, }

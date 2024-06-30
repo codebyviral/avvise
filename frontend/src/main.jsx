@@ -4,12 +4,12 @@ import "./index.css";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./context/AppContext.jsx";
-
+import CalculateFinal from "./Components/CalculateFinal";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <AppProvider>
+  <AppProvider>
+    <BrowserRouter>
       <Toaster />
       <App />
-    </AppProvider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </AppProvider>
 );

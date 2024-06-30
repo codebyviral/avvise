@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-import { CalculateBtn, Navbar } from "../Components/compIndex";
-import { handleEnter, Calculate } from "../app.js";
+import { Navbar } from "../Components/compIndex";
+import { handleEnter } from "../app.js";
 import "../App.css";
+import CalculateFinal from "../Components/CalculateFinal.jsx";
 const totalQues = [1, 2, 3, 4];
 
 const Calculator = () => {
   useEffect(() => {
     handleEnter();
   });
-
   const renderInputs = () => {
     return totalQues.map((num, index) => (
       <div key={index} className="m-2">
@@ -50,7 +50,7 @@ const Calculator = () => {
           </div>
         </div>
       </div>
-      <CalculateBtn />
+      <CalculateFinal />
     </>
   );
 };
