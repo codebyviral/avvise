@@ -1,4 +1,3 @@
-                         
 <br/>
 <div align="center">
 <a href="https://github.com/ShaanCoding/ReadME-Generator">
@@ -12,13 +11,13 @@
 <a href="https://avvise.vercel.app/aboutus"><strong>Explore the docs »</strong></a>
 <br/>
 <br/>
-<a href="https://avvise.vercel.app/calculator">View Demo .</a>  
-<a href="https://avvise.vercel.app/aboutus">Report Bug .</a>
+<a href="https://avvise.vercel.app/calculator">View Demo</a> ·  
+<a href="https://avvise.vercel.app/aboutus">Report Bug</a> · 
 <a href="https://avvise.vercel.app/aboutus">Request Feature</a>
 </p>
 </div>
 
- ## About The Project
+## About The Project
 
 ![Product Screenshot](https://i.ibb.co/7XG3r8S/Screenshot-2024-07-01-at-7-04-47-PM.png)
 
@@ -30,7 +29,8 @@ Key Features:
 - **Flexible Integration**: Seamlessly integrate AVVISE with existing educational platforms for enhanced workflow.
 - **User-Friendly Interface**: Navigate AVVISE's intuitive interface for effortless operation across devices.
 - **Secure and Reliable**: Ensure data security with robust encryption and reliable cloud infrastructure.
- ### Built With
+
+### Built With
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
@@ -39,20 +39,23 @@ This section should list any major frameworks/libraries used to bootstrap your p
 - [Express.js](https://expressjs.com/)
 - [Node.js](https://nodejs.org/docs/latest/api/)
 - [MongoDB](https://www.mongodb.com/docs/)
- ## Getting Started
+
+## Getting Started
 
 Getting Started: Visit AVVISE at [avvise.vercel.app](https://avvise.vercel.app/) to streamline your student assessment.
- ### Prerequisites
+
+### Prerequisites
 
 **Prerequisites:**
 - Internet access and a modern web browser are required to use AVVISE at [avvise.vercel.app](https://avvise.vercel.app/).
- ### Installation
 
-Installation
+### Installation
+
 To access AVVISE, simply visit [avvise.vercel.app](https://avvise.vercel.app/) in your web browser.
 
 This straightforward instruction directs users to the URL where they can access and use your web app directly. If there are any additional setup steps or prerequisites for using specific features, you can mention them here as well.
- ## Usage
+
+## Usage
 
 To use the AVVISE Calculator:
 
@@ -63,12 +66,6 @@ To use the AVVISE Calculator:
 **Calculate Results**: Click the "Calculate" button to generate results. AVVISE will process the inputs and display an OMR sheet with visualized data, providing insights into student performance at a glance.
 
 Enhance your assessment process with AVVISE's intuitive interface and powerful analytics, making grading and evaluation efficient and insightful.
-```
-
-This description outlines the steps users should follow to utilize the AVVISE Calculator effectively, emphasizing its functionality and benefits in visualizing assessment results.
- # AVVISE Calculator
-
-This description outlines the steps users should follow to utilize the AVVISE Calculator effectively, emphasizing its functionality and benefits in visualizing assessment results.
 
 ## Roadmap
 
