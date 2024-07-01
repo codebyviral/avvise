@@ -3,7 +3,7 @@
 <a href="https://github.com/ShaanCoding/ReadME-Generator">
 <img src="https://avvise.vercel.app/assets/avvise-D1-h0MRV.jpeg" alt="Logo" width="80" height="80">
 </a>
-<h3 align="center">AVVISE: Next-Level Student Evaluation Solution</h3>
+<h3 align="center">AVVISE: Next-Level Student Evaluation WebApp</h3>
 <p align="center">
  An awesome Web App for Precision Student Assessment
 <br/>
