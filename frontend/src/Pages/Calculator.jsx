@@ -10,7 +10,7 @@ const Calculator = () => {
   useEffect(() => {
     handleEnter();
   });
-  const { setAppQuestions, setNoOfQues } = useAppContext();
+  const { setAppQuestions, setNoOfQues, setMarkingType } = useAppContext();
 
   const renderInputs = () => {
     return totalQues.map((num, index) => (
@@ -48,6 +48,11 @@ const Calculator = () => {
       console.log(`totalQues Array : ${newTotalQues}`);
     }
   };
+  const [markingScheme, setMarkingScheme] = useState("noNegative");
+  const handleMarkingSchemeChange = (e) => {
+    setMarkingScheme(e.target.value);
+    setMarkingType(e.target.value);
+  };
   return (
     <>
       <Navbar />
@@ -62,6 +67,21 @@ const Calculator = () => {
             min="1"
           />
         </div>
+      </div>
+      <div className="markingSystemDiv text-center">
+        <h6>Choose Your Marking System:</h6>
+        <select
+          className="mt-2"
+          value={markingScheme}
+          name="markingSystem"
+          id="marking-system"
+          onChange={handleMarkingSchemeChange}
+        >
+          <option value="noNegative">No Negative Marking : 1/0</option>
+          <option value="jeeNeet">JEE || NEET : 4/1</option>
+          <option value="bitSat">BITSAT : 3/1</option>
+          <option value="upsc">{`UPSC : 2/(1/3) also known as 2/0.66`}</option>
+        </select>
       </div>
       <div className="flex inputKeys items-center mt-10">
         <div className="flex">

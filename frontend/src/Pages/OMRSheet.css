@@ -1,68 +1,78 @@
 .grading-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* background-color: #f0f0f0; */
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #f0f0f0; */
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.omr-sheet {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.omr-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.question-number {
+  width: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.option-cell {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bubble {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #888;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.correct {
+  background-color: green;
+  color: white;
+}
+
+.incorrect {
+  background-color: red;
+  color: white;
+}
+
+.unattempted {
+  background-color: yellow;
+  color: black;
+}
+
+.marksDisplay {
+  background: #3c82f6;
+}
+
+/* desktop devices */
+@media screen and (min-width: 768px) {
+  body {
+    overflow-x: hidden;
   }
-  
-  .title {
-    margin-bottom: 20px;
-  }
-  
-  .omr-sheet {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .omr-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .question-number {
-    width: 20px;
-    text-align: center;
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .option-cell {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .bubble {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #888;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-  }
-  
-  .correct {
-    background-color: green;
-    color: white;
-  }
-  
-  .incorrect {
-    background-color: red;
-    color: white;
-  }
-  
-  .unattempted {
-    background-color: yellow;
-    color: black;
-  }
-  
+}

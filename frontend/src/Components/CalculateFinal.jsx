@@ -1,9 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const CalculateFinal = () => {
-  const { setAppMarksData, appQuestions, noOfQues } = useAppContext();
+  const [markScheme, setMarkScheme] = useState({
+    positiveMarks: 1,
+    negativeMarks: 0,
+  });
+  const {
+    setAppMarksData,
+    appQuestions,
+    noOfQues,
+    setResultDisplay,
+    markingType,
+  } = useAppContext();
   const navigate = useNavigate();
 
   const handleCalculation = () => {
@@ -44,14 +54,51 @@ const CalculateFinal = () => {
         }
       });
 
+      let scheme = { positiveMarks: 1, negativeMarks: 0 };
+
+      // setting Marking Type
+      if (markingType === "noNegative") {
+        scheme = {
+          positiveMarks: 1,
+          negativeMarks: 0,
+        };
+      } else if (markingType === "jeeNeet") {
+        scheme = {
+          positiveMarks: 4,
+          negativeMarks: 1,
+        };
+      } else if (markingType === "bitSat") {
+        scheme = {
+          positiveMarks: 3,
+          negativeMarks: 1,
+        };
+      } else if (markingType === "upsc") {
+        scheme = {
+          positiveMarks: 2,
+          negativeMarks: 1 / 3,
+        };
+      }
+
+      // final result::
+      const totalMarks = parseInt(correct * scheme.positiveMarks);
+      console.log(`total marks are: ${scheme.positiveMarks}`);
+      const totalIncorrect = incorrect * scheme.negativeMarks;
+      const finalMarks = totalMarks - totalIncorrect;
+      setResultDisplay({
+        totalMarks: finalMarks,
+        totalCorrect: correct,
+        totalIncorrect: incorrect,
+        totalUnattempted: unAttempted,
+      });
       return [
-        { name: "totalCorrect", corrects: correct },
+        { name: "totalMarks", corrects: finalMarks },
         { name: "totalIncorrect", incorrects: incorrect },
         { name: "totalUnattempted", unattempted: unAttempted },
       ];
     };
 
     const newappMarkData = compareAnswers(appUserAnsweryKey, appRealAnswerKey);
+    console.log(`app mark data ${newappMarkData}`);
     const OMRKey = [{ Key: appUserAnsweryKey }, { Key: appRealAnswerKey }];
     setAppMarksData(OMRKey);
 

@@ -5,10 +5,11 @@ import React, { createContext, useState, useContext } from "react";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [noOfQues, setNoOfQues] = useState("");
+  const [noOfQues, setNoOfQues] = useState(0);
   const [appMarksData, setAppMarksData] = useState(null);
   const [appQuestions, setAppQuestions] = useState([]);
-
+  const [resultDisplay, setResultDisplay] = useState({});
+  const [markingType, setMarkingType] = useState("noNegative");
   return (
     <AppContext.Provider
       value={{
@@ -18,6 +19,10 @@ export const AppProvider = ({ children }) => {
         setAppQuestions,
         noOfQues,
         setNoOfQues,
+        resultDisplay,
+        setResultDisplay,
+        markingType,
+        setMarkingType,
       }}
     >
       {children}
