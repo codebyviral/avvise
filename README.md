@@ -79,7 +79,7 @@ See the [open issues](https://avvise.vercel.app/aboutus) for a full list of prop
 
 ## Contact
 
-- Your Name
+- Viral Vaghela
 - Twitter: [@Viral27688955](https://twitter.com/Viral27688955)
 - Email: viralvaghela.dev@gmail.com
 
