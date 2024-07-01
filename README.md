@@ -66,25 +66,29 @@ Enhance your assessment process with AVVISE's intuitive interface and powerful a
 ```
 
 This description outlines the steps users should follow to utilize the AVVISE Calculator effectively, emphasizing its functionality and benefits in visualizing assessment results.
- ## Roadmap
+ # AVVISE Calculator
+
+This description outlines the steps users should follow to utilize the AVVISE Calculator effectively, emphasizing its functionality and benefits in visualizing assessment results.
+
+## Roadmap
 
 - [x] Initial Release Goals
 - [x] Short-term Goals:
-Enhance user interface and user experience based on feedback.
-- [x] Continous Improvement
+  - Enhance user interface and user experience based on feedback.
+- [x] Continuous Improvement
 - [ ] Community and Support
 
 See the [open issues](https://avvise.vercel.app/aboutus) for a full list of proposed features (and known issues).
- ## Contact
 
-Your Name - [@Viral27688955](https://x.com/Viral27688955) - viralvaghela.dev@gmail.com
+## Contact
 
- ## Acknowledgments
+- Your Name
+- Twitter: [@Viral27688955](https://twitter.com/Viral27688955)
+- Email: viralvaghela.dev@gmail.com
+
+## Acknowledgments
 
 We would like to express our sincere gratitude to the following individuals and organizations for their invaluable contributions to AVVISE:
 
 - **Viral Vaghela**: Founder of AVVISE.
-
-
-
-- [Viral Vaghela](https://github.com/codebyviral)
+- [GitHub - Viral Vaghela](https://github.com/codebyviral)
