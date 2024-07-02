@@ -90,6 +90,26 @@ const CalculateFinal = () => {
         totalIncorrect: incorrect,
         totalUnattempted: unAttempted,
       });
+
+      // Getting existing history for adding array index.
+      const existingHistory =
+        JSON.parse(window.localStorage.getItem("calculatedHistory")) || [];
+      // creating a new history by pushing an object inside history array.
+      const newEntry = {
+        id: existingHistory.length + 1,
+        userAnswerKey: appUserAnsweryKey,
+        appRealAnswerKey: appRealAnswerKey,
+        totalMarks: finalMarks,
+        totalCorrect: correct,
+        totalIncorrect: incorrect,
+        totalUnattempted: unAttempted,
+        timeStamp: new Date().toISOString(),
+      };
+      existingHistory.push(newEntry);
+      window.localStorage.setItem(
+        "calculatedHistory",
+        JSON.stringify(existingHistory)
+      );
       return [
         { name: "totalMarks", corrects: finalMarks },
         { name: "totalIncorrect", incorrects: incorrect },
@@ -101,7 +121,6 @@ const CalculateFinal = () => {
     console.log(`app mark data ${newappMarkData}`);
     const OMRKey = [{ Key: appUserAnsweryKey }, { Key: appRealAnswerKey }];
     setAppMarksData(OMRKey);
-
     // Delay navigation to ensure state is set
     setTimeout(() => navigate("/projects"), 0);
   };

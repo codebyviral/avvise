@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Navbar } from "../Components/compIndex";
+import { Navbar , Footer } from "../Components/compIndex";
 const ComingSoon = () => {
   const navigate = useNavigate();
   return (
@@ -33,6 +33,7 @@ const ComingSoon = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

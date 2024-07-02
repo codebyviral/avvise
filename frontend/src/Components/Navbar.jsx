@@ -16,7 +16,7 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "About", href: "/aboutus" },
   { name: "Projects", href: "/projects" },
-  { name: "Scan ✨", href: "/scanai" },
+  { name: "Scan ✨", href: "/scan" },
   { name: "Calculator", href: "/calculator" },
 ];
 
@@ -130,7 +130,7 @@ const Navbar = () => {
                     <MenuItem>
                       {({ focus }) => (
                         <a
-                          href="#"
+                          href="/history"
                           className={classNames(
                             focus ? "bg-gray-100" : "",
                             "block px-4 py-2 text-sm text-gray-700"

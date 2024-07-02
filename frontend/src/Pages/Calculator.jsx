@@ -43,9 +43,7 @@ const Calculator = () => {
       let newTotalQues = Array.from({ length: num }, (_, i) => i + 1);
       setTotalQues(newTotalQues);
       setAppQuestions(newTotalQues);
-      console.log(`this is num : ${num}`);
       setNoOfQues(num);
-      console.log(`totalQues Array : ${newTotalQues}`);
     }
   };
   const [markingScheme, setMarkingScheme] = useState("noNegative");
