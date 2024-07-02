@@ -81,11 +81,14 @@ const CalculateFinal = () => {
 
       // final result::
       const totalMarks = parseInt(correct * scheme.positiveMarks);
+      const maxMarks = realAnswers.length * scheme.positiveMarks;
       console.log(`total marks are: ${scheme.positiveMarks}`);
       const totalIncorrect = incorrect * scheme.negativeMarks;
       const finalMarks = totalMarks - totalIncorrect;
       setResultDisplay({
         totalMarks: finalMarks,
+        maxMarksPossible: maxMarks,
+        maxQuestions: appRealAnswerKey.length,
         totalCorrect: correct,
         totalIncorrect: incorrect,
         totalUnattempted: unAttempted,

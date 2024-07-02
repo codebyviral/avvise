@@ -20,8 +20,8 @@ const History = () => {
                 </h3>
                 <p className="font-semibold">Total Marks: {item.totalMarks}</p>
                 <p className="font-semibold">
-                  Total Correct:{" "}
-                  <span className="text-green-500">{item.totalMarks}</span>
+                  Total Correct:
+                  <span className="text-green-500">{item.totalCorrect}</span>
                 </p>
                 <p className="font-semibold">
                   Total Incorrect:{" "}
