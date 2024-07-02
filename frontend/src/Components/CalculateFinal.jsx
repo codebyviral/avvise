@@ -97,9 +97,15 @@ const CalculateFinal = () => {
       // Getting existing history for adding array index.
       const existingHistory =
         JSON.parse(window.localStorage.getItem("calculatedHistory")) || [];
-      // creating a new history by pushing an object inside history array.
+      const getMaxId = (history) => {
+        if (history.length === 0) {
+          return 0;
+        }
+        return Math.max(...history.map((item) => item.id)) + 1;
+      };
+
       const newEntry = {
-        id: existingHistory.length + 1,
+        id: getMaxId(existingHistory),
         userAnswerKey: appUserAnsweryKey,
         appRealAnswerKey: appRealAnswerKey,
         totalMarks: finalMarks,

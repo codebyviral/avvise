@@ -9,7 +9,7 @@ export const AppProvider = ({ children }) => {
   const [appMarksData, setAppMarksData] = useState(null);
   const [appQuestions, setAppQuestions] = useState([]);
   const [resultDisplay, setResultDisplay] = useState({});
-  const [historyId, setHistoryId] = useState(0);
+  const [historyId, setHistoryId] = useState(undefined);
   const [markingType, setMarkingType] = useState("noNegative");
   return (
     <AppContext.Provider

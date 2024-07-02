@@ -7,16 +7,35 @@ const GradingPage = () => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   useEffect(() => {
-    console.log("resultDisplay", resultDisplay);
     if (appMarksData) {
       setUserAnswers(appMarksData?.[0]?.Key || []);
       setCorrectAnswers(appMarksData?.[1]?.Key || []);
     } else {
-      // Handle default data or loading state
       setUserAnswers(["", "", "", ""]);
       setCorrectAnswers(["", "", "", ""]);
     }
-  }, [appMarksData]);
+  }, [resultDisplay, appMarksData, historyId]);
+  useEffect(() => {
+    if (historyId !== null) {
+      const historyDataString =
+        window.localStorage.getItem("calculatedHistory");
+      if (historyDataString) {
+        const historyData = JSON.parse(historyDataString);
+        const selectedHistoryEntry = historyData.find((entry) => entry.id === historyId);
+        if (selectedHistoryEntry) {
+          setUserAnswers(selectedHistoryEntry.userAnswerKey || []);
+          setCorrectAnswers(selectedHistoryEntry.appRealAnswerKey || []);
+        } else {
+          console.log(`History entry with id ${historyId} not found.`);
+        }
+      } else {
+        console.log("No history data found in localStorage.");
+      }
+    } else {
+      console.log("historyId not set.");
+    }
+  }, [historyId]);
+
   const renderOMRRow = (index) => {
     const options = ["A", "B", "C", "D"];
     const spans = [];
@@ -30,12 +49,12 @@ const GradingPage = () => {
           let bubbleClass = "bubble";
           if (userAnswers[index] === option) {
             if (correctAnswers[index] === option) {
-              bubbleClass += " correct"; // Correct answer marked by user
+              bubbleClass += " correct";
             } else {
-              bubbleClass += " incorrect"; // Incorrect answer marked by user
+              bubbleClass += " incorrect";
             }
           } else if (!userAnswers[index] && correctAnswers[index] === option) {
-            bubbleClass += " unattempted"; // Correct answer not attempted
+            bubbleClass += " unattempted";
           }
           return (
             <div className={`${bubbleClass} mx-4`} key={option}>
@@ -110,7 +129,7 @@ const GradingPage = () => {
                   Inorrect <span className="hidden md:inline">Answers</span>
                 </p>
                 <h6 className="lg:text-2xl lg:font-semibold font-semibold text-red-500 mt-2">
-                  {resultDisplay.totalIncorrect || "0"} /
+                  {resultDisplay.totalIncorrect || "0"} /{" "}
                   {resultDisplay.maxQuestions || "0"}
                 </h6>
               </div>

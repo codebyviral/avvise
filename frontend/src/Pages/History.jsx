@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Navbar, Footer } from "../Components/compIndex";
 import { useAppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 const History = () => {
+  const navigate = useNavigate();
   const { historyId, setHistoryId } = useAppContext();
   const [newUser, setNewUser] = useState(true);
   const [history, setHistory] = useState(["testArray"]);
@@ -14,6 +16,15 @@ const History = () => {
       setHistory(storedHistory);
     }
   }, []);
+  const handleHistory = (itemId) => {
+    setHistoryId(itemId);
+    setTimeout(() => {
+      navigate("/projects");
+    }, 1000);
+  };
+  useEffect(() => {
+    console.log("historyId updated:", historyId);
+  }, [historyId]);
   return (
     <>
       <Navbar />
@@ -34,6 +45,7 @@ const History = () => {
               {history.map((item) => (
                 <div
                   key={item.id}
+                  id={`historyID-${item.id}`}
                   className="bg-white shadow-md rounded-lg p-4"
                 >
                   <h3 className="text-lg font-semibold">
@@ -58,8 +70,7 @@ const History = () => {
                   </p>
                   <button
                     onClick={() => {
-                      setHistoryId(item.id);
-                      console.log("historyId is", historyId);
+                      handleHistory(item.id);
                     }}
                     className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
                   >
