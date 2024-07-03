@@ -8,7 +8,7 @@
  An awesome Web App for Precision Student Assessment
 <br/>
 <br/>
-<a href="https://avvise.vercel.app/aboutus"><strong>Explore the docs »</strong></a>
+<a href="https://avvise.vercel.app/docs"><strong>Explore the docs »</strong></a>
 <br/>
 <br/>
 <a href="https://avvise.vercel.app/calculator">View Demo</a> ·  
