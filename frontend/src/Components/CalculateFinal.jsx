@@ -108,6 +108,8 @@ const CalculateFinal = () => {
         id: getMaxId(existingHistory),
         userAnswerKey: appUserAnsweryKey,
         appRealAnswerKey: appRealAnswerKey,
+        maxMarks: maxMarks,
+        maxQuestions: appRealAnswerKey.length,
         totalMarks: finalMarks,
         totalCorrect: correct,
         totalIncorrect: incorrect,

@@ -6,6 +6,17 @@ const GradingPage = () => {
   const { appMarksData, resultDisplay, historyId } = useAppContext();
   const [userAnswers, setUserAnswers] = useState([]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
+  const [history, setHistory] = useState({
+    id: "",
+    totalMarks: "",
+    maxMarks: "",
+    maxQuestions: "",
+    appUserAnswerKey: "",
+    appRealAnswerKey: "",
+    totalCorrect: "",
+    totalIncorrect: "",
+    totalUnattempted: "",
+  });
   useEffect(() => {
     if (appMarksData) {
       setUserAnswers(appMarksData?.[0]?.Key || []);
@@ -21,10 +32,24 @@ const GradingPage = () => {
         window.localStorage.getItem("calculatedHistory");
       if (historyDataString) {
         const historyData = JSON.parse(historyDataString);
-        const selectedHistoryEntry = historyData.find((entry) => entry.id === historyId);
+        const selectedHistoryEntry = historyData.find(
+          (entry) => entry.id === historyId
+        );
         if (selectedHistoryEntry) {
           setUserAnswers(selectedHistoryEntry.userAnswerKey || []);
           setCorrectAnswers(selectedHistoryEntry.appRealAnswerKey || []);
+          setHistory((prevHistory) => ({
+            ...prevHistory,
+            id: selectedHistoryEntry.id,
+            totalMarks: selectedHistoryEntry.totalMarks,
+            maxQuestions: selectedHistoryEntry.maxQuestions,
+            maxMarks: selectedHistoryEntry.maxMarks,
+            appUserAnswerKey: selectedHistoryEntry.appUserAnswerKey,
+            appRealAnswerKey: selectedHistoryEntry.appRealAnswerKey,
+            totalCorrect: selectedHistoryEntry.totalCorrect,
+            totalIncorrect: selectedHistoryEntry.totalIncorrect,
+            totalUnattempted: selectedHistoryEntry.totalUnattempted,
+          }));
         } else {
           console.log(`History entry with id ${historyId} not found.`);
         }
@@ -111,8 +136,8 @@ const GradingPage = () => {
                   Total Marks
                 </p>
                 <h6 className="lg:text-2xl lg:font-semibold mt-2 font-semibold">
-                  {resultDisplay.totalMarks || "0"} /{" "}
-                  {resultDisplay.maxMarksPossible || "0"}
+                  {resultDisplay.totalMarks || history.totalMarks || "0"} /{" "}
+                  {resultDisplay.maxMarksPossible || history.maxMarks || "0"}
                 </h6>
               </div>
               <div className="testResults mt-5 whitespace-nowrap lg:mt-10 lg:h-5/6 lg:min-w-48 lg:text-2xl lg:mx-10 lg:border p-3 rounded-lg lg:bg-white text-center lg:px-20 lg:shadow-xl">
@@ -120,8 +145,8 @@ const GradingPage = () => {
                   Correct <span className="hidden md:inline">Answers</span>
                 </p>
                 <h6 className="lg:text-2xl lg:font-semibold text-green-600 mt-2 font-semibold">
-                  {resultDisplay.totalCorrect || "0"} /{" "}
-                  {resultDisplay.maxQuestions || "0"}
+                  {resultDisplay.totalCorrect || history.totalCorrect || "0"} /{" "}
+                  {resultDisplay.maxQuestions || history.maxQuestions || "0"}
                 </h6>
               </div>
               <div className="testResults mt-5 lg:mt-10 lg:h-5/6 lg:min-w-48 lg:text-2xl lg:mx-10 lg:border p-3 rounded-lg lg:bg-white text-center lg:px-20 lg:shadow-xl">
@@ -129,15 +154,19 @@ const GradingPage = () => {
                   Inorrect <span className="hidden md:inline">Answers</span>
                 </p>
                 <h6 className="lg:text-2xl lg:font-semibold font-semibold text-red-500 mt-2">
-                  {resultDisplay.totalIncorrect || "0"} /{" "}
-                  {resultDisplay.maxQuestions || "0"}
+                  {resultDisplay.totalIncorrect ||
+                    history.totalIncorrect ||
+                    "0"}{" "}
+                  / {resultDisplay.maxQuestions || history.maxQuestions || "0"}
                 </h6>
               </div>
               <div className="testResults mt-5 lg:mt-10 lg:h-5/6 lg:min-w-48 lg:text-2xl lg:mx-10 lg:border p-3 rounded-lg lg:bg-white text-center lg:px-20 lg:shadow-xl">
                 <p className="lg:text-xl text-sm font-semibold">Unattempted</p>
                 <h6 className="lg:text-2xl lg:font-semibold text-yellow-500 mt-2 font-semibold">
-                  {resultDisplay.totalUnattempted || "0"} /{" "}
-                  {resultDisplay.maxQuestions || "0"}
+                  {resultDisplay.totalUnattempted ||
+                    history.totalUnattempted ||
+                    "0"}{" "}
+                  / {resultDisplay.maxQuestions || history.maxQuestions || "0"}
                 </h6>
               </div>
             </div>
