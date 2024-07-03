@@ -52,7 +52,10 @@ const History = () => {
                     Calculated on - {new Date(item.timeStamp).toLocaleString()}
                   </h3>
                   <p className="font-semibold">
-                    Total Marks: {item.totalMarks}
+                    Total Questions: {item.maxQuestions}
+                  </p>
+                  <p className="font-semibold">
+                    Total Marks: {item.totalMarks && item.totalMarks.toFixed(2)} / {item.maxMarks}
                   </p>
                   <p className="font-semibold">
                     Total Correct: &nbsp;

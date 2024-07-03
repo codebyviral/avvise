@@ -14,6 +14,7 @@ import { useLocation } from "react-router-dom";
 import { profileIconURL } from "../assets/URLs";
 const navigation = [
   { name: "Home", href: "/" },
+  { name: "Docs", href: "/docs" },
   { name: "About", href: "/aboutus" },
   { name: "Projects", href: "/projects" },
   { name: "Scan ✨", href: "/scan" },

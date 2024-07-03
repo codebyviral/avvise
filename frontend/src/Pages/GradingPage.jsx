@@ -135,16 +135,19 @@ const GradingPage = () => {
                 <p className="lg:text-xl text-sm font-semibold whitespace-nowrap">
                   Total Marks
                 </p>
-                <h6 className="lg:text-2xl lg:font-semibold mt-2 font-semibold">
-                  {resultDisplay.totalMarks || history.totalMarks || "0"} /{" "}
-                  {resultDisplay.maxMarksPossible || history.maxMarks || "0"}
+                <h6 className="lg:text-2xl text-sm lg:font-semibold mt-2 font-semibold">
+                  {(resultDisplay.totalMarks &&
+                    resultDisplay.totalMarks.toFixed(2)) ||
+                    (history.totalMarks && history.totalMarks.toFixed(2)) ||
+                    "0"}{" "}
+                  / {resultDisplay.maxMarksPossible || history.maxMarks || "0"}
                 </h6>
               </div>
               <div className="testResults mt-5 whitespace-nowrap lg:mt-10 lg:h-5/6 lg:min-w-48 lg:text-2xl lg:mx-10 lg:border p-3 rounded-lg lg:bg-white text-center lg:px-20 lg:shadow-xl">
                 <p className="lg:text-xl text-sm whitespace-nowrap caption-toolkit font-semibold">
                   Correct <span className="hidden md:inline">Answers</span>
                 </p>
-                <h6 className="lg:text-2xl lg:font-semibold text-green-600 mt-2 font-semibold">
+                <h6 className="lg:text-2xl text-sm lg:font-semibold text-green-600 mt-2 font-semibold">
                   {resultDisplay.totalCorrect || history.totalCorrect || "0"} /{" "}
                   {resultDisplay.maxQuestions || history.maxQuestions || "0"}
                 </h6>
@@ -153,7 +156,7 @@ const GradingPage = () => {
                 <p className="lg:text-xl text-sm whitespace-nowrap caption-toolkit font-semibold">
                   Inorrect <span className="hidden md:inline">Answers</span>
                 </p>
-                <h6 className="lg:text-2xl lg:font-semibold font-semibold text-red-500 mt-2">
+                <h6 className="lg:text-2xl lg:font-semibold text-sm font-semibold text-red-500 mt-2">
                   {resultDisplay.totalIncorrect ||
                     history.totalIncorrect ||
                     "0"}{" "}
@@ -162,7 +165,7 @@ const GradingPage = () => {
               </div>
               <div className="testResults mt-5 lg:mt-10 lg:h-5/6 lg:min-w-48 lg:text-2xl lg:mx-10 lg:border p-3 rounded-lg lg:bg-white text-center lg:px-20 lg:shadow-xl">
                 <p className="lg:text-xl text-sm font-semibold">Unattempted</p>
-                <h6 className="lg:text-2xl lg:font-semibold text-yellow-500 mt-2 font-semibold">
+                <h6 className="lg:text-2xl text-sm lg:font-semibold text-yellow-500 mt-2 font-semibold">
                   {resultDisplay.totalUnattempted ||
                     history.totalUnattempted ||
                     "0"}{" "}
