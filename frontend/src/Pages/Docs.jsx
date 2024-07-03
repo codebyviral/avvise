@@ -3,7 +3,7 @@ const Docs = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto p-4 lg:mt-20 mt-10">
+      <div className="container mx-auto p-4 lg:mt-10 mt-10">
         <h1 className="text-3xl font-bold mb-4">AVVISE Documentation</h1>
 
         <div className="mb-6">
@@ -53,7 +53,7 @@ const Docs = () => {
         <div className="mb-6">
           <h2 className="text-2xl font-semibold mb-2">Getting Started</h2>
           <p className="text-lg mb-4">
-            To begin using AVVISE, simply access the web application. There's
+            To begin using AVVISE, simply access the web application. {"There's"}
             no need for installation; you can start right away.
           </p>
         </div>

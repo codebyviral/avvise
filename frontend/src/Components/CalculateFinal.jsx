@@ -140,7 +140,7 @@ const CalculateFinal = () => {
     <div className="flex justify-center">
       {/* Add a button or any event trigger to call handleCalculation */}
       <button
-        className="bg-blue-600 mt-10 px-6 py-2.5 rounded-lg hover:bg-blue-700 text-white dark:bg-purple-600"
+        className="bg-blue-600 mt-10 px-6 py-2.5 mb-10 rounded-lg hover:bg-blue-700 text-white dark:bg-purple-600"
         onClick={handleCalculation}
       >
         Calculate

@@ -1,8 +1,10 @@
 import "./OMRSheet.css";
 import { Navbar, Footer } from "../Components/compIndex";
 import { useAppContext } from "../context/AppContext";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 const GradingPage = () => {
+  const pdfRef = useRef();
   const { appMarksData, resultDisplay, historyId } = useAppContext();
   const [userAnswers, setUserAnswers] = useState([]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
@@ -116,6 +118,18 @@ const GradingPage = () => {
       </div>
     );
   };
+  const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error("Feature Coming soon 🥺"));
+    }, 2000);
+  });
+  const downloadPDF = () => {
+    toast.promise(myPromise, {
+      loading: "Downloading...",
+      success: "Operation Failed",
+      error: "Feature Coming soon 🥺",
+    });
+  };
   return (
     <>
       <Navbar />
@@ -124,10 +138,23 @@ const GradingPage = () => {
           <h1 className="text-xl">OMR Results</h1>
         </div>
       </div>
-      <div className="min-h-screen">
+      <div ref={pdfRef} className="min-h-screen">
         <div className="outerSummaryDiv p-5">
           <div className="summaryDiv w-full h-9 mt-5 font-semibold text-xl lg:ml-24 lg:text-3xl">
-            <h1 className="lg:float-left">Results Summary</h1>
+            <div className="flex">
+              <h1 className="lg:float-left">Results Summary</h1>
+              <button onClick={downloadPDF} className="Btn ml-5 mt-1">
+                <svg
+                  className="svgIcon"
+                  viewBox="0 0 384 512"
+                  height="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path>
+                </svg>
+                <span className="icon2"></span>
+              </button>
+            </div>
           </div>
           <div className="flex justify-center">
             <div className="grid grid-cols-4 text-black">
@@ -148,7 +175,7 @@ const GradingPage = () => {
                   Correct <span className="hidden md:inline">Answers</span>
                 </p>
                 <h6 className="lg:text-2xl text-sm lg:font-semibold text-green-600 mt-2 font-semibold">
-                  {resultDisplay.totalCorrect || history.totalCorrect || "0"} /{" "}
+                  {resultDisplay.totalCorrect || history.totalCorrect || "0"} /
                   {resultDisplay.maxQuestions || history.maxQuestions || "0"}
                 </h6>
               </div>
