@@ -52,20 +52,19 @@
 }
 
 .correct {
-  background-color: green;
-  color: white;
+  background-color: green !important;
+  color: white !important;
 }
 
 .incorrect {
-  background-color: red;
-  color: white;
+  background-color: red !important;
+  color: white !important;
 }
 
 .unattempted {
-  background-color: yellow;
-  color: black;
+  background-color: yellow !important;
+  color: black !important;
 }
-
 
 /* desktop devices */
 @media screen and (min-width: 768px) {

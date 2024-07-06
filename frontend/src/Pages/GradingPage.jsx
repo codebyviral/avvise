@@ -141,9 +141,11 @@ const GradingPage = () => {
               <h1 className="lg:float-left">Results Summary</h1>
               <button
                 onClick={() => {
-                  document.getElementById("displayOnPrint").style.display =
-                    "block";
-                  handlePrint(null, () => printRef.current);
+                  setTimeout(() => {
+                    document.getElementById("displayOnPrint").style.display =
+                      "block";
+                    handlePrint(null, () => printRef.current);
+                  }, 1000);
                 }}
                 className="Btn"
               >
