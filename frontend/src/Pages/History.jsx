@@ -55,7 +55,8 @@ const History = () => {
                     Total Questions: {item.maxQuestions}
                   </p>
                   <p className="font-semibold">
-                    Total Marks: {item.totalMarks && item.totalMarks.toFixed(2)} / {item.maxMarks}
+                    Total Marks: {item.totalMarks && item.totalMarks.toFixed(2)}{" "}
+                    / {item.maxMarks}
                   </p>
                   <p className="font-semibold">
                     Total Correct: &nbsp;
@@ -75,7 +76,7 @@ const History = () => {
                     onClick={() => {
                       handleHistory(item.id);
                     }}
-                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+                    className="mt-2 bg-black text-white px-4 py-2 rounded-2xl hover:opacity-80"
                   >
                     View OMR Sheet
                   </button>
