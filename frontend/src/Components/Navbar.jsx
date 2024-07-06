@@ -9,7 +9,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import AvviseLogo from "../assets/avvise.jpeg";
+import { AvviseEndgame } from "../assets/URLs";
 import { useLocation } from "react-router-dom";
 import { profileIconURL } from "../assets/URLs";
 const navigation = [
@@ -28,14 +28,14 @@ function classNames(...classes) {
 const Navbar = () => {
   const location = useLocation();
   return (
-    <Disclosure as="nav" className="bg-blue-500 shadow-lg dark:bg-gray-900">
+    <Disclosure as="nav" className="bg-white shadow-lg dark:bg-gray-900">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-200 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -50,7 +50,7 @@ const Navbar = () => {
                   <Link to="/">
                     <img
                       className="h-10 w-auto rounded-full"
-                      src={AvviseLogo}
+                      src={AvviseEndgame}
                       alt="Your Company"
                     />
                   </Link>
@@ -66,8 +66,8 @@ const Navbar = () => {
                           to={item.href}
                           className={classNames(
                             current
-                              ? "bg-white text-blue-500"
-                              : "text-white hover:bg-blue-600 hover:text-white",
+                              ? "bg-gray-200"
+                              : "text-black hover:bg-gray-200 hover:text-black",
                             "rounded-md px-3 py-2 text-sm font-medium"
                           )}
                           aria-current={current ? "page" : undefined}
@@ -169,8 +169,8 @@ const Navbar = () => {
                   href={item.href}
                   className={classNames(
                     item.current
-                      ? "bg-blue-700 text-white"
-                      : "text-white hover:bg-blue-600 hover:text-white",
+                      ? "bg-blue-700 text-black"
+                      : "text-black hover:bg-gray-200 hover:text-black",
                     "block rounded-md px-3 py-2 text-base font-medium"
                   )}
                   aria-current={item.current ? "page" : undefined}

@@ -14,9 +14,9 @@ const Container = () => {
                 Streamline your grading process with our intuitive MCQ
                 evaluation tool.
               </p>
-              <div className="mt-6 lg:animate-bounce dark:animate-none">
+              <div className="mt-6 dark:animate-none">
                 <Link to="/calculator">
-                  <div className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg inline-block dark:bg-purple-600">
+                  <div className="bg-black hover:opacity-80 text-white px-6 py-3 rounded-lg inline-block dark:bg-purple-600 rounded-2xl">
                     Get Started
                   </div>
                 </Link>
@@ -51,19 +51,19 @@ const Container = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="bg-blue-500 py-16 dark:bg-slate-800">
+        <section className="py-16 dark:bg-slate-800">
           <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-white">
+            <h2 className="text-3xl font-bold text-black">
               Ready to Revolutionize Your Grading?
             </h2>
-            <p className="mt-4 text-lg text-white">
+            <p className="mt-4 text-lg text-black">
               Sign up today and experience the power of our MCQ grading
               solution.
             </p>
             <div className="mt-6">
               <a
                 href="/"
-                className="bg-white text-blue-500 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-lg font-medium inline-block dark:bg-purple-600 dark:text-white"
+                className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-2xl"
               >
                 Sign Up Now
               </a>

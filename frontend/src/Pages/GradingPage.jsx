@@ -129,9 +129,9 @@ const GradingPage = () => {
   return (
     <>
       <Navbar />
-      <div className="marksDisplay w-full p-2 font-semibold h-12 text-white">
+      <div className="marksDisplay w-full p-2 font-semibold h-12 text-black">
         <div className="flex justify-center">
-          <h1 className="text-xl">OMR Results</h1>
+          <h1 className="text-xl mt-5">OMR Results</h1>
         </div>
       </div>
       <div ref={printRef} className="min-h-screen">
