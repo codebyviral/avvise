@@ -62,9 +62,10 @@ const GradingPage = () => {
     } else {
       console.log("historyId not set.");
     }
-    window.scrollTo(0, 0);
   }, [historyId]);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const renderOMRRow = (index) => {
     const options = ["A", "B", "C", "D"];
     const spans = [];
@@ -163,7 +164,7 @@ const GradingPage = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="grid grid-cols-4 text-black">
+            <div className="grid mr-4 grid-cols-4 text-black">
               <div className="testResults mt-5 lg:mt-10 lg:h-5/6 lg:min-w-48  lg:mx-10 lg:border p-3 rounded-lg lg:bg-white text-center lg:px-20 lg:shadow-xl">
                 <p className="lg:text-xl text-sm font-semibold whitespace-nowrap">
                   Total Marks
@@ -171,7 +172,7 @@ const GradingPage = () => {
                 <h6 className="lg:text-2xl text-sm lg:font-semibold mt-2 font-semibold">
                   {(resultDisplay.totalMarks &&
                     resultDisplay.totalMarks.toFixed(2)) ||
-                    (history.totalMarks && history.totalMarks.toFixed(2)) ||
+                    (history.totalMarks && history.totalMarks.toFixed(1)) ||
                     "0"}{" "}
                   / {resultDisplay.maxMarksPossible || history.maxMarks || "0"}
                 </h6>
