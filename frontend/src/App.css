@@ -3,6 +3,7 @@
 * {
   font-family: "Lexend", sans-serif;
   font-optical-sizing: auto;
+  box-sizing: border-box;
 }
 
 .inputKeys {
@@ -12,6 +13,7 @@
 .displayOMR {
   flex-direction: row;
 }
+
 
 /* Download Button CSS */
 
