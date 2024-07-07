@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Navbar, Footer } from "../Components/compIndex";
 import { useAppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { Oval } from "react-loader-spinner";
 const History = () => {
   const navigate = useNavigate();
   const { historyId, setHistoryId } = useAppContext();
+  const [loading, setLoading] = useState({});
   const [newUser, setNewUser] = useState(true);
   const [history, setHistory] = useState(["testArray"]);
   useEffect(() => {
@@ -17,10 +19,13 @@ const History = () => {
     }
   }, []);
   const handleHistory = (itemId) => {
+    setLoading((prevState) => ({ ...prevState, [itemId]: true }));
     setHistoryId(itemId);
     setTimeout(() => {
+      setLoading(false);
+      setLoading((prevState) => ({ ...prevState, [itemId]: true }));
       navigate("/projects");
-    }, 1000);
+    },700);
   };
   useEffect(() => {
     console.log("historyId updated:", historyId);
@@ -76,9 +81,15 @@ const History = () => {
                     onClick={() => {
                       handleHistory(item.id);
                     }}
-                    className="mt-2 bg-black text-white px-4 py-2 rounded-2xl hover:opacity-80"
+                    className="mt-2 w-44 flex justify-center bg-black text-white px-4 py-2 rounded-2xl hover:opacity-80"
                   >
-                    View OMR Sheet
+                    {loading[item.id] ? (
+                      <>
+                        <Oval color="#fff" height={20} width={20} />
+                      </>
+                    ) : (
+                      "View OMR Sheet"
+                    )}
                   </button>
                 </div>
               ))}

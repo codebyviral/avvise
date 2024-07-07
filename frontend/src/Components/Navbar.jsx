@@ -10,8 +10,9 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { AvviseEndgame } from "../assets/URLs";
+import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
-import { profileIconURL } from "../assets/URLs";
+import { profileIconURL, darkImgURL } from "../assets/URLs";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Docs", href: "/docs" },
@@ -31,7 +32,7 @@ const Navbar = () => {
     <Disclosure as="nav" className="bg-white shadow-lg dark:bg-gray-900">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 p-4 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -76,28 +77,27 @@ const Navbar = () => {
                         </Link>
                       );
                     })}
+                    <button
+                      onClick={() => {
+                        toast.success("Coming Soon!");
+                      }}
+                      id="toggle-theme"
+                      type="button"
+                      className="relative h-4 w-auto rounded-full mt-1.5 dark:bg-slate-800 mb-1"
+                    >
+                      <div>
+                        <img
+                          className="h-6 w-auto"
+                          src={darkImgURL}
+                          alt="Dark mode button"
+                        />
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* <button
-                  onClick={""}
-                  type="button"
-                  className="relative rounded-full bg-blue-700 dark:bg-slate-800 p-1"
-                >
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">View notifications</span> */}
-                {/* darkmode button */}
-                {/* <div>
-                    <img
-                      className="h-6 w-auto"
-                      src={darkImgURL}
-                      alt="Dark mode button"
-                    />
-                  </div> */}
-                {/* </button> */}
-
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>

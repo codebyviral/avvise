@@ -62,6 +62,7 @@ const GradingPage = () => {
     } else {
       console.log("historyId not set.");
     }
+    window.scrollTo(0, 0);
   }, [historyId]);
 
   const renderOMRRow = (index) => {
