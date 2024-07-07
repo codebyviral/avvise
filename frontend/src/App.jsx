@@ -7,6 +7,7 @@ import {
   History,
   ComingSoon,
   Docs,
+  Signup,
 } from "./Pages/pageIndex";
 import { Routes, Route } from "react-router-dom";
 import "./app.js";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/scan" element={<ComingSoon />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/history" element={<History />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </>
   );

@@ -5,7 +5,7 @@ const ComingSoon = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+      <div className="min-h-screen flex flex-col items-center justify-center">
         <div className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg">
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-4">
             Coming Soon!

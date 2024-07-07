@@ -3,7 +3,7 @@ const Docs = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto p-4 lg:mt-10 mt-10">
+      <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold mb-4">AVVISE Documentation</h1>
 
         <div className="mb-6">

@@ -5,10 +5,17 @@ const Container = () => {
       <div className="bg-gray-100 min-h-screen">
         {/* Hero Section */}
         <header className="bg-white py-20 dark:bg-slate-800">
-          <div className="max-w-7xl mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4 ">
             <div className="text-center">
-              <h1 className="text-3xl mt-20 font-bold text-gray-900 dark:text-white">
-                Welcome to our Grading MCQ Web App
+              <div className="text-7 bg-clip-text cursor-default text-7xl text-transparent bg-gradient-to-r from-black to-white font-bold dark:text-white hover:from-white hover:to-black">
+                <svg className="homeSvg" viewBox="0 0 1320 300">
+                  <text x="50%" y="50%" dy=".35em" textAnchor="middle">
+                    AVVISE
+                  </text>
+                </svg>
+              </div>
+              <h1 className="text-3xl mt-7 mb-10 font-semibold">
+                Introducing the Ultimate WebApp Calculator.
               </h1>
               <p className="mt-4 text-lg text-gray-700 dark:text-white">
                 Streamline your grading process with our intuitive MCQ
