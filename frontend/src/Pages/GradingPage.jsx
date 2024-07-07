@@ -177,7 +177,7 @@ const GradingPage = () => {
                   / {resultDisplay.maxMarksPossible || history.maxMarks || "0"}
                 </h6>
               </div>
-              <div className="testResults mt-5 whitespace-nowrap lg:mt-10 lg:h-5/6 lg:min-w-48 lg:text-2xl lg:mx-10 lg:border p-3 rounded-lg lg:bg-white text-center lg:px-20 lg:shadow-xl">
+              <div className="testResults ml-2 mt-5 whitespace-nowrap lg:mt-10 lg:h-5/6 lg:min-w-48 lg:text-2xl lg:mx-10 lg:border p-3 rounded-lg lg:bg-white text-center lg:px-20 lg:shadow-xl">
                 <p className="lg:text-xl text-sm whitespace-nowrap caption-toolkit font-semibold">
                   Correct <span className="hidden md:inline">Answers</span>
                 </p>
