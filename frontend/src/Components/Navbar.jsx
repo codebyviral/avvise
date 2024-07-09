@@ -1,188 +1,152 @@
-import { Link } from "react-router-dom";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { AvviseEndgame } from "../assets/URLs";
-import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
-import { profileIconURL, darkImgURL } from "../assets/URLs";
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Docs", href: "/docs" },
-  { name: "About", href: "/aboutus" },
-  { name: "Projects", href: "/projects" },
-  { name: "Scan ✨", href: "/scan" },
-  { name: "Calculator", href: "/calculator" },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
+import { useState } from "react";
+import { AvviseEndgame, profileIconURL } from "../assets/URLs";
+import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
-  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   return (
-    <Disclosure as="nav" className="bg-white dark:bg-gray-900">
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-2 p-4 sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
-                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-200 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="absolute -inset-0.5" />
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </DisclosureButton>
-              </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
-                  <Link to="/">
-                    <img
-                      className="h-10 w-auto rounded-full"
-                      src={AvviseEndgame}
-                      alt="Your Company"
-                    />
-                  </Link>
-                </div>
+    <nav className="relative bg-white shadow dark:bg-gray-800">
+      <div className="container px-6 py-4 mx-auto">
+        <div className="lg:flex lg:items-center lg:justify-between">
+          <div className="flex items-center justify-between">
+            <a href="/">
+              <img
+                className="w-auto h-6 lg:h-9"
+                src={AvviseEndgame}
+                alt="avvise logo"
+              />
+            </a>
 
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => {
-                      const current = location.pathname === item.href;
-                      return (
-                        <Link
-                          key={item.name}
-                          to={item.href}
-                          className={classNames(
-                            current
-                              ? "bg-gray-200"
-                              : "text-black hover:bg-gray-200 hover:text-black",
-                            "rounded-md px-3 py-2 text-sm font-medium"
-                          )}
-                          aria-current={current ? "page" : undefined}
-                        >
-                          {item.name}
-                        </Link>
-                      );
-                    })}
-                    <button
-                      onClick={() => {
-                        toast.success("Coming Soon!");
-                      }}
-                      id="toggle-theme"
-                      type="button"
-                      className="relative h-4 w-auto rounded-full mt-1.5 dark:bg-slate-800 mb-1"
-                    >
-                      <div>
-                        <img
-                          className="h-6 w-auto"
-                          src={darkImgURL}
-                          alt="Dark mode button"
-                        />
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
-                  <div>
-                    <MenuButton className="relative flex rounded-full bg-black text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black">
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src={profileIconURL}
-                        alt="profile icon"
-                      />
-                    </MenuButton>
-                  </div>
-                  <MenuItems
-                    transition
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+            {/* Mobile menu button */}
+            <div className="flex lg:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+                className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
+                aria-label="toggle menu"
+              >
+                {!isOpen ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
                   >
-                    <MenuItem>
-                      {({ focus }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            focus ? "bg-gray-100" : "",
-                            "block px-4 py-2 text-sm text-gray-700"
-                          )}
-                        >
-                          Your Profile
-                        </a>
-                      )}
-                    </MenuItem>
-                    <MenuItem>
-                      {({ focus }) => (
-                        <a
-                          href="/history"
-                          className={classNames(
-                            focus ? "bg-gray-100" : "",
-                            "block px-4 py-2 text-sm text-gray-700"
-                          )}
-                        >
-                          History
-                        </a>
-                      )}
-                    </MenuItem>
-                    <MenuItem>
-                      {({ focus }) => (
-                        <a
-                          href="/signup"
-                          className={classNames(
-                            focus ? "bg-gray-100" : "",
-                            "block px-4 py-2 text-sm text-gray-700"
-                          )}
-                        >
-                          Sign up
-                        </a>
-                      )}
-                    </MenuItem>
-                  </MenuItems>
-                </Menu>
-              </div>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 8h16M4 16h16"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
 
-          <DisclosurePanel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
-                <DisclosureButton
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-blue-700 text-black"
-                      : "text-black hover:bg-gray-200 hover:text-black",
-                    "block rounded-md px-3 py-2 text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
-                >
-                  {item.name}
-                </DisclosureButton>
-              ))}
+          {/* Mobile Menu */}
+          <div
+            className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
+              isOpen
+                ? "translate-x-0 opacity-100"
+                : "opacity-0 -translate-x-full"
+            }`}
+          >
+            <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
+              <a
+                href="/"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                Home
+              </a>
+              <a
+                href="/docs"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                Docs
+              </a>
+              <a
+                href="/aboutus"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                About
+              </a>
+              <a
+                href="/history"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                History
+              </a>
+              <a
+                href="/scan"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                Scan ✨
+              </a>
             </div>
-          </DisclosurePanel>
-        </>
-      )}
-    </Disclosure>
+
+            <div className="flex items-center mt-4 lg:mt-0">
+              <button
+                className="hidden mx-4 text-gray-600 transition-colors duration-300 transform lg:block dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none"
+                aria-label="show notifications"
+              >
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                className="flex items-center focus:outline-none"
+                aria-label="toggle profile dropdown"
+              >
+                <div className="w-8 h-8 overflow-hidden border-2 border-none rounded-full">
+                  <Link to="/signup">
+                    <img
+                      src={profileIconURL}
+                      className="object-cover w-full h-full"
+                      alt="avatar"
+                    />
+                  </Link>
+                </div>
+                <Link to="/signup">
+                  <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
+                    Sign up
+                  </h3>
+                </Link>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
 

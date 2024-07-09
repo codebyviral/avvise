@@ -1,5 +1,5 @@
 import { Navbar, Footer } from "../Components/compIndex";
-import {AvviseEndgame} from "../assets/URLs"
+import { AvviseEndgame } from "../assets/URLs";
 const Signup = () => {
   return (
     <>
@@ -8,14 +8,13 @@ const Signup = () => {
         <div className="container px-6 py-24 mx-auto lg:py-32">
           <div className="lg:flex">
             <div className="lg:w-1/2">
-              <img
-                className="w-auto h-8 lg:h-20"
-                src={AvviseEndgame}
-                alt=""
-              />
+              <img className="w-auto h-8 lg:h-20" src={AvviseEndgame} alt="" />
 
               <h1 className="mt-4 text-gray-600 dark:text-gray-300 md:text-lg">
-                Welcome
+                Welcome{" "}
+                <span className="font-semibold text-2xl">
+                  to <span className="text-black">AVVISE</span>
+                </span>
               </h1>
 
               <h1 className="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl dark:text-white">
@@ -76,8 +75,8 @@ const Signup = () => {
                 </div>
 
                 <div className="mt-8 md:flex md:items-center">
-                  <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-lg md:w-1/2 hover:opacity-80 focus:outline-none focus:ring focus:ring-opacity-50">
-                    Sign in
+                  <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-2xl md:w-1/2 hover:opacity-80 focus:outline-none focus:ring focus:ring-opacity-50">
+                    Sign up
                   </button>
 
                   <a
@@ -98,7 +97,7 @@ const Signup = () => {
 
             <div className="flex items-center mt-4 sm:mt-0 -mx-1.5 sm:w-1/2">
               <a
-                className="mx-1.5 dark:hover:text-blue-400 text-gray-400 transition-colors duration-300 transform hover:text-blue-500"
+                className="mx-1.5 dark:hover:text-blue-400 text-gray-400 transition-colors duration-300 transform hover:text-black"
                 href="#"
               >
                 <svg
@@ -112,7 +111,7 @@ const Signup = () => {
               </a>
 
               <a
-                className="mx-1.5 dark:hover:text-blue-400 text-gray-400 transition-colors duration-300 transform hover:text-blue-500"
+                className="mx-1.5 dark:hover:text-blue-400 text-gray-400 transition-colors duration-300 transform hover:text-black"
                 href="#"
               >
                 <svg
@@ -137,7 +136,7 @@ const Signup = () => {
               </a>
 
               <a
-                className="mx-1.5 dark:hover:text-blue-400 text-gray-400 transition-colors duration-300 transform hover:text-blue-500"
+                className="mx-1.5 dark:hover:text-blue-400 text-gray-400 transition-colors duration-300 transform hover:text-black"
                 href="#"
               >
                 <svg
@@ -154,7 +153,7 @@ const Signup = () => {
               </a>
 
               <a
-                className="mx-1.5 dark:hover:text-blue-400 text-gray-400 transition-colors duration-300 transform hover:text-blue-500"
+                className="mx-1.5 dark:hover:text-blue-400 text-gray-400 transition-colors duration-300 transform hover:text-black"
                 href="#"
               >
                 <svg
@@ -173,6 +172,7 @@ const Signup = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

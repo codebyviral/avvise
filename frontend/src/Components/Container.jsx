@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import GridSection from "./GridSection";
 const Container = () => {
   return (
     <>
-      <div className="bg-gray-100 min-h-screen">
+      <div className="min-h-screen">
         {/* Hero Section */}
         <header className="bg-white py-20 dark:bg-slate-800">
           <div className="max-w-7xl mx-auto px-4 ">
@@ -56,7 +57,7 @@ const Container = () => {
             </div>
           </div>
         </section>
-
+        <GridSection />
         {/* Call to Action */}
         <section className="py-16 dark:bg-slate-800">
           <div className="max-w-7xl mx-auto px-4 text-center">
@@ -69,7 +70,7 @@ const Container = () => {
             </p>
             <div className="mt-6">
               <a
-                href="/"
+                href="/signup"
                 className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-2xl"
               >
                 Sign Up Now
