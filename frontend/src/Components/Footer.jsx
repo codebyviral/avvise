@@ -1,7 +1,7 @@
 import { AvviseEndgame } from "../assets/URLs";
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-900">
+    <footer className="bg-white dark:bg-gray-900 mt-20">
       <div className="container p-6 mx-auto">
         <div className="lg:flex">
           <div className="w-full -mx-6 lg:w-2/5">
@@ -15,8 +15,7 @@ const Footer = () => {
               </a>
 
               <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
-                Join 31,000+ others and never miss out on new tips, tutorials,
-                and more.
+                Join 100+ others and never miss out new feature at avvise.
               </p>
 
               <div className="flex mt-6 -mx-2">
@@ -150,7 +149,7 @@ const Footer = () => {
                   +91 94269 95196
                 </span>
                 <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline cursor-pointer">
-                  viralvaghela.dev@gmail.com
+                  <a href="mailto:viralvaghela.dev@gmail.com">Viral Vaghela</a>
                 </span>
               </div>
             </div>
