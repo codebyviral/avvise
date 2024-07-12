@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { AvviseEndgame, profileIconURL } from "../assets/URLs";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/AppContext";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const update_profile_img = localStorage.getItem("profileImg");
   return (
     <nav className="relative bg-white shadow dark:bg-gray-800">
       <div className="container px-6 py-4 mx-auto">
@@ -130,7 +132,7 @@ const Navbar = () => {
                 <div className="w-8 h-8 overflow-hidden border-2 border-none rounded-full">
                   <Link to="/signup">
                     <img
-                      src={profileIconURL}
+                      src={update_profile_img || profileIconURL}
                       className="object-cover w-full h-full"
                       alt="avatar"
                     />

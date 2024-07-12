@@ -77,12 +77,8 @@ const GradingPage = () => {
         <div className="question-number">{spans[index]}</div>
         {options.map((option) => {
           let bubbleClass = "bubble";
-          if (userAnswers[index] === option) {
-            if (correctAnswers[index] === option) {
-              bubbleClass += " correct";
-            } else {
-              bubbleClass += " incorrect";
-            }
+          if (userAnswers && userAnswers[index] === option) {
+            bubbleClass += correctAnswers[index] === option ? " correct" : " incorrect";
           } else if (!userAnswers[index] && correctAnswers[index] === option) {
             bubbleClass += " unattempted";
           }

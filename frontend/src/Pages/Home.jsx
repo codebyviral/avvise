@@ -1,9 +1,7 @@
 import { Navbar, Container, Footer } from "../Components/compIndex";
 
 const Home = () => {
-  const testLogHistory =
-    JSON.parse(window.localStorage.getItem("calculatedHistory")) || [];
-  console.log("testLogHistory", testLogHistory);
+  const testLogHistory = JSON.parse(window.localStorage.getItem("calculatedHistory")) || [];
   return (
     <>
       <Navbar />

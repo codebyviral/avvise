@@ -1,6 +1,68 @@
+import { useState } from "react";
 import { Navbar, Footer } from "../Components/compIndex";
-import { AvviseEndgame } from "../assets/URLs";
+import { AvviseEndgame, profileIconURL } from "../assets/URLs";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Oval } from "react-loader-spinner";
 const Signup = () => {
+  const [avatar, setAvatar] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    avatar: "", // This might not be necessary if you're using `avatar` state
+  });
+  const navigate = useNavigate();
+
+  const handleImgChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setAvatar(file);
+    }
+  };
+
+  const signupURL = "http://localhost:4000/api/auth/signup";
+
+  const handleInput = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await axios.post(signupURL, user);
+      if (response.status === 200) {
+        const responseData = response.data;
+        const userID = responseData.userId;
+        setTimeout(async () => {
+          if (userID && avatar) {
+            const avatarUrl = "http://localhost:4000/api/auth/upload-avatar";
+            const formData = new FormData();
+            formData.append("file", avatar);
+            formData.append("userId", userID);
+            const uploadResponse = await axios.post(avatarUrl, formData, {
+              method: "POST",
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            });
+            if (uploadResponse.status === 200) {
+              localStorage.setItem("profileImg", uploadResponse.data.imageUrl);
+              setLoading(false);
+              navigate("/");
+            }
+          }
+        }, 1000);
+      }
+    } catch (error) {
+      console.log("handleSubmit error", error);
+    }
+  };
   return (
     <>
       <Navbar />
@@ -21,9 +83,71 @@ const Signup = () => {
                 Signup New account
               </h1>
             </div>
-
             <div className="mt-8 lg:w-1/2 lg:mt-0">
-              <form className="w-full lg:max-w-xl">
+              <form onSubmit={handleSubmit} className="w-full lg:max-w-xl">
+                {/* Avatar Upload */}
+                <label htmlFor="file-upload">
+                  <img
+                    className="h-20 w-auto mb-5 rounded-full"
+                    src={avatar ? URL.createObjectURL(avatar) : profileIconURL}
+                    alt="upload avatar image"
+                  />
+                </label>
+                <input
+                  className="block w-full text-sm text-slate-500
+                  mb-4
+                  file:mr-4 file:py-2 file:px-4
+                  file:rounded-full file:border-0
+                  file:text-sm file:font-semibold
+                file:bg-gray-300 file:text-black
+                hover:file:bg-opacity-80"
+                  type="file"
+                  onChange={handleImgChange}
+                  label="Image"
+                  name="avatar"
+                  accept="image"
+                />
+                <div className="relative flex items-center mb-4 mt-3">
+                  <span className="absolute">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 14l9-5-9-5-9 5 9 5z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 14l9-5-9-5-9 5 9 5z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 14l9-5-9-5-9 5 9 5z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 14l9-5-9-5-9 5 9 5z"
+                      />
+                    </svg>
+                  </span>
+
+                  <input
+                    type="text"
+                    name="fullName"
+                    onChange={handleInput}
+                    className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    placeholder="Full Name"
+                  />
+                </div>
                 <div className="relative flex items-center">
                   <span className="absolute">
                     <svg
@@ -44,6 +168,8 @@ const Signup = () => {
 
                   <input
                     type="email"
+                    name="email"
+                    onChange={handleInput}
                     className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Email address"
                   />
@@ -69,15 +195,30 @@ const Signup = () => {
 
                   <input
                     type="password"
+                    name="password"
+                    onChange={handleInput}
                     className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-black dark:focus:border-blue-300 focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Password"
                   />
                 </div>
 
                 <div className="mt-8 md:flex md:items-center">
-                  <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-2xl md:w-1/2 hover:opacity-80 focus:outline-none focus:ring focus:ring-opacity-50">
+                  {loading ? (
+                    <>
+                      <button className="mt-2 w-44 flex justify-center bg-black text-white px-4 py-2 rounded-2xl hover:opacity-80">
+                        <Oval color="#ffff" width={10} height={20} />
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-2xl md:w-1/2 hover:opacity-80 focus:outline-none focus:ring focus:ring-opacity-50">
+                        Sign up
+                      </button>
+                    </>
+                  )}
+                  {/* <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-2xl md:w-1/2 hover:opacity-80 focus:outline-none focus:ring focus:ring-opacity-50">
                     Sign up
-                  </button>
+                  </button> */}
 
                   <a
                     href="#"
