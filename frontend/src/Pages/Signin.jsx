@@ -1,68 +1,53 @@
 import { useState } from "react";
 import { Navbar, Footer } from "../Components/compIndex";
-import { AvviseEndgame, profileIconURL } from "../assets/URLs";
-import axios from "axios";
+import { AvviseEndgame } from "../assets/URLs";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import { toast } from "react-hot-toast";
-const Signup = () => {
-  const [avatar, setAvatar] = useState(null);
+import { useAuthContext } from "../context/AuthContext";
+
+const Signin = () => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
-    fullName: "",
     email: "",
     password: "",
-    avatar: "", // This might not be necessary if you're using `avatar` state
   });
-  const navigate = useNavigate();
-
-  const handleImgChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setAvatar(file);
-    }
-  };
-
-  const signupURL = "http://localhost:4000/api/auth/signup";
-
-  const handleInput = (e) => {
+  const handleChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
-
-  const handleSubmit = async (e) => {
+  const navigate = useNavigate();
+  const { storeTokenInLocalStorage } = useAuthContext();
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const loginURL = "http://localhost:4000/api/auth/login";
     try {
-      const response = await axios.post(signupURL, user);
-      if (response.status === 200) {
-        const responseData = response.data;
-        const userID = responseData.userId;
-        setTimeout(async () => {
-          if (userID && avatar) {
-            const avatarUrl = "http://localhost:4000/api/auth/upload-avatar";
-            const formData = new FormData();
-            formData.append("file", avatar);
-            formData.append("userId", userID);
-            const uploadResponse = await axios.post(avatarUrl, formData, {
-              method: "POST",
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            });
-            if (uploadResponse.status === 200) {
-              localStorage.setItem("profileImg", uploadResponse.data.imageUrl);
-              setLoading(false);
-              toast.success("Account Created 🎉");
-              navigate("/login");
-            }
-          }
-        }, 100);
+      const response = await fetch(loginURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      if (response.ok) {
+        setUser({ email: "", password: "" });
+        const responseData = await response.json();
+        console.log("Response from server", responseData);
+        storeTokenInLocalStorage(responseData.token);
+        toast.success("Login success");
+        navigate("/");
+      } else {
+        toast.error("Login error");
       }
     } catch (error) {
-      console.log("handleSubmit error", error);
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -75,81 +60,18 @@ const Signup = () => {
               <img className="w-auto h-8 lg:h-20" src={AvviseEndgame} alt="" />
 
               <h1 className="mt-4 text-gray-600 dark:text-gray-300 md:text-lg">
-                Welcome{" "}
+                Welcome, back{" "}
                 <span className="font-semibold text-2xl">
                   to <span className="text-black">AVVISE</span>
                 </span>
               </h1>
 
               <h1 className="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl dark:text-white">
-                Signup New account
+                Login to your account
               </h1>
             </div>
             <div className="mt-8 lg:w-1/2 lg:mt-0">
-              <form onSubmit={handleSubmit} className="w-full lg:max-w-xl">
-                {/* Avatar Upload */}
-                <label htmlFor="file-upload">
-                  <img
-                    className="h-20 w-auto mb-5 rounded-full"
-                    src={avatar ? URL.createObjectURL(avatar) : profileIconURL}
-                    alt="upload avatar image"
-                  />
-                </label>
-                <input
-                  className="block w-full text-sm text-slate-500
-                  mb-4
-                  file:mr-4 file:py-2 file:px-4
-                  file:rounded-full file:border-0
-                  file:text-sm file:font-semibold
-                file:bg-gray-300 file:text-black
-                hover:file:bg-opacity-80"
-                  type="file"
-                  onChange={handleImgChange}
-                  label="Image"
-                  name="avatar"
-                  accept="image"
-                />
-                <div className="relative flex items-center mb-4 mt-3">
-                  <span className="absolute">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 14l9-5-9-5-9 5 9 5z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 14l9-5-9-5-9 5 9 5z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 14l9-5-9-5-9 5 9 5z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 14l9-5-9-5-9 5 9 5z"
-                      />
-                    </svg>
-                  </span>
-
-                  <input
-                    type="text"
-                    name="fullName"
-                    onChange={handleInput}
-                    className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                    placeholder="Full Name"
-                  />
-                </div>
+              <form onSubmit={handleLogin} className="w-full lg:max-w-xl">
                 <div className="relative flex items-center">
                   <span className="absolute">
                     <svg
@@ -171,7 +93,7 @@ const Signup = () => {
                   <input
                     type="email"
                     name="email"
-                    onChange={handleInput}
+                    onChange={handleChange}
                     className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Email address"
                   />
@@ -198,7 +120,7 @@ const Signup = () => {
                   <input
                     type="password"
                     name="password"
-                    onChange={handleInput}
+                    onChange={handleChange}
                     className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-black dark:focus:border-blue-300 focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Password"
                   />
@@ -214,7 +136,7 @@ const Signup = () => {
                   ) : (
                     <>
                       <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-2xl md:w-1/2 hover:opacity-80 focus:outline-none focus:ring focus:ring-opacity-50">
-                        Sign up
+                        Login
                       </button>
                     </>
                   )}
@@ -320,4 +242,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signin;

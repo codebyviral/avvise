@@ -28,6 +28,30 @@ const signup = async (req, res) => {
     }
 }
 
-const authControllers = { signup }
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const userExists = await User.findOne({ email })
+        if (!userExists) {
+            // Never let anyone know what is wrong where. eg. hackers
+            return res.status(400).json({ msg: 'Invalid Credentials' })
+        }
+        const user = await userExists.comparePassword(password)
+
+        if (user) {
+            res.status(200).json({
+                message: 'Login successful',
+                token: await userExists.generateAuthToken(),
+            })
+        } else {
+            res.status(401).json({ message: 'Invalid email or password.' })
+        }
+    } catch (error) {
+        res.status(500).send('Internal Server Error')
+        console.log('login controller error', error)
+    }
+}
+
+const authControllers = { signup, login }
 
 export { authControllers }

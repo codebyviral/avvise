@@ -1,18 +1,22 @@
 import express from 'express';
 import { v2 as cloudinary } from 'cloudinary';
-import { signupSchema } from '../validators/validate-middleware.js';
+import { signupSchema, loginSchema } from '../validators/validate-middleware.js';
 import { validate } from '../middleware/validate-middleware.js';
 import { authControllers } from '../controllers/auth-controller.js';
 import multer from 'multer';
+import dotenv from 'dotenv'
 import { User } from '../models/user-model.js';
 
 const router = express.Router();
+
+dotenv.config();
 
 router.get('/', (req, res) => {
     res.status(200).send(`This is Avvise backend`);
 });
 
 router.route("/signup").post(validate(signupSchema), authControllers.signup);
+router.route("/login").post(validate(loginSchema), authControllers.login);
 
 // Configure multer for file storage
 const storage = multer.diskStorage({
@@ -27,9 +31,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 cloudinary.config({
-    cloud_name: 'dsvgwq2ab',
-    api_key: '734251382681475',
-    api_secret: 'BVotiVhgbLmTCfhauY1c0kGpooI'
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 router.post('/upload-avatar', upload.single('file'), async (req, res) => {

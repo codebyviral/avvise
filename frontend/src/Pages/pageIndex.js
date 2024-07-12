@@ -6,4 +6,5 @@ import ComingSoon from './ComingSoon.jsx';
 import Docs from "./Docs.jsx"
 import History from "./History.jsx";
 import Signup from "./Signup.jsx";
-export { Home, Calculator, NotFoundPage, ComingSoon, GradingPage, History, Docs, Signup }
+import Signin from "./Signin.jsx";
+export { Home, Calculator, NotFoundPage, ComingSoon, GradingPage, History, Docs, Signin, Signup }

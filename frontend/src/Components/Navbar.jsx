@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { AvviseEndgame, profileIconURL } from "../assets/URLs";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppContext } from "../context/AppContext";
+import { useAuthContext } from "../context/AuthContext";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isLoggedIn } = useAuthContext();
   const navigate = useNavigate();
   const update_profile_img = localStorage.getItem("profileImg");
   return (
@@ -123,27 +124,34 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-
-              <button
-                type="button"
-                className="flex items-center focus:outline-none"
-                aria-label="toggle profile dropdown"
-              >
-                <div className="w-8 h-8 overflow-hidden border-2 border-none rounded-full">
-                  <Link to="/signup">
-                    <img
-                      src={update_profile_img || profileIconURL}
-                      className="object-cover w-full h-full"
-                      alt="avatar"
-                    />
-                  </Link>
-                </div>
-                <Link to="/signup">
-                  <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
-                    Sign up
-                  </h3>
-                </Link>
-              </button>
+              {isLoggedIn ? (
+                <>
+                  <h3>Logout</h3>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    className="flex items-center focus:outline-none"
+                    aria-label="toggle profile dropdown"
+                  >
+                    <div className="w-8 h-8 overflow-hidden border-2 border-none rounded-full">
+                      <Link to="/signup">
+                        <img
+                          src={update_profile_img || profileIconURL}
+                          className="object-cover w-full h-full"
+                          alt="avatar"
+                        />
+                      </Link>
+                    </div>
+                    <Link to="/signup">
+                      <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
+                        Sign up
+                      </h3>
+                    </Link>
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
