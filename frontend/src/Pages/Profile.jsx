@@ -1,6 +1,7 @@
 import { Navbar, Footer } from "../Components/compIndex";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import profileLoader from "../assets/loader.gif";
 import { profileIconURL } from "../assets/URLs";
 import { toast } from "react-hot-toast";
 const Profile = () => {
@@ -14,6 +15,7 @@ const Profile = () => {
     email: "",
     avatarUrl: "",
   });
+
   useEffect(() => {
     if (user_id) {
       const getAvatarUrl = async () => {
