@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { router } from './router/auth-router.js'
 import { connectToDatabase } from './config/db.js';
+import avatarRouter from './router/avatar-router.js'
 const app = express();
 import cors from 'cors'
 dotenv.config();
@@ -23,6 +24,8 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json());
 
 app.use("/api/auth", router)
+app.use("/api/avatar", avatarRouter)
+
 
 connectToDatabase().then(() => {
 

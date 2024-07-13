@@ -1,26 +1,40 @@
 /* eslint-disable no-unused-vars */
 import { Children, createContext, useContext, useState } from "react";
-
+import { useEffect } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-
+  const [isLoggedIn, setIsLoggedIn] = useState(!!token);
   const storeTokenInLocalStorage = (serverToken) => {
     localStorage.setItem("token", serverToken);
     setToken(serverToken);
+    setIsLoggedIn(!!serverToken);
   };
 
-  let isLoggedIn = !!token;
+  console.log(localStorage.getItem("token"));
   console.log(`isLogged in from Auth ${isLoggedIn}`);
 
-  const [LoggedIn, setLoggedIn] = useState(false);
+  // Logout function
+  const LogoutUser = () => {
+    setToken("");
+    localStorage.removeItem("token");
+    localStorage.removeItem("profileImg");
+    localStorage.removeItem("userId");
+  };
+
+  // Store UserId
+  const storeUserId = (userId) => {
+    localStorage.setItem("userId", userId);
+  };
+
   return (
     <AuthContext.Provider
       value={{
-        LoggedIn,
-        setLoggedIn,
-        storeTokenInLocalStorage
+        isLoggedIn,
+        LogoutUser,
+        storeUserId,
+        storeTokenInLocalStorage,
       }}
     >
       {children}

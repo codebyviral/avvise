@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken"
 const validate = (schema) => async (req, res, next) => {
     try {
         console.log('Incoming request body:', req.body);

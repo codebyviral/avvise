@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navbar, Footer } from "../Components/compIndex";
 import { AvviseEndgame, profileIconURL } from "../assets/URLs";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
@@ -42,7 +43,8 @@ const Signup = () => {
         const userID = responseData.userId;
         setTimeout(async () => {
           if (userID && avatar) {
-            const avatarUrl = "https://avvise.onrender.com/api/auth/upload-avatar";
+            const avatarUrl =
+              "https://avvise.onrender.com/api/auth/upload-avatar";
             const formData = new FormData();
             formData.append("file", avatar);
             formData.append("userId", userID);
@@ -58,6 +60,8 @@ const Signup = () => {
               toast.success("Account Created 🎉");
               navigate("/login");
             }
+          } else {
+            return null;
           }
         }, 100);
       }
@@ -84,13 +88,18 @@ const Signup = () => {
               <h1 className="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl dark:text-white">
                 Signup New account
               </h1>
+              <Link to="/login">
+                <h2 className="mt-5 text-sm underline">
+                  Login existing account
+                </h2>
+              </Link>
             </div>
             <div className="mt-8 lg:w-1/2 lg:mt-0">
               <form onSubmit={handleSubmit} className="w-full lg:max-w-xl">
                 {/* Avatar Upload */}
                 <label htmlFor="file-upload">
                   <img
-                    className="h-20 w-auto mb-5 rounded-full"
+                    className="h-20 w-auto mb-5"
                     src={avatar ? URL.createObjectURL(avatar) : profileIconURL}
                     alt="upload avatar image"
                   />
@@ -207,8 +216,8 @@ const Signup = () => {
                 <div className="mt-8 md:flex md:items-center">
                   {loading ? (
                     <>
-                      <button className="mt-2 w-44 flex justify-center bg-black text-white px-4 py-2 rounded-2xl hover:opacity-80">
-                        <Oval color="#ffff" width={10} height={20} />
+                      <button className="mt-2 w-full py-3 flex justify-center bg-black text-white px-4 rounded-2xl hover:opacity-80">
+                        <Oval color="#ffff" width={20} height={20} />
                       </button>
                     </>
                   ) : (

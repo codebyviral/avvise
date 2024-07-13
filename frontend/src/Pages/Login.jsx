@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import { toast } from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Signin = () => {
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,7 @@ const Signin = () => {
     });
   };
   const navigate = useNavigate();
-  const { storeTokenInLocalStorage } = useAuthContext();
+  const { storeTokenInLocalStorage, storeUserId } = useAuthContext();
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -39,6 +40,7 @@ const Signin = () => {
         const responseData = await response.json();
         console.log("Response from server", responseData);
         storeTokenInLocalStorage(responseData.token);
+        storeUserId(responseData.userId);
         toast.success("Login success");
         navigate("/");
       } else {
@@ -69,6 +71,9 @@ const Signin = () => {
               <h1 className="mt-4 text-2xl font-medium text-gray-800 capitalize lg:text-3xl dark:text-white">
                 Login to your account
               </h1>
+              <Link to="/signup">
+                <h2 className="mt-5 text-sm underline">Signup New Account</h2>
+              </Link>
             </div>
             <div className="mt-8 lg:w-1/2 lg:mt-0">
               <form onSubmit={handleLogin} className="w-full lg:max-w-xl">

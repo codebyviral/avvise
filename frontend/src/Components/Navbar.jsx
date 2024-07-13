@@ -1,12 +1,37 @@
 import { useState } from "react";
 import { AvviseEndgame, profileIconURL } from "../assets/URLs";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isLoggedIn } = useAuthContext();
   const navigate = useNavigate();
   const update_profile_img = localStorage.getItem("profileImg");
+  const handleRedirect = () => {
+    isLoggedIn ? navigate("/profile") : navigate("/signup");
+  };
+  const user_id = localStorage.getItem("userId");
+  const [avatarUrl, setAvatarUrl] = useState("");
+  useEffect(() => {
+    if (user_id) {
+      const getAvatarUrl = async () => {
+        const user_avatar_url = `https://avvise.onrender.com/api/avatar/profile/${user_id}`;
+        try {
+          const avt_response = await fetch(user_avatar_url);
+          setAvatarUrl(avt_response);
+          if (!avt_response.ok) {
+            throw new Error("Failed to fetch avatar URL");
+          }
+          const url_data = await avt_response.json();
+          setAvatarUrl(url_data.avatarUrl);
+        } catch (error) {
+          console.log("Fetch Avatar Url error: ", error);
+        }
+      };
+      getAvatarUrl();
+    }
+  }, [user_id]);
   return (
     <nav className="relative bg-white shadow dark:bg-gray-800">
       <div className="container px-6 py-4 mx-auto">
@@ -124,34 +149,33 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-              {isLoggedIn ? (
-                <>
-                  <h3>Logout</h3>
-                </>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    className="flex items-center focus:outline-none"
-                    aria-label="toggle profile dropdown"
-                  >
-                    <div className="w-8 h-8 overflow-hidden border-2 border-none rounded-full">
-                      <Link to="/signup">
-                        <img
-                          src={update_profile_img || profileIconURL}
-                          className="object-cover w-full h-full"
-                          alt="avatar"
-                        />
-                      </Link>
-                    </div>
-                    <Link to="/signup">
-                      <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
-                        Sign up
-                      </h3>
-                    </Link>
-                  </button>
-                </>
-              )}
+              <button
+                onClick={handleRedirect}
+                type="button"
+                className="flex items-center focus:outline-none"
+                aria-label="toggle profile dropdown"
+              >
+                <div className="w-8 h-8 overflow-hidden border-2 border-none rounded-full">
+                  <img
+                    src={avatarUrl || profileIconURL}
+                    className="object-cover w-full h-full"
+                    alt="avatar"
+                  />
+                </div>
+                {isLoggedIn ? (
+                  <>
+                    <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
+                      Your Profile
+                    </h3>
+                  </>
+                ) : (
+                  <>
+                    <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
+                      Sign up
+                    </h3>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>
