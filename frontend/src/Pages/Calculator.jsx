@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
-import { Navbar, Footer } from "../Components/compIndex";
+import { Navbar, Footer, Modal } from "../Components/compIndex";
 import { handleEnter } from "../app.js";
 import "../App.css";
 import CalculateFinal from "../Components/CalculateFinal.jsx";
 import { useAppContext } from "../context/AppContext.jsx";
 
 const Calculator = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
   const [totalQues, setTotalQues] = useState([1, 2, 3, 4, 5]);
   useEffect(() => {
     handleEnter();
@@ -82,6 +87,18 @@ const Calculator = () => {
             <option value="upsc">{`UPSC : 2/(1/3) also known as 2/0.66`}</option>
           </select>
         </div>
+        <div className="newSystem text-center mt-4 cursor-pointer">
+          <button onClick={toggleModal} className="modal-btn underline">
+            {`Can't`} find your marking system?
+          </button>
+        </div>
+        {isOpen ? (
+          <>
+            <Modal />
+          </>
+        ) : (
+          <></>
+        )}
         <div className="flex inputKeys items-center mt-10">
           <div className="flex">
             <div className="w-1/2 p-2">
