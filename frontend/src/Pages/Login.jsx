@@ -135,13 +135,14 @@ const Signin = () => {
                 <div className="mt-8 md:flex md:items-center">
                   {loading ? (
                     <>
-                      <button className="mt-2 w-44 flex justify-center bg-black text-white px-4 py-2 rounded-2xl hover:opacity-80">
-                        <Oval color="#ffff" width={10} height={20} />
+                      <button className="mt-2 px-6 py-3 flex justify-center bg-black text-white rounded-2xl hover:opacity-80">
+                        <Oval color="#ffff" width={20} height={20} />{" "}
+                        <span className="mx-2">Almost done...</span>
                       </button>
                     </>
                   ) : (
                     <>
-                      <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-2xl md:w-1/2 hover:opacity-80 focus:outline-none focus:ring focus:ring-opacity-50">
+                      <button className="mt-2 px-6 py-3 flex justify-center bg-black text-white rounded-2xl hover:opacity-80">
                         Login
                       </button>
                     </>
