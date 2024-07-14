@@ -36,39 +36,49 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
       const response = await axios.post(signupURL, user);
       if (response.status === 200) {
         const responseData = response.data;
         const userID = responseData.userId;
-        setTimeout(async () => {
-          if (userID && avatar) {
-            const avatarUrl =
-              "https://avvise.onrender.com/api/auth/upload-avatar";
-            const formData = new FormData();
-            formData.append("file", avatar);
-            formData.append("userId", userID);
+        if (avatar) {
+          const avatarUrl = "https://avvise.onrender.com/api/auth/upload-avatar";
+          const formData = new FormData();
+          formData.append("file", avatar);
+          formData.append("userId", userID);
+          try {
             const uploadResponse = await axios.post(avatarUrl, formData, {
-              method: "POST",
               headers: {
                 "Content-Type": "multipart/form-data",
               },
             });
             if (uploadResponse.status === 200) {
               localStorage.setItem("profileImg", uploadResponse.data.imageUrl);
-              setLoading(false);
               toast.success("Account Created 🎉");
               navigate("/login");
+            } else {
+              toast.error("Avatar upload failed");
             }
-          } else {
-            return null;
+          } catch (error) {
+            toast.error("Avatar upload error");
+            console.log("Avatar upload error:", error);
           }
-        }, 100);
+        } else {
+          toast.success("Account Created 🎉");
+          navigate("/login");
+        }
+      } else {
+        toast.error("Signup failed");
       }
     } catch (error) {
-      console.log("handleSubmit error", error);
+      toast.error("Signup Error");
+      console.log("Signup error:", error);
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
     <>
       <Navbar />
@@ -104,20 +114,25 @@ const Signup = () => {
                     alt="upload avatar image"
                   />
                 </label>
-                <input
-                  className="block w-full text-sm text-slate-500
+                <div className="flex">
+                  <input
+                    className="block w-full mt-2 text-sm text-slate-500
                   mb-4
                   file:mr-4 file:py-2 file:px-4
                   file:rounded-full file:border-0
                   file:text-sm file:font-semibold
                 file:bg-gray-300 file:text-black
                 hover:file:bg-opacity-80"
-                  type="file"
-                  onChange={handleImgChange}
-                  label="Image"
-                  name="avatar"
-                  accept="image"
-                />
+                    type="file"
+                    onChange={handleImgChange}
+                    label="Image"
+                    name="avatar"
+                    accept="image"
+                  />
+                  <span className="font-light text-sm mt-4">
+                    {"(Optional)"}
+                  </span>
+                </div>
                 <div className="relative flex items-center mb-4 mt-3">
                   <span className="absolute">
                     <svg

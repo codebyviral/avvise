@@ -47,6 +47,7 @@ const Signin = () => {
         toast.error("Login error");
       }
     } catch (error) {
+      toast.error("Login error");
       console.log(error);
     } finally {
       setLoading(false);

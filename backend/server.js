@@ -8,7 +8,7 @@ import cors from 'cors'
 dotenv.config();
 
 const corsOptions = {
-    origin: 'https://homieflix.vercel.app',
+    origin: 'https://avvise.vercel.app',
     method: 'GET,POST,DELETE,PATCH,HEAD',
     Credentials: true,
 }
