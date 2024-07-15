@@ -25,7 +25,7 @@ const History = () => {
       setLoading(false);
       setLoading((prevState) => ({ ...prevState, [itemId]: true }));
       navigate("/projects");
-    },700);
+    }, 700);
   };
   useEffect(() => {
     console.log("historyId updated:", historyId);
@@ -85,7 +85,8 @@ const History = () => {
                   >
                     {loading[item.id] ? (
                       <>
-                        <Oval color="#fff" height={20} width={20} />
+                        <Oval color="#fff" height={20} width={20} /> &nbsp;
+                        Almost done...
                       </>
                     ) : (
                       "View OMR Sheet"

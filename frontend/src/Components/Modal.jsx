@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-hot-toast";
 import { Oval } from "react-loader-spinner";
@@ -8,42 +8,6 @@ const Modal = () => {
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
-  };
-
-  const [formData, setFormData] = useState({
-    user_name: "",
-    user_email: "",
-    message: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    setLoading(true);
-    e.preventDefault();
-
-    emailjs
-      .sendForm("service_pqldf0i", "template_29s970r", form.current, {
-        publicKey: "gx4jIpE3274sTn-eP",
-      })
-      .then(
-        () => {
-          toast.success("Message Sent ✅");
-          setLoading(false);
-          toggleModal();
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-        }
-      );
   };
 
   return (
@@ -83,7 +47,11 @@ const Modal = () => {
                 </button>
               </div>
               {/* Modal body */}
-              <form ref={form} onSubmit={sendEmail} className="space-y-6 p-10">
+              <form
+                action="https://formspree.io/f/mvgpgqvo"
+                method="POST"
+                className="space-y-6 p-10"
+              >
                 <div>
                   <label
                     htmlFor="name"
@@ -95,8 +63,6 @@ const Modal = () => {
                     type="text"
                     name="user_name"
                     id="name"
-                    value={formData.name}
-                    onChange={handleChange}
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
@@ -112,8 +78,6 @@ const Modal = () => {
                     type="text"
                     name="user_email"
                     id="email"
-                    value={formData.name}
-                    onChange={handleChange}
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
@@ -129,8 +93,6 @@ const Modal = () => {
                   <textarea
                     name="message"
                     id="message"
-                    value={formData.description}
-                    onChange={handleChange}
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
@@ -157,6 +119,7 @@ const Modal = () => {
                     <>
                       {" "}
                       <button
+                        id="btn-ms-update"
                         type="submit"
                         className="py-2.5 px-5 text-sm font-medium text-white bg-black hover:opacity-80 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                       >
