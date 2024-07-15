@@ -72,10 +72,30 @@ const CalculateFinal = () => {
           positiveMarks: 3,
           negativeMarks: 1,
         };
-      } else if (markingType === "upsc") {
+      } else if (markingType === "upsc1") {
         scheme = {
           positiveMarks: 2,
           negativeMarks: 1 / 3,
+        };
+      } else if (markingType === "upsc2") {
+        scheme = {
+          positiveMarks: 2,
+          negativeMarks: 0.83,
+        };
+      } else if (markingType === "sscCgl") {
+        scheme = {
+          positiveMarks: 2,
+          negativeMarks: 1 / 2,
+        };
+      } else if (markingType === "Gate") {
+        scheme = {
+          positiveMarks: 1,
+          negativeMarks: 0.33,
+        };
+      } else if (markingType === "GRE") {
+        scheme = {
+          positiveMarks: 1,
+          negativeMarks: 0.25,
         };
       }
 

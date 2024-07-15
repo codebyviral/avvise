@@ -16,7 +16,6 @@ const Calculator = () => {
     handleEnter();
   });
   const { setAppQuestions, setNoOfQues, setMarkingType } = useAppContext();
-
   const renderInputs = () => {
     return totalQues.map((num, index) => (
       <div key={index} className="m-2">
@@ -81,10 +80,16 @@ const Calculator = () => {
             id="marking-system"
             onChange={handleMarkingSchemeChange}
           >
-            <option value="noNegative">No Negative Marking : 1/0</option>
+            <option value="noNegative">
+              IELTS || HSC || No Negative : 1/0
+            </option>
+            <option value="upsc1">UPSC : 2/0.66 (For Paper 2)</option>
+            <option value="upsc2">CSAT : 2.5/0.83</option>
             <option value="jeeNeet">JEE || NEET : 4/1</option>
-            <option value="bitSat">BITSAT : 3/1</option>
-            <option value="upsc">{`UPSC : 2/(1/3) also known as 2/0.66`}</option>
+            <option value="bitSat">JEE Advanced || CAT || BITSAT : 3/1</option>
+            <option value="sscCgl">SSC CGL : 2/0.5</option>
+            <option value="Gate">GATE || GMAT : 1/0.33</option>
+            <option value="GRE">GRE || MAT || SAT || : 1/0.25</option>
           </select>
         </div>
         <div className="newSystem text-center mt-4 cursor-pointer">
