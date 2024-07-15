@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import GridSection from "./GridSection";
+import { useAuthContext } from "../context/AuthContext";
 const Container = () => {
+  const { isLoggedIn } = useAuthContext();
   return (
     <>
       <div className="min-h-screen">
@@ -58,26 +60,52 @@ const Container = () => {
           </div>
         </section>
         <GridSection />
+        {isLoggedIn ? (
+          <>
+            <section className="py-16 dark:bg-slate-800">
+              <div className="max-w-7xl mx-auto px-4 text-center">
+                <h2 className="text-3xl font-bold text-black dark:text-white">
+                  Welcome back! Ready to continue revolutionizing your grading?
+                </h2>
+                <p className="mt-4 text-lg text-black dark:text-white">
+                  Explore our features and enhance your grading experience.
+                </p>
+                <div className="mt-6">
+                  <a
+                    href="/calculator"
+                    className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-2xl"
+                  >
+                    Explore Now
+                  </a>
+                </div>
+              </div>
+            </section>
+          </>
+        ) : (
+          <>
+            {" "}
+            <section className="py-16 dark:bg-slate-800">
+              <div className="max-w-7xl mx-auto px-4 text-center">
+                <h2 className="text-3xl font-bold text-black">
+                  Ready to Revolutionize Your Grading?
+                </h2>
+                <p className="mt-4 text-lg text-black">
+                  Sign up today and experience the power of our MCQ grading
+                  solution.
+                </p>
+                <div className="mt-6">
+                  <a
+                    href="/signup"
+                    className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-2xl"
+                  >
+                    Sign Up Now
+                  </a>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
         {/* Call to Action */}
-        <section className="py-16 dark:bg-slate-800">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-black">
-              Ready to Revolutionize Your Grading?
-            </h2>
-            <p className="mt-4 text-lg text-black">
-              Sign up today and experience the power of our MCQ grading
-              solution.
-            </p>
-            <div className="mt-6">
-              <a
-                href="/signup"
-                className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-2xl"
-              >
-                Sign Up Now
-              </a>
-            </div>
-          </div>
-        </section>
       </div>
     </>
   );

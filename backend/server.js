@@ -8,7 +8,7 @@ import cors from 'cors'
 dotenv.config();
 
 const corsOptions = {
-    origin: 'https://avvise.vercel.app',
+    origin: 'http://localhost:5173',
     method: 'GET,POST,DELETE,PATCH,HEAD',
     Credentials: true,
 }
