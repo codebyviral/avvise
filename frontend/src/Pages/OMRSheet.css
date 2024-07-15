@@ -50,6 +50,20 @@
   align-items: center;
   font-weight: bold;
 }
+@media print {
+  .bubble.correct {
+    background-color: green !important;
+    color: white !important;
+  }
+  .bubble.incorrect {
+    background-color: red !important;
+    color: white !important;
+  }
+  .bubble.unattempted {
+    background-color: yellow !important;
+    color: black !important;
+  }
+}
 
 .correct {
   background-color: green !important;
