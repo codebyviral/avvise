@@ -20,10 +20,10 @@ const Container = () => {
               <h1 className="text-3xl mt-7 mb-10 font-semibold">
                 Introducing the Ultimate WebApp Calculator.
               </h1>
-              <p className="mt-4 text-lg text-gray-700 dark:text-white">
+              <h2 className="mt-4 text-lg text-gray-700 dark:text-white">
                 Streamline your grading process with our intuitive MCQ
                 evaluation tool.
-              </p>
+              </h2>
               <div className="mt-6 dark:animate-none">
                 <Link to="/calculator">
                   <div className="bg-black hover:opacity-80 text-white px-6 py-3 inline-block dark:bg-purple-600 rounded-2xl">
