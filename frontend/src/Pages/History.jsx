@@ -10,6 +10,8 @@ const History = () => {
   const [loading, setLoading] = useState({});
   const [newUser, setNewUser] = useState(true);
   const [history, setHistory] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState(null);
 
   useEffect(() => {
     const storedHistory = JSON.parse(
@@ -31,13 +33,26 @@ const History = () => {
     }, 500);
   };
 
-  const deleteHistoryItem = (itemId) => {
-    const updatedHistory = history.filter((item) => item.id !== itemId);
+  const deleteHistoryItem = () => {
+    const updatedHistory = history.filter((item) => item.id !== selectedItemId);
     setHistory(updatedHistory);
     window.localStorage.setItem(
       "calculatedHistory",
       JSON.stringify(updatedHistory)
     );
+    setIsModalOpen(false);
+    setSelectedItemId(null);
+    location.reload();
+  };
+
+  const openModal = (itemId) => {
+    setSelectedItemId(itemId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedItemId(null);
   };
 
   return (
@@ -103,7 +118,7 @@ const History = () => {
                     </button>
                     <div className="ml-auto mt-4">
                       <button
-                        onClick={() => deleteHistoryItem(item.id)}
+                        onClick={() => openModal(item.id)}
                         className="flex justify-center hover:opacity-80"
                       >
                         <img
@@ -120,6 +135,29 @@ const History = () => {
           </div>
         )}
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold mb-4">
+              Are you sure you want to delete this item?
+            </h2>
+            <div className="flex justify-end">
+              <button
+                onClick={closeModal}
+                className="mr-2 bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={deleteHistoryItem}
+                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );
