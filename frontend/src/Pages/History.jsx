@@ -3,12 +3,14 @@ import { Navbar, Footer } from "../Components/compIndex";
 import { useAppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
+
 const History = () => {
   const navigate = useNavigate();
   const { historyId, setHistoryId } = useAppContext();
   const [loading, setLoading] = useState({});
   const [newUser, setNewUser] = useState(true);
-  const [history, setHistory] = useState(["testArray"]);
+  const [history, setHistory] = useState([]);
+
   useEffect(() => {
     const storedHistory = JSON.parse(
       window.localStorage.getItem("calculatedHistory")
@@ -18,6 +20,7 @@ const History = () => {
       setHistory(storedHistory);
     }
   }, []);
+
   const handleHistory = (itemId) => {
     setLoading((prevState) => ({ ...prevState, [itemId]: true }));
     setHistoryId(itemId);
@@ -25,11 +28,18 @@ const History = () => {
       setLoading(false);
       setLoading((prevState) => ({ ...prevState, [itemId]: true }));
       navigate("/projects");
-    }, 700);
+    }, 500);
   };
-  useEffect(() => {
-    console.log("historyId updated:", historyId);
-  }, [historyId]);
+
+  const deleteHistoryItem = (itemId) => {
+    const updatedHistory = history.filter((item) => item.id !== itemId);
+    setHistory(updatedHistory);
+    window.localStorage.setItem(
+      "calculatedHistory",
+      JSON.stringify(updatedHistory)
+    );
+  };
+
   return (
     <>
       <Navbar />
@@ -77,21 +87,33 @@ const History = () => {
                       {item.totalUnattempted}
                     </span>
                   </p>
-                  <button
-                    onClick={() => {
-                      handleHistory(item.id);
-                    }}
-                    className="mt-2 w-44 flex justify-center bg-black text-white px-4 py-2 rounded-2xl hover:opacity-80"
-                  >
-                    {loading[item.id] ? (
-                      <>
-                        <Oval color="#fff" height={20} width={20} /> &nbsp;
-                        Almost done...
-                      </>
-                    ) : (
-                      "View OMR Sheet"
-                    )}
-                  </button>
+                  <div className="flex justify-center">
+                    <button
+                      onClick={() => handleHistory(item.id)}
+                      className="mt-2 w-44 flex justify-center bg-black text-white px-4 py-2 rounded-2xl hover:opacity-80"
+                    >
+                      {loading[item.id] ? (
+                        <>
+                          <Oval color="#fff" height={20} width={20} /> &nbsp;
+                          Almost done...
+                        </>
+                      ) : (
+                        "View OMR Sheet"
+                      )}
+                    </button>
+                    <div className="ml-auto mt-4">
+                      <button
+                        onClick={() => deleteHistoryItem(item.id)}
+                        className="flex justify-center hover:opacity-80"
+                      >
+                        <img
+                          className="w-7"
+                          src="https://cdn.iconscout.com/icon/premium/png-512-thumb/delete-52-103683.png?f=webp&w=512"
+                          alt=""
+                        />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
