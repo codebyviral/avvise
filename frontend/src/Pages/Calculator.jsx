@@ -63,7 +63,7 @@ const Calculator = () => {
           <div className="flex justify-center mt-10">
             <input
               id="que-num-input"
-              className="input border border-gray-600 p-2  rounded-lg w-30 max-w-xs "
+              className="input input-ques border border-gray-600 p-2  rounded-lg w-64 max-w-xs "
               placeholder="Enter No. Total Questions"
               onChange={handleQuestionsNums}
               type="number"
@@ -74,7 +74,7 @@ const Calculator = () => {
         <div className="markingSystemDiv text-center">
           <h6>Choose Your Marking System:</h6>
           <select
-            className="mt-2 lg:px-4 lg:py-1"
+            className="mt-2 marking_sys lg:px-4 lg:py-1"
             value={markingScheme}
             name="markingSystem"
             id="marking-system"
@@ -93,7 +93,10 @@ const Calculator = () => {
           </select>
         </div>
         <div className="newSystem text-center mt-4 cursor-pointer">
-          <button onClick={toggleModal} className="modal-btn underline">
+          <button
+            onClick={toggleModal}
+            className="modal-btn underline newSystem-btn"
+          >
             {`Can't`} find your marking system?
           </button>
         </div>
@@ -110,13 +113,13 @@ const Calculator = () => {
               <h3 className="mb-4 font-semibold text-center">
                 Your Answer Key
               </h3>
-              {renderInputs()}
+              <div className="your-answer-key">{renderInputs()}</div>
             </div>
             <div className="w-1/2 p-2">
               <h3 className="mb-4 font-semibold text-center">
                 Real Answer Key
               </h3>
-              {renderAnswerKeys()}
+              <div className="real-answer-key">{renderAnswerKeys()}</div>
             </div>
           </div>
         </div>

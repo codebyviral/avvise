@@ -11,6 +11,7 @@ import {
   Logout,
   Signup,
   Profile,
+  ReportBug,
   About,
 } from "./Pages/pageIndex";
 import { Routes, Route } from "react-router-dom";
@@ -31,6 +32,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/aboutus" element={<About />} />
+        <Route path="/report-bug" element={<ReportBug />} />
       </Routes>
     </>
   );

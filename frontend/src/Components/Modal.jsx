@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import emailjs from "@emailjs/browser";
-import { toast } from "react-hot-toast";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 const Modal = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -46,6 +45,12 @@ const Modal = () => {
                   <span className="sr-only">Close modal</span>
                 </button>
               </div>
+              <Link to="/report-bug">
+                {" "}
+                <p className="lg:ml-11 mt-4 text-sm lg:text-base ml-10 underline">
+                  Report a Bug or Feature.
+                </p>{" "}
+              </Link>
               {/* Modal body */}
               <form
                 action="https://formspree.io/f/mvgpgqvo"

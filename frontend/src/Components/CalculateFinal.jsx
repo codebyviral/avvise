@@ -1,12 +1,67 @@
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { useEffect, useState } from "react";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 const CalculateFinal = () => {
-  const [markScheme, setMarkScheme] = useState({
-    positiveMarks: 1,
-    negativeMarks: 0,
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      {
+        element: ".input-ques",
+        popover: {
+          title: "Getting Started by Entering the total number of Questions.",
+          description:
+            "Enter the number of total questions you have for example. 5",
+        },
+      },
+      {
+        element: ".marking_sys",
+        popover: {
+          title: "Choose your Marking system depending on your Exam.",
+          description:
+            "Select the marking system that corresponds to your exam requirements. For example, you might use a system like No Negative for Boards, JEE-NEET or even UPSC.",
+        },
+      },
+      {
+        element: ".newSystem-btn",
+        popover: {
+          title: "Incase you don't find your marking system or EXAM NAME",
+          description:
+            "Please click on this link and fill out the form to update our web app with your marking system. This will not only help you but also assist us in improving our app to reach more students.",
+        },
+      },
+      {
+        element: ".your-answer-key",
+        popover: {
+          title: "Enter Your Own Answer Key in Sequence",
+          description:
+            "Enter your answer key in sequence. For example, if your answer key is 'ADBC,' enter 'A' in input 1, 'D' in input 2, and so on.",
+        },
+      },
+      {
+        element: ".real-answer-key",
+        popover: {
+          title: "Enter Your Actual Answer Key",
+          description:
+            "Enter your answer key in sequence. For example, if your answer key is 'ABBC,' enter 'A' in input 1, 'B' in input 2, and so on.",
+        },
+      },
+      {
+        element: ".calculate-btn",
+        popover: {
+          title: "Calculate Your Result",
+          description:
+            "Once you have entered all your answers, click the 'Calculate' button to generate your result.",
+        },
+      },
+    ],
   });
+
+  const driveTour = () => {
+    driverObj.drive();
+  };
   const {
     setAppMarksData,
     appQuestions,
@@ -158,9 +213,14 @@ const CalculateFinal = () => {
 
   return (
     <div className="flex justify-center">
-      {/* Add a button or any event trigger to call handleCalculation */}
       <button
-        className="bg-black mt-10 px-6 py-2.5 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
+        className="bg-black mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
+        onClick={driveTour}
+      >
+        Demo Tour
+      </button>
+      <button
+        className="bg-black calculate-btn mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
         onClick={handleCalculation}
       >
         Calculate
