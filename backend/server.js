@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import { router } from './router/auth-router.js'
 import { connectToDatabase } from './config/db.js';
 import avatarRouter from './router/avatar-router.js'
+import userRouter from "./router/user-router.js"
 const app = express();
 import cors from 'cors'
 dotenv.config();
@@ -25,6 +26,7 @@ app.use(express.json());
 
 app.use("/api/auth", router)
 app.use("/api/avatar", avatarRouter)
+app.use("/api/user", userRouter)
 
 
 connectToDatabase().then(() => {

@@ -44,10 +44,11 @@ const Signin = () => {
         toast.success("Login success");
         navigate("/");
       } else {
-        toast.error("Login error");
+        const errorData = await response.json();
+        toast.error(errorData.message || "Login failed");
       }
     } catch (error) {
-      toast.error("Login error");
+      toast.error("Network error: Unable to log in");
       console.log(error);
     } finally {
       setLoading(false);

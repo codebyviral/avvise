@@ -19,8 +19,7 @@ const Profile = () => {
   useEffect(() => {
     if (user_id) {
       const getAvatarUrl = async () => {
-        const user_avatar_url = `https://avvise.onrender.com
-/api/avatar/profile/${user_id}`;
+        const user_avatar_url = `https://avvise.onrender.com/api/avatar/profile/${user_id}`;
         try {
           const avt_response = await fetch(user_avatar_url);
           if (!avt_response.ok) {
@@ -49,6 +48,32 @@ const Profile = () => {
     toast("Update functionality is in progress.", {
       icon: "😅",
     });
+  };
+  const handleAccountDelete = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete your account? This action cannot be undone."
+    );
+    if (confirmDelete) {
+      try {
+        const delete_reponse = await fetch(
+          `https://avvise.onrender.com/api/user/delete/${user_id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application.json",
+            },
+          }
+        );
+        if (!delete_reponse.ok) {
+          throw new Error("Failed to delete account");
+        }
+        toast.success("Account deleted successfully.");
+        navigate("/logout");
+      } catch (error) {
+        console.error("Delete Account Error: ", error);
+        toast.error("Failed to delete account. Please try again.");
+      }
+    }
   };
   return (
     <>
@@ -170,6 +195,14 @@ const Profile = () => {
               </a>
               .
             </p>
+            <div className="mt-10 mb-10">
+              <button
+                onClick={handleAccountDelete}
+                className="px-3 py-1 text-sm font-medium text-white bg-black rounded-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-gray-700"
+              >
+                Delete Account
+              </button>
+            </div>
             <p className="mt-2">
               Need help?{" "}
               <a href="#" className="text-gray-900 font-medium hover:underline">

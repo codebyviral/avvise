@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("profileImg");
     localStorage.removeItem("userId");
+    setIsLoggedIn(false);
   };
 
   // Store UserId
