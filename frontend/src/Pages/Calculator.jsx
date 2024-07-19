@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navbar, Footer, Modal } from "../Components/compIndex";
+import { Navbar, Footer, Modal, CustomModal } from "../Components/compIndex";
 import { handleEnter } from "../app.js";
 import "../App.css";
 import CalculateFinal from "../Components/CalculateFinal.jsx";
@@ -7,6 +7,7 @@ import { useAppContext } from "../context/AppContext.jsx";
 import { useAuthContext } from "../context/AuthContext.jsx";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+import { useNavigate } from "react-router-dom";
 
 const Calculator = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +19,10 @@ const Calculator = () => {
   useEffect(() => {
     handleEnter();
   });
+  const navigate = useNavigate();
+  const redirectSignUp = () => {
+    navigate("/signup");
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { setAppQuestions, setNoOfQues, setMarkingType } = useAppContext();
   const renderInputs = () => {
@@ -221,30 +226,14 @@ const Calculator = () => {
       </div>
       {isModalOpen && (
         <>
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white rounded-lg p-6 max-w-md w-full">
-              <h2 className="text-2xl font-semibold mb-4">Sign Up Required</h2>
-              <p className="mb-6">
-                You need to sign up to use the Ultimate Web App Calculator.
-                Create an account to access this feature and enjoy all the
-                benefits!
-              </p>
-              <div className="flex justify-end space-x-4">
-                <button
-                  onClick={closeModal}
-                  className="bg-gray-200 px-4 py-2 rounded-2xl"
-                >
-                  Close
-                </button>
-                <a
-                  href="/signup"
-                  className="bg-black text-white px-4 py-2 rounded-2xl"
-                >
-                  Sign Up
-                </a>
-              </div>
-            </div>
-          </div>
+          <CustomModal
+            message={`Sign Up Required! Create an account to access this feature and enjoy all the benefits!`}
+            cancelMsg={"Close"}
+            bgColor={'bg-black'}
+            actionMsg={"Sign Up"}
+            cancel={closeModal}
+            action={redirectSignUp}
+          />
         </>
       )}
       <Footer />

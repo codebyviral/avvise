@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import { CustomModal } from "./compIndex";
+import { useState } from "react";
 
 const CalculateFinal = () => {
   const {
@@ -10,15 +12,17 @@ const CalculateFinal = () => {
     markingType,
   } = useAppContext();
   const navigate = useNavigate();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   const handleCalculation = () => {
     if (noOfQues === 0) {
       console.log(noOfQues);
-      alert("No. of Questions cannot be Zero!");
+      setIsModalOpen(true);
       return;
     } else if (noOfQues === "" || noOfQues === null) {
       console.log(noOfQues);
-      alert("No. of Questions cannot be Empty!");
       return;
     }
     console.log(appQuestions);
@@ -152,14 +156,26 @@ const CalculateFinal = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <button
-        className="bg-black calculate-btn mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
-        onClick={handleCalculation}
-      >
-        Calculate
-      </button>
-    </div>
+    <>
+      <div className="flex justify-center">
+        <button
+          className="bg-black calculate-btn mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
+          onClick={handleCalculation}
+        >
+          Calculate
+        </button>
+      </div>
+      {isModalOpen && (
+        <CustomModal
+          message={"Please enter at least one question to proceed."}
+          cancelMsg={"Close"}
+          bgColor={'bg-black'}
+          actionMsg={"Okay"}
+          cancel={closeModal}
+          action={closeModal}
+        />
+      )}
+    </>
   );
 };
 

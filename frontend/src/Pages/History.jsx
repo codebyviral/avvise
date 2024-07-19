@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navbar, Footer } from "../Components/compIndex";
+import { Navbar, Footer, CustomModal } from "../Components/compIndex";
 import { useAppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
@@ -136,27 +136,14 @@ const History = () => {
         )}
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold mb-4">
-              Are you sure you want to delete this item?
-            </h2>
-            <div className="flex justify-end">
-              <button
-                onClick={closeModal}
-                className="mr-2 bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={deleteHistoryItem}
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
+        <CustomModal
+          message={" Are you sure you want to delete this item?"}
+          cancelMsg={"Cancel"}
+          actionMsg={"Delete"}
+          bgColor={'bg-red-600'}
+          cancel={closeModal}
+          action={deleteHistoryItem}
+        />
       )}
       <Footer />
     </>
