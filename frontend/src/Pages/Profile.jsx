@@ -1,4 +1,4 @@
-import { Navbar, Footer } from "../Components/compIndex";
+import { Navbar, Footer, CustomModal } from "../Components/compIndex";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import profileLoader from "../assets/loader.gif";
@@ -49,30 +49,32 @@ const Profile = () => {
       icon: "😅",
     });
   };
+  const [Modal, setModal] = useState(false);
+  const openModal = () => {
+    setModal(true);
+  };
+  const closeModal = () => {
+    setModal(false);
+  };
   const handleAccountDelete = async () => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete your account? This action cannot be undone."
-    );
-    if (confirmDelete) {
-      try {
-        const delete_reponse = await fetch(
-          `https://avvise.onrender.com/api/user/delete/${user_id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application.json",
-            },
-          }
-        );
-        if (!delete_reponse.ok) {
-          throw new Error("Failed to delete account");
+    try {
+      const delete_reponse = await fetch(
+        `https://avvise.onrender.com/api/user/delete/${user_id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application.json",
+          },
         }
-        toast.success("Account deleted successfully.");
-        navigate("/logout");
-      } catch (error) {
-        console.error("Delete Account Error: ", error);
-        toast.error("Failed to delete account. Please try again.");
+      );
+      if (!delete_reponse.ok) {
+        throw new Error("Failed to delete account");
       }
+      toast.success("Account deleted successfully.");
+      navigate("/logout");
+    } catch (error) {
+      console.error("Delete Account Error: ", error);
+      toast.error("Failed to delete account. Please try again.");
     }
   };
   return (
@@ -196,8 +198,10 @@ const Profile = () => {
               .
             </p>
             <div className="mt-10 mb-10">
+              <div className="bg-red-400 w-auto h-2 mb-5"></div>
+              <h6 className="mb-7 text-sm"> ⚠️ Danger Zone</h6>
               <button
-                onClick={handleAccountDelete}
+                onClick={openModal}
                 className="px-3 py-1 text-sm font-medium text-white bg-black rounded-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-gray-700"
               >
                 Delete Account
@@ -213,6 +217,20 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      {Modal && (
+        <>
+          <CustomModal
+            message={
+              "Are you sure you want to delete your account? This action cannot be undone."
+            }
+            cancel={closeModal}
+            cancelMsg={"Go Back"}
+            action={handleAccountDelete}
+            bgColor={"bg-black"}
+            actionMsg={"Delete Account"}
+          />
+        </>
+      )}
       <Footer />
     </>
   );

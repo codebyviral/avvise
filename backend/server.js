@@ -6,11 +6,12 @@ import avatarRouter from './router/avatar-router.js'
 import userRouter from "./router/user-router.js"
 const app = express();
 import cors from 'cors'
+
 dotenv.config();
 
 const corsOptions = {
     origin: 'https://avvise.vercel.app',
-    method: 'GET,POST,DELETE,PATCH,HEAD',
+    method: 'GET, POST, DELETE, PATCH, HEAD',
     Credentials: true,
 }
 
