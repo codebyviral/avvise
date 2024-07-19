@@ -4,10 +4,13 @@ import { handleEnter } from "../app.js";
 import "../App.css";
 import CalculateFinal from "../Components/CalculateFinal.jsx";
 import { useAppContext } from "../context/AppContext.jsx";
+import { useAuthContext } from "../context/AuthContext.jsx";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 const Calculator = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { isLoggedIn } = useAuthContext();
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
@@ -15,6 +18,7 @@ const Calculator = () => {
   useEffect(() => {
     handleEnter();
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { setAppQuestions, setNoOfQues, setMarkingType } = useAppContext();
   const renderInputs = () => {
     return totalQues.map((num, index) => (
@@ -28,7 +32,62 @@ const Calculator = () => {
       </div>
     ));
   };
-
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      {
+        element: ".input-ques",
+        popover: {
+          title: "Getting Started by Entering the total number of Questions.",
+          description:
+            "Enter the number of total questions you have for example. 5",
+        },
+      },
+      {
+        element: ".marking_sys",
+        popover: {
+          title: "Choose your Marking system depending on your Exam.",
+          description:
+            "Select the marking system that corresponds to your exam requirements. For example, you might use a system like No Negative for Boards, JEE-NEET or even UPSC.",
+        },
+      },
+      {
+        element: ".newSystem-btn",
+        popover: {
+          title: "Incase you don't find your marking system or EXAM NAME",
+          description:
+            "Please click on this link and fill out the form to update our web app with your marking system. This will not only help you but also assist us in improving our app to reach more students.",
+        },
+      },
+      {
+        element: ".your-answer-key",
+        popover: {
+          title: "Enter Your Own Answer Key in Sequence",
+          description:
+            "Enter your answer key in sequence. For example, if your answer key is 'ADBC,' enter 'A' in input 1, 'D' in input 2, and so on.",
+        },
+      },
+      {
+        element: ".real-answer-key",
+        popover: {
+          title: "Enter Your Actual Answer Key",
+          description:
+            "Enter your answer key in sequence. For example, if your answer key is 'ABBC,' enter 'A' in input 1, 'B' in input 2, and so on.",
+        },
+      },
+      {
+        element: ".calculate-btn",
+        popover: {
+          title: "Calculate Your Result",
+          description:
+            "Once you have entered all your answers, click the 'Calculate' button to generate your result.",
+        },
+      },
+    ],
+  });
+  const driveTour = () => {
+    driverObj.drive();
+  };
   const renderAnswerKeys = () => {
     return totalQues.map((num, index) => (
       <div key={index} className="m-2">
@@ -40,6 +99,9 @@ const Calculator = () => {
         />
       </div>
     ));
+  };
+  const displayModal = () => {
+    setIsModalOpen(true);
   };
   const handleQuestionsNums = (e) => {
     const num = parseInt(e.target.value, 10);
@@ -54,6 +116,9 @@ const Calculator = () => {
   const handleMarkingSchemeChange = (e) => {
     setMarkingScheme(e.target.value);
     setMarkingType(e.target.value);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
   return (
     <>
@@ -123,8 +188,65 @@ const Calculator = () => {
             </div>
           </div>
         </div>
-        <CalculateFinal questions={totalQues} />
+        {isLoggedIn ? (
+          <>
+            <div className="flex justify-center">
+              <button
+                onClick={driveTour}
+                className="bg-black mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
+              >
+                Demo Tour
+              </button>
+              <CalculateFinal questions={totalQues} />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex justify-center">
+              <button
+                onClick={driveTour}
+                className="bg-black mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
+              >
+                Demo Tour
+              </button>
+              <button
+                onClick={displayModal}
+                className="bg-black calculate-btn mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
+              >
+                Calculate
+              </button>
+            </div>
+          </>
+        )}
       </div>
+      {isModalOpen && (
+        <>
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white rounded-lg p-6 max-w-md w-full">
+              <h2 className="text-2xl font-semibold mb-4">Sign Up Required</h2>
+              <p className="mb-6">
+                You need to sign up to use the Ultimate Web App Calculator.
+                Create an account to access this feature and enjoy all the
+                benefits!
+              </p>
+              <div className="flex justify-end space-x-4">
+                <button
+                  onClick={closeModal}
+                  className="bg-gray-200 px-4 py-2 rounded-2xl"
+                >
+                  Close
+                </button>
+                <a
+                  href="/signup"
+                  className="bg-black text-white px-4 py-2 rounded-2xl"
+                >
+                  Sign Up
+                </a>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
       <Footer />
     </>
   );

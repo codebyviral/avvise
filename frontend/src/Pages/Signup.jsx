@@ -43,8 +43,7 @@ const Signup = () => {
         const responseData = response.data;
         const userID = responseData.userId;
         if (avatar) {
-          const avatarUrl =
-            "https://avvise.onrender.com/api/auth/upload-avatar";
+          const avatarUrl = "https://avvise.onrender.com/api/auth/upload-avatar";
           const formData = new FormData();
           formData.append("file", avatar);
           formData.append("userId", userID);
@@ -233,7 +232,8 @@ const Signup = () => {
                   {loading ? (
                     <>
                       <button className="mt-2 px-6 py-3 flex justify-center bg-black text-white rounded-2xl hover:opacity-80">
-                        <Oval color="#ffff" width={20} height={20} />{" "} <span className="ml-2">Creating Account...</span>
+                        <Oval color="#ffff" width={20} height={20} />{" "}
+                        <span className="ml-2">Creating Account...</span>
                       </button>
                     </>
                   ) : (
