@@ -193,49 +193,18 @@ const Calculator = () => {
             </div>
           </div>
         </div>
-        {isLoggedIn ? (
-          <>
-            <div className="flex justify-center">
-              <button
-                onClick={driveTour}
-                className="bg-black mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
-              >
-                Demo Tour
-              </button>
-              <CalculateFinal questions={totalQues} />
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="flex justify-center">
-              <button
-                onClick={driveTour}
-                className="bg-black mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
-              >
-                Demo Tour
-              </button>
-              <button
-                onClick={displayModal}
-                className="bg-black calculate-btn mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
-              >
-                Calculate
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-      {isModalOpen && (
         <>
-          <CustomModal
-            message={`Sign Up Required! Create an account to access this feature and enjoy all the benefits!`}
-            cancelMsg={"Close"}
-            bgColor={'bg-black'}
-            actionMsg={"Sign Up"}
-            cancel={closeModal}
-            action={redirectSignUp}
-          />
+          <div className="flex justify-center">
+            <button
+              onClick={driveTour}
+              className="bg-black mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
+            >
+              Demo Tour
+            </button>
+            <CalculateFinal questions={totalQues} />
+          </div>
         </>
-      )}
+      </div>
       <Footer />
     </>
   );

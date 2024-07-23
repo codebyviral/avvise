@@ -13,6 +13,7 @@ const corsOptions = {
     origin: 'https://avvise.vercel.app',
     method: 'GET, POST, DELETE, PATCH, HEAD',
     Credentials: true,
+    allowedHeaders: 'Content-Type, Authorization'
 }
 
 app.use(cors(corsOptions))
