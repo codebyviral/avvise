@@ -10,7 +10,7 @@ import cors from 'cors'
 dotenv.config();
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: 'https://localhost:5173',
     method: 'GET, POST, DELETE, PATCH, HEAD',
     Credentials: true,
     allowedHeaders: 'Content-Type, Authorization'
