@@ -146,9 +146,6 @@ const Footer = () => {
                   Contact
                 </h3>
                 <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline cursor-pointer">
-                  +91 94269 95196
-                </span>
-                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline cursor-pointer">
                   <a href="mailto:viralvaghela.dev@gmail.com">Viral Vaghela</a>
                 </span>
               </div>
