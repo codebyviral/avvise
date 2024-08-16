@@ -12,6 +12,7 @@ import {
   Signup,
   Profile,
   ReportBug,
+  Admin,
   About,
 } from "./Pages/pageIndex";
 import { Routes, Route } from "react-router-dom";
@@ -33,6 +34,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/aboutus" element={<About />} />
         <Route path="/report-bug" element={<ReportBug />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </>
   );

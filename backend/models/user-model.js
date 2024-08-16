@@ -18,7 +18,13 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: String,
         default: '',
-    }
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
+}, {
+    timestamps: true,
 })
 
 // is passowrd is not modified save document to databse

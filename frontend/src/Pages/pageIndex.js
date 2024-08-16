@@ -11,4 +11,5 @@ import Logout from "./Logout.jsx";
 import Profile from "./Profile.jsx";
 import ReportBug from "./ReportBug.jsx";
 import About from "./About.jsx";
-export { Home, Calculator, NotFoundPage, ComingSoon, GradingPage, History, Docs, About, Login, Signup, Profile, Logout, ReportBug }
+import Admin from "./Admin.jsx"
+export { Home, Calculator, NotFoundPage, ComingSoon, GradingPage, History, Docs, About, Login, Signup, Profile, Logout, ReportBug, Admin }

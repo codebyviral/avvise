@@ -1,4 +1,5 @@
 import { AvviseEndgame } from "../assets/URLs";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-white dark:bg-gray-900 mt-20">
@@ -77,7 +78,7 @@ const Footer = () => {
                   href="#"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Company
+                  <Link to="/admin">Admin</Link>
                 </a>
                 <a
                   href="#"
