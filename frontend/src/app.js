@@ -18,7 +18,7 @@ function handleEnter() {
         });
     });
 }
-const totalQues = [1, 2, 3, 4];
+const totalQues = [1, 2, 3, 4]
 const userAnswers = [];
 const realAnswers = [];
 
