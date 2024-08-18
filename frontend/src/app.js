@@ -18,8 +18,9 @@ function handleEnter() {
         });
     });
 }
+const testCase = 'testCase';
 const totalQues = [1, 2, 3, 4]
-const userAnswers = [];
+const userAnswers = []
 const realAnswers = [];
 
 const finalAnswers = [{
