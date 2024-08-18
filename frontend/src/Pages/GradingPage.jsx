@@ -4,6 +4,7 @@ import { useAppContext } from "../context/AppContext";
 import { useReactToPrint } from "react-to-print";
 import { useEffect, useState } from "react";
 import html2pdf from "html2pdf.js";
+import { currentDate } from "../assets/Date";
 const GradingPage = () => {
   const { appMarksData, resultDisplay, historyId } = useAppContext();
   const [userAnswers, setUserAnswers] = useState([]);
@@ -118,8 +119,11 @@ const GradingPage = () => {
     );
   };
   const element = document.querySelector("#pdf-omr");
+  var fileOptions = {
+    filename: `avvise-${currentDate}.pdf`,
+  };
   const downloadPDF = () => {
-    html2pdf(element);
+    html2pdf().from(element).set(fileOptions).save();
   };
   return (
     <>
