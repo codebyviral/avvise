@@ -20,4 +20,27 @@ router.delete("/delete/:userId", async (req, res) => {
     }
 })
 
+router.put("/update/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    const { newName } = req.body;
+
+    if (!newName) {
+        return res.status(400).json({ error: 'New name is required' });
+    }
+
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        user.fullName = newName;
+        await user.save();
+        res.status(200).json({ message: 'Full name updated successfully' });
+    } catch (error) {
+        console.error('Name update error:', error.message);
+        res.status(500).json({ error: 'Failed to update name' });
+    }
+});
+
 export default router

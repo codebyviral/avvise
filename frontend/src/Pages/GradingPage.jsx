@@ -2,10 +2,9 @@ import "./OMRSheet.css";
 import { Navbar, Footer } from "../Components/compIndex";
 import { useAppContext } from "../context/AppContext";
 import { useReactToPrint } from "react-to-print";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import html2pdf from "html2pdf.js";
 const GradingPage = () => {
-  const printRef = useRef();
-
   const { appMarksData, resultDisplay, historyId } = useAppContext();
   const [userAnswers, setUserAnswers] = useState([]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
@@ -78,7 +77,8 @@ const GradingPage = () => {
         {options.map((option) => {
           let bubbleClass = "bubble";
           if (userAnswers && userAnswers[index] === option) {
-            bubbleClass += correctAnswers[index] === option ? " correct" : " incorrect";
+            bubbleClass +=
+              correctAnswers[index] === option ? " correct" : " incorrect";
           } else if (!userAnswers[index] && correctAnswers[index] === option) {
             bubbleClass += " unattempted";
           }
@@ -117,13 +117,10 @@ const GradingPage = () => {
       </div>
     );
   };
-
-  const handlePrint = useReactToPrint({
-    documentTitle: "Print This Document",
-    onBeforePrint: () => console.log("before printing..."),
-    onAfterPrint: () => console.log("after printing..."),
-    removeAfterPrint: true,
-  });
+  const element = document.querySelector("#pdf-omr");
+  const downloadPDF = () => {
+    html2pdf(element);
+  };
   return (
     <>
       <Navbar />
@@ -132,7 +129,7 @@ const GradingPage = () => {
           <h1 className="text-xl mt-5">OMR Results</h1>
         </div>
       </div>
-      <div ref={printRef} className="min-h-screen">
+      <div id="pdf-omr" className="min-h-screen">
         <div className="outerSummaryDiv p-5">
           <div className="summaryDiv w-full h-9 mt-5 font-semibold text-xl lg:ml-24 lg:text-3xl">
             <div id="hideOnPrint" className="flex">
@@ -142,7 +139,7 @@ const GradingPage = () => {
                   setTimeout(() => {
                     document.getElementById("displayOnPrint").style.display =
                       "block";
-                    handlePrint(null, () => printRef.current);
+                    downloadPDF();
                   }, 1000);
                 }}
                 className="Btn"

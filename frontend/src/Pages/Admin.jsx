@@ -5,7 +5,7 @@ const Admin = () => {
   const [users, setUsers] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const fetchUsers = async () => {
-    const usersUrlAdmin = "https://avvise.onrender.com/api/users/admin";
+    const usersUrlAdmin = "http://localhost:4000/api/users/admin";
     try {
       const response = await fetch(usersUrlAdmin, {
         method: "GET",

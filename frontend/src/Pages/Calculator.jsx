@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import { Navbar, Footer, Modal, CustomModal } from "../Components/compIndex";
+import { Navbar, Footer, Modal } from "../Components/compIndex";
 import { handleEnter } from "../app.js";
 import "../App.css";
 import CalculateFinal from "../Components/CalculateFinal.jsx";
 import { useAppContext } from "../context/AppContext.jsx";
-import { useAuthContext } from "../context/AuthContext.jsx";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
-import { useNavigate } from "react-router-dom";
 
 const Calculator = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isLoggedIn } = useAuthContext();
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
@@ -19,15 +16,13 @@ const Calculator = () => {
   useEffect(() => {
     handleEnter();
   });
-  const navigate = useNavigate();
-  const redirectSignUp = () => {
-    navigate("/signup");
-  };
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { setAppQuestions, setNoOfQues, setMarkingType } = useAppContext();
   const renderInputs = () => {
     return totalQues.map((num, index) => (
-      <div key={index} className="m-2">
+      <div key={index} className="m-2 flex">
+        <p className="number mt-5 mr-4 font-semibold text-gray-800 tracking-wide">
+          {`A${num}.`}
+        </p>
         <input
           id={`que-${num}`}
           type="text"
@@ -95,7 +90,11 @@ const Calculator = () => {
   };
   const renderAnswerKeys = () => {
     return totalQues.map((num, index) => (
-      <div key={index} className="m-2">
+      <div key={index} className="m-2 flex">
+        <p className="number mt-5 mr-4 font-semibold text-gray-800 tracking-wide">
+          {`Q${num}.`}
+        </p>
+
         <input
           id={`answer-${num}`}
           type="text"
@@ -104,9 +103,6 @@ const Calculator = () => {
         />
       </div>
     ));
-  };
-  const displayModal = () => {
-    setIsModalOpen(true);
   };
   const handleQuestionsNums = (e) => {
     const num = parseInt(e.target.value, 10);
@@ -121,9 +117,6 @@ const Calculator = () => {
   const handleMarkingSchemeChange = (e) => {
     setMarkingScheme(e.target.value);
     setMarkingType(e.target.value);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
   return (
     <>

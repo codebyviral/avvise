@@ -1,9 +1,9 @@
 import { Navbar, Footer, CustomModal } from "../Components/compIndex";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import profileLoader from "../assets/loader.gif";
 import { profileIconURL } from "../assets/URLs";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 const Profile = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -15,11 +15,15 @@ const Profile = () => {
     email: "",
     avatarUrl: "",
   });
-
+  const [newDetails, setNewDetail] = useState({
+    newName: "",
+    newEmail: "",
+    newAvatar: "",
+  });
   useEffect(() => {
     if (user_id) {
       const getAvatarUrl = async () => {
-        const user_avatar_url = `https://avvise.onrender.com/api/avatar/profile/${user_id}`;
+        const user_avatar_url = `http://localhost:4000/api/avatar/profile/${user_id}`;
         try {
           const avt_response = await fetch(user_avatar_url);
           if (!avt_response.ok) {
@@ -41,13 +45,11 @@ const Profile = () => {
   }, [user_id, userDetails]);
   const handleChanges = (e) => {
     e.preventDefault();
-    document.getElementById("saveChangeBtn").innerText = "Apply Changes";
-  };
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    toast("Update functionality is in progress.", {
-      icon: "😅",
+    setNewDetail({
+      ...newDetails,
+      [e.target.name]: e.target.value,
     });
+    document.getElementById("saveChangeBtn").innerText = "Apply Changes";
   };
   const [Modal, setModal] = useState(false);
   const openModal = () => {
@@ -59,11 +61,11 @@ const Profile = () => {
   const handleAccountDelete = async () => {
     try {
       const delete_reponse = await fetch(
-        `https://avvise.onrender.com/api/user/delete/${user_id}`,
+        `http://localhost:4000/api/user/delete/${user_id}`,
         {
           method: "DELETE",
           headers: {
-            "Content-Type": "application.json",
+            "Content-Type": "application/json",
           },
         }
       );
@@ -77,6 +79,34 @@ const Profile = () => {
       toast.error("Failed to delete account. Please try again.");
     }
   };
+  const updateAccountDetails = async (e) => {
+    e.preventDefault();
+    try {
+      const name_update_response = await axios.put(
+        `http://localhost:4000/api/user/update/${user_id}`,
+        { newName: newDetails.newName },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(newDetails);
+      if (name_update_response.status === 200) {
+        toast.success("Account updated successfully.");
+        setUserDetail((prevDetails) => ({
+          ...prevDetails,
+          fullName: newDetails.newName,
+        }));
+      } else {
+        throw new Error("Failed to update account");
+      }
+    } catch (error) {
+      console.log("Account update error:", error);
+      toast.error("Failed to update account. Please try again.");
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -120,7 +150,7 @@ const Profile = () => {
               </label>
             </div>
           </div>
-          <form className="space-y-4">
+          <form onSubmit={updateAccountDetails} className="space-y-4">
             <div>
               <label
                 htmlFor="username"
@@ -176,7 +206,7 @@ const Profile = () => {
             </div>
             <div className="flex lg:justify-end">
               <button
-                onClick={handleUpdate}
+                onClick={updateAccountDetails}
                 id="saveChangeBtn"
                 type="submit"
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-black hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"

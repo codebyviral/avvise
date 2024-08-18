@@ -24,7 +24,7 @@ const Signup = () => {
     }
   };
 
-  const signupURL = "https://avvise.onrender.com/api/auth/signup";
+  const signupURL = "http://localhost:4000/api/auth/signup";
 
   const handleInput = (e) => {
     setUser({
@@ -43,7 +43,7 @@ const Signup = () => {
         const responseData = response.data;
         const userID = responseData.userId;
         if (avatar) {
-          const avatarUrl = "https://avvise.onrender.com/api/auth/upload-avatar";
+          const avatarUrl = "http://localhost:4000/api/auth/upload-avatar";
           const formData = new FormData();
           formData.append("file", avatar);
           formData.append("userId", userID);
