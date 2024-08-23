@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { Children, createContext, useContext, useState } from "react";
-import { useEffect } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {

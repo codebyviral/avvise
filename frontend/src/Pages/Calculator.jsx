@@ -20,7 +20,7 @@ const Calculator = () => {
   const renderInputs = () => {
     return totalQues.map((num, index) => (
       <div key={index} className="m-2 flex">
-        <p className="number mt-5 mr-4 font-semibold text-gray-800 tracking-wide">
+        <p className="number mt-5 mr-4 text-sm font-semibold text-gray-800 tracking-wide">
           {`A${num}.`}
         </p>
         <input
@@ -91,7 +91,7 @@ const Calculator = () => {
   const renderAnswerKeys = () => {
     return totalQues.map((num, index) => (
       <div key={index} className="m-2 flex">
-        <p className="number mt-5 mr-4 font-semibold text-gray-800 tracking-wide">
+        <p className="number mt-5 mr-4 text-sm font-semibold text-gray-800 tracking-wide">
           {`Q${num}.`}
         </p>
 

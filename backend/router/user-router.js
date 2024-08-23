@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv'
 import { User } from '../models/user-model.js';
-
+import authenticateToken from '../middleware/authenticateToken.js';
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ router.delete("/delete/:userId", async (req, res) => {
     }
 })
 
-router.put("/update/:userId", async (req, res) => {
+router.patch("/update/:userId", authenticateToken, async (req, res) => {
     const userId = req.params.userId;
     const { newName } = req.body;
 

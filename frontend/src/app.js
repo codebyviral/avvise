@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppContext } from './context/AppContext';
 function handleEnter() {
 

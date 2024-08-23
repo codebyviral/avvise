@@ -45,6 +45,11 @@ const History = () => {
     location.reload();
   };
 
+  const deleteAll = () => {
+    localStorage.removeItem("calculatedHistory");
+    location.reload();
+  };
+
   const openModal = (itemId) => {
     setSelectedItemId(itemId);
     setIsModalOpen(true);
@@ -135,12 +140,22 @@ const History = () => {
           </div>
         )}
       </div>
+      <div className="flex cursor-pointer justify-center">
+        <button onClick={deleteAll} className="flex">
+          <h5 className="text-red-500">Delete All Items</h5>{" "}
+          <img
+            className="w-7 mx-3"
+            src="https://cdn.iconscout.com/icon/premium/png-512-thumb/delete-52-103683.png?f=webp&w=512"
+            alt=""
+          />
+        </button>
+      </div>
       {isModalOpen && (
         <CustomModal
           message={" Are you sure you want to delete this item?"}
           cancelMsg={"Cancel"}
           actionMsg={"Delete"}
-          bgColor={'bg-red-600'}
+          bgColor={"bg-red-600"}
           cancel={closeModal}
           action={deleteHistoryItem}
         />

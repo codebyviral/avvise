@@ -23,7 +23,7 @@ const Profile = () => {
   useEffect(() => {
     if (user_id) {
       const getAvatarUrl = async () => {
-        const user_avatar_url = `https://avvise.onrender.com/api/avatar/profile/${user_id}`;
+        const user_avatar_url = `http://localhost:4000/api/avatar/profile/${user_id}`;
         try {
           const avt_response = await fetch(user_avatar_url);
           if (!avt_response.ok) {
@@ -45,10 +45,10 @@ const Profile = () => {
   }, [user_id, userDetails]);
   const handleChanges = (e) => {
     e.preventDefault();
-    setNewDetail({
-      ...newDetails,
+    setNewDetail((prevDetails) => ({
+      ...prevDetails,
       [e.target.name]: e.target.value,
-    });
+    }));
     document.getElementById("saveChangeBtn").innerText = "Apply Changes";
   };
   const [Modal, setModal] = useState(false);
@@ -61,7 +61,7 @@ const Profile = () => {
   const handleAccountDelete = async () => {
     try {
       const delete_reponse = await fetch(
-        `https://avvise.onrender.com/api/user/delete/${user_id}`,
+        `http://localhost:4000/api/user/delete/${user_id}`,
         {
           method: "DELETE",
           headers: {
@@ -79,16 +79,23 @@ const Profile = () => {
       toast.error("Failed to delete account. Please try again.");
     }
   };
+
+  const token = localStorage.getItem("token");
   const updateAccountDetails = async (e) => {
     e.preventDefault();
+    console.log("newName", newDetails.newName);
     try {
-      const name_update_response = await axios.put(
-        `https://avvise.onrender.com/api/user/update/${user_id}`,
-        { newName: newDetails.newName },
+      const name_update_response = await fetch(
+        `http://localhost:4000/api/user/update/${user_id}`,
         {
+          method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify({
+            newName: newDetails.newName,
+          }),
         }
       );
       console.log(newDetails);
@@ -98,6 +105,9 @@ const Profile = () => {
           ...prevDetails,
           fullName: newDetails.newName,
         }));
+        setTimeout(() => {
+          location.reload();
+        }, 500);
       } else {
         throw new Error("Failed to update account");
       }
@@ -161,6 +171,7 @@ const Profile = () => {
               <input
                 id="username"
                 onChange={handleChanges}
+                name="newName"
                 type="text"
                 className="mt-1 h-10  block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                 defaultValue={userDetails.fullName}
@@ -179,6 +190,7 @@ const Profile = () => {
               <input
                 id="email"
                 onChange={handleChanges}
+                name="newEmail"
                 type="email"
                 className="mt-1 h-10  block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                 defaultValue={userDetails.email}

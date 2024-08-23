@@ -26,7 +26,7 @@ const Signin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const loginURL = "https://avvise.onrender.com/api/auth/login";
+    const loginURL = "http://localhost:4000/api/auth/login";
     try {
       const response = await fetch(loginURL, {
         method: "POST",
