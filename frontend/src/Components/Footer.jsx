@@ -14,7 +14,7 @@ const Footer = () => {
                   src={AvviseEndgame}
                   alt="Logo"
                 />
-              </Link>
+              </Link>✨
 
               <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
                 Join 100+ others and never miss out on new features at AVVISE.
