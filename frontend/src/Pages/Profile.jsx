@@ -137,7 +137,7 @@ const Profile = () => {
             <div className="relative rounded-full overflow-hidden w-40 h-40 bg-black">
               <img
                 className="object-cover w-full h-full"
-                src={userDetails.avatarUrl || profileIconURL}
+                src={userDetails.avatarUrl || localStorage.getItem("userImg")}
                 alt="Profile"
               />
               <label

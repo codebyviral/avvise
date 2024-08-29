@@ -44,6 +44,7 @@ const login = async (req, res) => {
                 token: await userExists.generateAuthToken(),
                 userId: await userExists._id.toString(),
                 isAdmin: await userExists.isAdmin,
+                imageUrl: await userExists.avatar,
             })
         } else {
             res.status(401).json({ message: 'Invalid email or password.' })

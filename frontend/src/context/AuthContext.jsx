@@ -25,13 +25,18 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("profileImg");
     localStorage.removeItem("userId");
-    localStorage.removeItem('isAdmin')
+    localStorage.removeItem("isAdmin");
     setIsLoggedIn(false);
   };
 
   // Store UserId
   const storeUserId = (userId) => {
     localStorage.setItem("userId", userId);
+  };
+
+  // Store image url
+  const storeImageUrl = (img) => {
+    localStorage.setItem("userImg", img);
   };
 
   return (
@@ -43,6 +48,7 @@ export const AuthProvider = ({ children }) => {
         storeTokenInLocalStorage,
         admin,
         storeisAdminState,
+        storeImageUrl,
       }}
     >
       {children}

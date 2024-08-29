@@ -22,7 +22,8 @@ const Signin = () => {
     });
   };
   const navigate = useNavigate();
-  const { storeTokenInLocalStorage, storeUserId } = useAuthContext();
+  const { storeTokenInLocalStorage, storeUserId, storeImageUrl } =
+    useAuthContext();
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
