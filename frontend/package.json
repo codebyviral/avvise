@@ -27,6 +27,7 @@
     "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^6.24.1",
     "react-to-print": "^2.15.1",
+    "react-toastify": "^10.0.5",
     "react-virtualized": "^9.22.5",
     "use-history": "^1.4.1"
   },
