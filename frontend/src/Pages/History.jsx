@@ -3,6 +3,8 @@ import { Navbar, Footer, CustomModal } from "../Components/compIndex";
 import { useAppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const History = () => {
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ const History = () => {
     setHistoryId(itemId);
     setTimeout(() => {
       setLoading(false);
-      setLoading((prevState) => ({ ...prevState, [itemId]: true }));
+      setLoading((prevState) => ({ ...prevState, [itemId]: false }));
       navigate("/projects");
     }, 500);
   };
@@ -47,7 +49,8 @@ const History = () => {
 
   const deleteAll = () => {
     localStorage.removeItem("calculatedHistory");
-    location.reload();
+    setHistory([]);
+    setNewUser(true);
   };
 
   const openModal = (itemId) => {
@@ -58,6 +61,30 @@ const History = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedItemId(null);
+  };
+
+  const user_id = localStorage.getItem("userId");
+
+  const uploadAll = async () => {
+    const postUrl = `https://avvise.onrender.com/api/user/upload/omr/${user_id}`;
+
+    try {
+      await axios.post(
+        postUrl,
+        {
+          omrData: history,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      toast.success("All your history has been uploaded to the cloud!");
+    } catch (error) {
+      console.error("Error uploading data:", error);
+      toast.error("Failed to upload data.");
+    }
   };
 
   return (
@@ -121,7 +148,7 @@ const History = () => {
                         "View OMR Sheet"
                       )}
                     </button>
-                    <div className="ml-auto mt-4">
+                    <div className="ml-auto mt-4 flex">
                       <button
                         onClick={() => openModal(item.id)}
                         className="flex justify-center hover:opacity-80"
@@ -129,7 +156,7 @@ const History = () => {
                         <img
                           className="w-7"
                           src="https://cdn.iconscout.com/icon/premium/png-512-thumb/delete-52-103683.png?f=webp&w=512"
-                          alt=""
+                          alt="Delete"
                         />
                       </button>
                     </div>
@@ -137,22 +164,26 @@ const History = () => {
                 </div>
               ))}
             </div>
+            <div className="flex flex-col items-center mt-6 space-y-4">
+              <button
+                onClick={uploadAll}
+                className="bg-blue-600 text-white px-4 py-2 rounded-2xl hover:opacity-80"
+              >
+                Upload All History
+              </button>
+              <button
+                onClick={deleteAll}
+                className="bg-red-600 text-white px-4 py-2 rounded-2xl hover:opacity-80"
+              >
+                Delete All Items
+              </button>
+            </div>
           </div>
         )}
       </div>
-      <div className="flex cursor-pointer justify-center">
-        <button onClick={deleteAll} className="flex">
-          <h5 className="text-red-500">Delete All Items</h5>{" "}
-          <img
-            className="w-7 mx-3"
-            src="https://cdn.iconscout.com/icon/premium/png-512-thumb/delete-52-103683.png?f=webp&w=512"
-            alt=""
-          />
-        </button>
-      </div>
       {isModalOpen && (
         <CustomModal
-          message={" Are you sure you want to delete this item?"}
+          message={"Are you sure you want to delete this item?"}
           cancelMsg={"Cancel"}
           actionMsg={"Delete"}
           bgColor={"bg-red-600"}

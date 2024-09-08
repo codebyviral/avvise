@@ -1,7 +1,8 @@
 import express from 'express';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 import { User } from '../models/user-model.js';
 import authenticateToken from '../middleware/authenticateToken.js';
+import { omrController } from "../controllers/omr-controller.js";
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ router.delete("/delete/:userId", async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete user' });
     }
-})
+});
 
 router.patch("/update/:userId", authenticateToken, async (req, res) => {
     const userId = req.params.userId;
@@ -43,4 +44,8 @@ router.patch("/update/:userId", authenticateToken, async (req, res) => {
     }
 });
 
-export default router
+const { uploadOmr } = omrController;
+
+router.post("/upload/omr/:userId", authenticateToken, uploadOmr);
+
+export default router;

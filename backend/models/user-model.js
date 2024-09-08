@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    omrData: {
+        type: Array,
+        default: [],
+        required: false,
+    }
 }, {
     timestamps: true,
 })
