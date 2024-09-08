@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import axios from "axios";
 import toast from "react-hot-toast";
+import uploadLogo from "../assets/cloud-upload.png";
 
 const History = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const History = () => {
   const [newUser, setNewUser] = useState(true);
   const [history, setHistory] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteAllModalOpen, setIsDeleteAllModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
   useEffect(() => {
@@ -47,10 +49,16 @@ const History = () => {
     location.reload();
   };
 
-  const deleteAll = () => {
-    localStorage.removeItem("calculatedHistory");
+  const confirmDeleteAll = () => {
     setHistory([]);
     setNewUser(true);
+    window.localStorage.removeItem("calculatedHistory");
+    setIsDeleteAllModalOpen(false);
+    location.reload();
+  };
+
+  const deleteAll = () => {
+    setIsDeleteAllModalOpen(true);
   };
 
   const openModal = (itemId) => {
@@ -61,6 +69,10 @@ const History = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedItemId(null);
+  };
+
+  const closeDeleteAllModal = () => {
+    setIsDeleteAllModalOpen(false);
   };
 
   const user_id = localStorage.getItem("userId");
@@ -141,8 +153,13 @@ const History = () => {
                     >
                       {loading[item.id] ? (
                         <>
-                          <Oval color="#fff" height={20} width={20} /> &nbsp;
-                          Almost done...
+                          <Oval
+                            color="#fff"
+                            height={20} // Set loader height
+                            width={20} // Set loader width
+                            secondaryColor="#fff"
+                          />{" "}
+                          &nbsp; Almost done...
                         </>
                       ) : (
                         "View OMR Sheet"
@@ -167,9 +184,10 @@ const History = () => {
             <div className="flex flex-col items-center mt-6 space-y-4">
               <button
                 onClick={uploadAll}
-                className="bg-blue-600 text-white px-4 py-2 rounded-2xl hover:opacity-80"
+                className="bg-stone-200 text-black px-4 py-2 rounded-2xl hover:opacity-80"
               >
-                Upload All History
+                Save All History
+                <img className="w-7 ml-2 mb-1" src={uploadLogo} alt="" />
               </button>
               <button
                 onClick={deleteAll}
@@ -189,6 +207,16 @@ const History = () => {
           bgColor={"bg-red-600"}
           cancel={closeModal}
           action={deleteHistoryItem}
+        />
+      )}
+      {isDeleteAllModalOpen && (
+        <CustomModal
+          message={"Are you sure you want to delete all history items?"}
+          cancelMsg={"Cancel"}
+          actionMsg={"Delete All"}
+          bgColor={"bg-red-600"}
+          cancel={closeDeleteAllModal}
+          action={confirmDeleteAll}
         />
       )}
       <Footer />
