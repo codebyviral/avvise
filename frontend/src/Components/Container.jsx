@@ -87,7 +87,7 @@ const Container = () => {
             <section className="py-16 dark:bg-slate-800">
               <div className="max-w-7xl mx-auto px-4 text-center">
                 <h2 className="text-3xl font-bold text-black">
-                  Ready to Revolutionize Your Grading?
+                  Ready to Speed Up Your Marks Counting?
                 </h2>
                 <p className="mt-4 text-lg text-black">
                   Sign up today and experience the power of our MCQ grading

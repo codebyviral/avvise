@@ -211,7 +211,9 @@ const History = () => {
       )}
       {isDeleteAllModalOpen && (
         <CustomModal
-          message={"Are you sure you want to delete all history items?"}
+          message={
+            "Save history to Account. If you want. Are you sure you want to delete all history items?"
+          }
           cancelMsg={"Cancel"}
           actionMsg={"Delete All"}
           bgColor={"bg-red-600"}
