@@ -159,7 +159,7 @@ const CalculateFinal = () => {
     <>
       <div className="flex justify-center">
         <button
-          className="bg-black calculate-btn mt-10 px-6 py-2.5 mx-3 mb-10 rounded-2xl hover:opacity-80 text-white dark:bg-purple-600"
+          className="bg-black calculate-btn mt-10 px-6 py-2.5 mx-3 mb-10 rounded-lg hover:opacity-80 text-white dark:bg-purple-600"
           onClick={handleCalculation}
         >
           Calculate

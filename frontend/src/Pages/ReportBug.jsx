@@ -163,7 +163,7 @@ const ReportBug = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="w-full bg-black text-white rounded-2xl shadow-lg px-4 py-2 hover:opacity-90 font-semibold focus:outline-none"
+                  className="w-full bg-black text-white rounded-lg shadow-lg px-4 py-2 hover:opacity-90 font-semibold focus:outline-none"
                 >
                   Submit
                 </button>

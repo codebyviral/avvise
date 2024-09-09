@@ -21,12 +21,12 @@ const Container = () => {
                 Introducing the Ultimate WebApp Calculator.
               </h1>
               <h2 className="mt-4 text-lg text-gray-700 dark:text-white">
-                Streamline your grading process with our intuitive MCQ
-                evaluation tool.
+                Eliminate the hassle of manual test scoring and save valuable
+                time.
               </h2>
               <div className="mt-6 dark:animate-none">
                 <Link to="/calculator">
-                  <div className="bg-black hover:opacity-80 text-white px-6 py-3 inline-block dark:bg-purple-600 rounded-2xl">
+                  <div className="bg-black animate-bounce hover:opacity-80 text-white px-6 py-3 inline-block dark:bg-purple-600 rounded-lg">
                     Get Started
                   </div>
                 </Link>
@@ -73,7 +73,7 @@ const Container = () => {
                 <div className="mt-6">
                   <a
                     href="/calculator"
-                    className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-2xl"
+                    className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-lg"
                   >
                     Explore Now
                   </a>
@@ -96,7 +96,7 @@ const Container = () => {
                 <div className="mt-6">
                   <a
                     href="/signup"
-                    className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-2xl"
+                    className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-lg"
                   >
                     Sign Up Now
                   </a>

@@ -26,7 +26,7 @@ const ComingSoon = () => {
               onClick={() => {
                 navigate("/");
               }}
-              className="bg-black hover:opacity-80 text-white py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
+              className="bg-black hover:opacity-80 text-white py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
             >
               Return Back
             </button>

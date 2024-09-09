@@ -1,10 +1,11 @@
 import { Navbar, Container, Footer } from "../Components/compIndex";
+import PromoBanner from "../Components/PromoBanner";
 
 const Home = () => {
-  const testLogHistory = JSON.parse(window.localStorage.getItem("calculatedHistory")) || [];
   return (
     <>
       <Navbar />
+      <PromoBanner />
       <Container />
       <Footer />
     </>

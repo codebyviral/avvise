@@ -9,7 +9,7 @@ import uploadLogo from "../assets/cloud-upload.png";
 
 const History = () => {
   const navigate = useNavigate();
-  const { historyId, setHistoryId } = useAppContext();
+  const { setHistoryId } = useAppContext();
   const [loading, setLoading] = useState({});
   const [newUser, setNewUser] = useState(true);
   const [history, setHistory] = useState([]);
@@ -95,7 +95,7 @@ const History = () => {
       toast.success("All your history has been uploaded to the cloud!");
     } catch (error) {
       console.error("Error uploading data:", error);
-      toast.error("Failed to upload data.");
+      toast.error("Failed to upload data. Are you Logged In?");
     }
   };
 
@@ -149,7 +149,7 @@ const History = () => {
                   <div className="flex justify-center">
                     <button
                       onClick={() => handleHistory(item.id)}
-                      className="mt-2 w-44 flex justify-center bg-black text-white px-4 py-2 rounded-2xl hover:opacity-80"
+                      className="mt-2 w-44 flex justify-center bg-black text-white px-4 py-2 rounded-lg hover:opacity-80"
                     >
                       {loading[item.id] ? (
                         <>
@@ -184,14 +184,14 @@ const History = () => {
             <div className="flex flex-col items-center mt-6 space-y-4">
               <button
                 onClick={uploadAll}
-                className="bg-stone-200 text-black px-4 py-2 rounded-2xl hover:opacity-80"
+                className="bg-stone-200 text-black px-4 py-2 rounded-lg hover:opacity-80"
               >
                 Save All History
                 <img className="w-7 ml-2 mb-1" src={uploadLogo} alt="" />
               </button>
               <button
                 onClick={deleteAll}
-                className="bg-red-600 text-white px-4 py-2 rounded-2xl hover:opacity-80"
+                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:opacity-80"
               >
                 Delete All Items
               </button>

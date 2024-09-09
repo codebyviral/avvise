@@ -7,13 +7,13 @@ const CustomModal = (props) => {
           <div className="flex justify-end">
             <button
               onClick={props.cancel}
-              className="mr-2 bg-gray-300 text-black px-4 py-2 rounded-2xl hover:bg-gray-400"
+              className="mr-2 bg-gray-300 text-black px-4 py-2 rounded-lg hover:bg-gray-400"
             >
               {props.cancelMsg}
             </button>
             <button
               onClick={props.action}
-              className={`${props.bgColor} text-white px-4 py-2 rounded-2xl hover:opacity-80`}
+              className={`${props.bgColor} text-white px-4 py-2 rounded-lg hover:opacity-80`}
             >
               {props.actionMsg}
             </button>

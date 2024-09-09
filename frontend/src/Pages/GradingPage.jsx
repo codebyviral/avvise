@@ -124,6 +124,11 @@ const GradingPage = () => {
   const downloadPDF = () => {
     html2pdf().from(element).set(fileOptions).save();
   };
+  const savePDF = () => {
+    document.getElementById("displayOnPrint").style.display = "block";
+    document.getElementById("warning").style.display = "none";
+    downloadPDF();
+  };
   return (
     <>
       <Navbar />
@@ -140,9 +145,7 @@ const GradingPage = () => {
               <button
                 onClick={() => {
                   setTimeout(() => {
-                    document.getElementById("displayOnPrint").style.display =
-                      "block";
-                    downloadPDF();
+                    savePDF();
                   }, 1000);
                 }}
                 className="Btn"
@@ -219,7 +222,7 @@ const GradingPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center mt-10">
+        <div id="warning" className="flex justify-center mt-10">
           <p className="text-sm text-red-500 italic">
             If you refresh this page, the data will be cleared. However, you can
             visit the History page to access this OMR data again.

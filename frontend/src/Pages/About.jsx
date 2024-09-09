@@ -1,15 +1,16 @@
 import { Navbar, Footer } from "../Components/compIndex";
+import AboutTeam from "../Components/AboutTeam";
 
 const About = () => {
   return (
     <>
       <Navbar />
+      <AboutTeam />
       <div className="min-h-screen bg-gray-100 text-gray-800">
         <div className="container mx-auto py-12 px-6 lg:px-20">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">
             About AVVISE
           </h1>
-
           <div className="bg-white shadow-lg rounded-lg p-8 md:p-12 lg:p-16">
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">
@@ -74,7 +75,8 @@ const About = () => {
                 administrative workload associated with grading, AVVISE allows
                 educators to refocus their energy on what they do best—mentoring
                 and teaching. With features tailored to enhance the educational
-                experience, our app stands as a valuable asset in any {`educator's`}
+                experience, our app stands as a valuable asset in any{" "}
+                {`educator's`}
                 toolkit.
               </p>
             </section>
