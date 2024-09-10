@@ -55,8 +55,60 @@ const Docs = () => {
 
           {/* Documentation Sections */}
           <div className="lg:w-3/4">
+            <h1 className="text-2xl underline font-bold mb-4">
+              v2.0 Release Notes
+            </h1>
             <section className="mb-8">
-              <h2 className="text-3xl font-bold mb-4">1. Introduction</h2>
+              <h6 className="text-xl font-bold mb-4">
+                {`What's`} New in AVVISE v2.0?
+              </h6>
+
+              <h3 className="text-2xl font-semibold mb-2">
+                1. Major UI Update 😍
+              </h3>
+              <p className="text-lg mb-4">
+                {`We've`} revamped the overall user interface for a cleaner and
+                more intuitive design. This update provides a smoother
+                navigation experience, making it easier for users to access the
+                grading tools they need quickly.
+              </p>
+
+              <h3 className="text-2xl font-semibold mb-2">
+                2. Save All History to the Cloud 🙌
+              </h3>
+              <p className="text-lg mb-4">
+                With AVVISE v2.0, all grading history is now securely saved to
+                the cloud under your account. You can easily access your past
+                grading data from any device, at any time. No more worrying
+                about losing your grading records!{" "}
+                {`Accesssing all your Data will be available soon!`}
+              </p>
+
+              <h3 className="text-2xl font-semibold mb-2">3. Bug Fixes 👀</h3>
+              <p className="text-lg mb-4">
+                {`We've`} squashed several bugs to improve the stability and
+                performance of AVVISE. Your grading process will now be even
+                more seamless and error-free.
+              </p>
+
+              <h3 className="text-2xl font-semibold mb-2">
+                4. Additional Minor UI Updates 💗
+              </h3>
+              <p className="text-lg mb-4">
+                Along with the major UI overhaul, we’ve made several small
+                design tweaks, improving visual consistency across all devices.
+                These updates ensure that AVVISE looks and feels great, no
+                matter where {`you're`} using it. <br />
+                <p className="text-red-500 underline mt-3">
+                  Note: Downloaded PDF UI will be updated soon.
+                </p>
+              </p>
+            </section>
+            <section className="mb-8">
+              <h6 className="text-3xl underline font-bold mb-4">
+                Documentation:
+              </h6>
+              <h2 className="text-2xl font-bold mb-4">1. Introduction</h2>
 
               <h3 className="text-2xl font-semibold mb-2">
                 1.1 What is AVVISE?
@@ -132,8 +184,10 @@ const Docs = () => {
                 3.4 Calculate Results
               </h3>
               <p className="text-lg mb-4">
-                After entering the answer keys, click on the "Calculate Results"
-                button. AVVISE will then process the information you provided.
+                After entering the answer keys, click on the{" "}
+                <span className="font-semibold italic">Calculate Results</span>{" "}
+                &nbsp; button. AVVISE will then process the information you
+                provided.
               </p>
 
               <h3 className="text-2xl font-semibold mb-2">

@@ -12,7 +12,7 @@ import { useAuthContext } from "../context/AuthContext";
 import { EmailSvg, PasswordSvg } from "../Components/Layouts/LayoutIndex";
 
 const Signin = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",

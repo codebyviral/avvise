@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const PromoBanner = () => {
   return (
     <div
@@ -38,8 +39,10 @@ const PromoBanner = () => {
           >
             <circle cx="1" cy="1" r="1" />
           </svg>
-          Introducing AVVISE v2.0 Experience the latest features and
-          improvements. 🎉
+          <Link to="/docs">
+            <span className="underline">Release v2.0</span> &nbsp; Experience
+            the latest features and improvements. 🎉
+          </Link>
         </p>
         <a
           href="/signup"

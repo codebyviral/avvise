@@ -14,12 +14,11 @@ const Footer = () => {
                   src={AvviseEndgame}
                   alt="Logo"
                 />
-              </Link>✨
-
+              </Link>
+              ✨
               <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
-                Join 100+ others and never miss out on new features at AVVISE.
+                Join 1k+ others and never miss out on new features at AVVISE.
               </p>
-
               <div className="flex mt-6 -mx-2">
                 <a
                   href="#"
@@ -121,25 +120,25 @@ const Footer = () => {
 
               <div>
                 <h3 className="text-gray-700 uppercase dark:text-white cursor-default">
-                  Products
+                  Techs
                 </h3>
                 <Link
                   to="#"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Freebies
+                  OMR
                 </Link>
                 <Link
                   to="#"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  E-books
+                  Software
                 </Link>
                 <Link
                   to="#"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Pro Version
+                  Application
                 </Link>
               </div>
 
@@ -158,7 +157,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <hr className="h-px ..."/>
+        <hr className="h-px ..." />
         {/* Additional footer content here */}
       </div>
     </footer>

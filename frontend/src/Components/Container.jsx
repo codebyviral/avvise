@@ -98,7 +98,7 @@ const Container = () => {
                     href="/signup"
                     className="bg-black text-white hover:opacity-80 px-6 py-3 font-medium inline-block dark:bg-purple-600 dark:text-white rounded-lg"
                   >
-                    Sign Up Now
+                    Sign Up Now ✨
                   </a>
                 </div>
               </div>

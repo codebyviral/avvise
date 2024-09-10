@@ -1,11 +1,11 @@
 import { Navbar, Footer } from "../Components/compIndex";
 import AboutTeam from "../Components/AboutTeam";
-
+import { Link } from "react-router-dom";
 const About = () => {
+  const oldAvvise = "https://gradiebuddyold.netlify.app";
   return (
     <>
       <Navbar />
-      <AboutTeam />
       <div className="min-h-screen bg-gray-100 text-gray-800">
         <div className="container mx-auto py-12 px-6 lg:px-20">
           <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">
@@ -16,18 +16,26 @@ const About = () => {
               <h2 className="text-2xl font-semibold mb-4">
                 {`Avvise's`} Journey
               </h2>
+              <span className=" cursor-pointer">
+                {" "}
+                <br /> AVVISE was previously known as GradieBuddy. Later it has
+                been updated to AVVISE.{" "}
+                <span className="underline">
+                  <Link to={oldAvvise}>View Old AVVISE 🙈</Link>
+                </span>
+              </span>{" "}
+              <br /> <br />
               <p className="text-gray-700 mb-6">
                 AVVISE began with a simple yet profound vision: to bridge the
                 gap between traditional educational practices and the vast
                 potential of modern technology. Founded by Viral Vaghela, a
-                dedicated fullstack developer and passionate educator, the
-                journey started from a shared frustration among educators: the
-                time-consuming and often daunting task of grading. Inspired by
-                the belief that technology could revolutionize education, Viral
-                set out to design a grading app that would simplify this
-                process. Our journey has been one of constant learning,
-                adapting, and improving based on the needs of educators and
-                students around the globe.
+                dedicated Fullstack developer, the journey started from a shared
+                frustration among educators: the time-consuming and often
+                daunting task of grading. Inspired by the belief that technology
+                could revolutionize education, Viral set out to design a grading
+                app that would simplify this process. Our journey has been one
+                of constant learning, adapting, and improving based on the needs
+                of educators and students around the globe.
               </p>
             </section>
 
@@ -137,6 +145,7 @@ const About = () => {
           </div>
         </div>
       </div>
+      <AboutTeam />
       <Footer />
     </>
   );
