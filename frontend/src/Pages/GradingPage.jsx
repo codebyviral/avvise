@@ -222,12 +222,6 @@ const GradingPage = () => {
             </div>
           </div>
         </div>
-        <div id="warning" className="flex justify-center mt-10">
-          <p className="text-sm text-red-500 italic">
-            If you refresh this page, the data will be cleared. However, you can
-            visit the History page to access this OMR data again.
-          </p>
-        </div>
         <div
           hidden
           id="displayOnPrint"
