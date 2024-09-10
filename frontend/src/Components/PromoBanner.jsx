@@ -40,7 +40,7 @@ const PromoBanner = () => {
             <circle cx="1" cy="1" r="1" />
           </svg>
           <Link to="/docs">
-            <span className="underline">Release v2.0</span> &nbsp; Experience
+            <span className="underline">Release v5.0</span> &nbsp; Experience
             the latest features and improvements. 🎉
           </Link>
         </p>

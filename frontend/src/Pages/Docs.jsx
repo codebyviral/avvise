@@ -56,11 +56,11 @@ const Docs = () => {
           {/* Documentation Sections */}
           <div className="lg:w-3/4">
             <h1 className="text-2xl underline font-bold mb-4">
-              v2.0 Release Notes
+              v5.0 Release Notes
             </h1>
             <section className="mb-8">
               <h6 className="text-xl font-bold mb-4">
-                {`What's`} New in AVVISE v2.0?
+                {`What's`} New in AVVISE v5.0?
               </h6>
 
               <h3 className="text-2xl font-semibold mb-2">
@@ -77,7 +77,7 @@ const Docs = () => {
                 2. Save All History to the Cloud 🙌
               </h3>
               <p className="text-lg mb-4">
-                With AVVISE v2.0, all grading history is now securely saved to
+                With AVVISE v5.0, all grading history is now securely saved to
                 the cloud under your account. You can easily access your past
                 grading data from any device, at any time. No more worrying
                 about losing your grading records!{" "}
