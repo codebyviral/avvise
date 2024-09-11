@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 const PromoBanner = () => {
+  const { isLoggedIn } = useAuthContext();
   return (
     <div
       id="promo"
@@ -44,12 +46,26 @@ const PromoBanner = () => {
             the latest features and improvements. 🎉
           </Link>
         </p>
-        <a
-          href="/signup"
-          className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-        >
-          Sign up <span aria-hidden="true">&rarr;</span>
-        </a>
+        {isLoggedIn ? (
+          <>
+            {" "}
+            <a
+              href="/aboutus"
+              className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+            >
+              Explored Now <span aria-hidden="true">&rarr;</span>
+            </a>
+          </>
+        ) : (
+          <>
+            <a
+              href="/signup"
+              className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+            >
+              Sign up <span aria-hidden="true">&rarr;</span>
+            </a>
+          </>
+        )}
       </div>
       <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-1 justify-end">
         {/* Optionally, you can include a dismiss button */}
