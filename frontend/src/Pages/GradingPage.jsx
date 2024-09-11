@@ -121,13 +121,9 @@ const GradingPage = () => {
   var fileOptions = {
     filename: `avvise-${currentDate}.pdf`,
   };
-  const downloadPDF = () => {
-    html2pdf().from(element).set(fileOptions).save();
-  };
   const savePDF = () => {
     document.getElementById("displayOnPrint").style.display = "block";
-    document.getElementById("warning").style.display = "none";
-    downloadPDF();
+    html2pdf().from(element).set(fileOptions).save();
   };
   return (
     <>
@@ -144,9 +140,7 @@ const GradingPage = () => {
               <h1 className="lg:float-left">Results Summary</h1>
               <button
                 onClick={() => {
-                  setTimeout(() => {
-                    savePDF();
-                  }, 1000);
+                  savePDF();
                 }}
                 className="Btn"
               >
