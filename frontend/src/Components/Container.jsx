@@ -26,7 +26,7 @@ const Container = () => {
               </h2>
               <div className="mt-6 dark:animate-none">
                 <Link to="/calculator">
-                  <div className="bg-black animate-bounce hover:opacity-80 text-white px-6 py-3 inline-block dark:bg-purple-600 rounded-lg">
+                  <div className="bg-black hover:opacity-80 text-white px-6 py-3 inline-block dark:bg-purple-600 rounded-lg">
                     Get Started
                   </div>
                 </Link>
