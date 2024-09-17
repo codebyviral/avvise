@@ -2,9 +2,7 @@
  <br />
  ## License and Copyright
 
-This project is licensed under the [MIT License](LICENSE).
-
-Copyright © 2024 AVVISE. 
+This project is copyrighted by AVVISE under the Indian Copyright Act © 2024.
 
 You can view the official copyright certificate [here](./AvviseROC.pdf).
 <br />
