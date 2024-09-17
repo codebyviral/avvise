@@ -1,14 +1,15 @@
-<br/>
 <div align="center">
  <br />
  ## License and Copyright
 
-This project is copyrighted by AVVISE under the Indian Copyright Act © 2024.
+This project is licensed under the [MIT License](LICENSE).
+
+Copyright © 2024 AVVISE. 
 
 You can view the official copyright certificate [here](./AvviseROC.pdf).
 <br />
 <a href="https://github.com/ShaanCoding/ReadME-Generator">
-<img src="https://avvise.vercel.app/assets/Avvise-EndGame-BO3hMfxq.png" alt="Logo" width="80" height="80">
+<img src="https://avvise.vercel.app/assets/Avvise-EndGame-BO3hMfxq.png" alt="Avvise Logo" width="80" height="80">
 </a>
 <h3 align="center">AVVISE: Next-Level Student Evaluation WebApp</h3>
 <p align="center">
@@ -19,8 +20,8 @@ You can view the official copyright certificate [here](./AvviseROC.pdf).
 <br/>
 <br/>
 <a href="https://avvise.vercel.app/calculator">View Demo</a> ·  
-<a href="https://avvise.vercel.app/aboutus">Report Bug</a> · 
-<a href="https://avvise.vercel.app/aboutus">Request Feature</a>
+<a href="https://avvise.vercel.app/reportbug">Report Bug</a> · 
+<a href="https://avvise.vercel.app/requestfeature">Request Feature</a>
 </p>
 </div>
 
@@ -39,7 +40,7 @@ Key Features:
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section lists the major frameworks/libraries used to build this project.
 
 - [React](https://reactjs.org)
 - [Tailwindcss](https://tailwindcss.com/docs)
@@ -47,32 +48,39 @@ This section should list any major frameworks/libraries used to bootstrap your p
 - [Node.js](https://nodejs.org/docs/latest/api/)
 - [MongoDB](https://www.mongodb.com/docs/)
 
+
 ## Getting Started
 
-Getting Started: Visit AVVISE at [avvise.vercel.app](https://avvise.vercel.app/) to streamline your student assessment.
+To get started with AVVISE, simply visit the website:
+
+[https://avvise.vercel.app/](https://avvise.vercel.app/)
+
 
 ### Prerequisites
 
-**Prerequisites:**
-- Internet access and a modern web browser are required to use AVVISE at [avvise.vercel.app](https://avvise.vercel.app/).
+You'll need:
+
+- Internet access
+- A modern web browser (Chrome, Firefox, Safari, Edge, etc.)
+
 
 ### Installation
 
-To access AVVISE, simply visit [avvise.vercel.app](https://avvise.vercel.app/) in your web browser.
+No installation is required. Simply visit the AVVISE website in your web browser:
 
-This straightforward instruction directs users to the URL where they can access and use your web app directly. If there are any additional setup steps or prerequisites for using specific features, you can mention them here as well.
+[https://avvise.vercel.app/](https://avvise.vercel.app/)
+
 
 ## Usage
 
-To use the AVVISE Calculator:
+### Using the AVVISE Calculator:
 
-**Enter Number of Questions**: Start by entering the total number of questions mandatorily required for assessment.
+1. **Enter Number of Questions**: Input the total number of questions for the assessment.
+2. **Select Marking System**: Choose the desired marking system.
+3. **Input Answer Keys**: Enter the user's answers and the correct answer key.
+4. **Calculate Results**: Click the "Calculate" button to generate the results.
+5. **View OMR Sheet**: AVVISE will display an OMR sheet with visualized data, providing insights into student performance.
 
-**Select Marking System**: Choose the appropriate marking system and proceed to input the user answer key and real answer key for accurate evaluation.
-
-**Calculate Results**: Click the "Calculate" button to generate results. AVVISE will process the inputs and display an OMR sheet with visualized data, providing insights into student performance at a glance.
-
-Enhance your assessment process with AVVISE's intuitive interface and powerful analytics, making grading and evaluation efficient and insightful.
 
 ## Roadmap
 
@@ -82,17 +90,18 @@ Enhance your assessment process with AVVISE's intuitive interface and powerful a
 - [x] Continuous Improvement
 - [ ] Community and Support
 
-See the [open issues](https://avvise.vercel.app/aboutus) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/codebyviral/avvise/issues) for a full list of proposed features (and known issues).
 
 ## Contact
 
-- Viral Vaghela
+- **Viral Vaghela**
 - Twitter: [@Viral27688955](https://twitter.com/Viral27688955)
 - Email: viralvaghela.dev@gmail.com
 
+
 ## Acknowledgments
 
-We would like to express our sincere gratitude to the following individuals and organizations for their invaluable contributions to AVVISE:
+We extend our sincere gratitude to:
 
 - **Viral Vaghela**: Founder of AVVISE.
-- [GitHub - Viral Vaghela](https://github.com/codebyviral)
+- [GitHub - Viral Vaghela](https://github.com/codebyviral) 
