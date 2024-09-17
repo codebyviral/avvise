@@ -1,11 +1,10 @@
-<div align="center">
- <br />
  ## License and Copyright
 
 This project is copyrighted by AVVISE under the Indian Copyright Act © 2024.
 
 You can view the official copyright certificate [here](./AvviseROC.pdf).
-<br />
+<div align="center">
+ <br />
 <a href="https://github.com/ShaanCoding/ReadME-Generator">
 <img src="https://avvise.vercel.app/assets/Avvise-EndGame-BO3hMfxq.png" alt="Avvise Logo" width="80" height="80">
 </a>
