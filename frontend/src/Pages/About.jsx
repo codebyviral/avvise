@@ -145,7 +145,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <AboutTeam />
+      {/* <AboutTeam /> */}
       <Footer />
     </>
   );

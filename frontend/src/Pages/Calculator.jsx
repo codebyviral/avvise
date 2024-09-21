@@ -28,7 +28,7 @@ const Calculator = () => {
           id={`que-${num}`}
           type="text"
           className="input mt-3 border border-gray-300 p-2 rounded w-full"
-          placeholder={`Input ${num}`}
+          placeholder={`Your Choice ${num}`}
         />
       </div>
     ));
@@ -51,7 +51,7 @@ const Calculator = () => {
           id={`answer-${num}`}
           type="text"
           className="input mt-3 border border-gray-300 p-2 rounded w-full"
-          placeholder={`Answer ${num}`}
+          placeholder={`Correct Choice ${num}`}
         />
       </div>
     ));

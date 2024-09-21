@@ -17,7 +17,8 @@ const Footer = () => {
               </Link>
               ✨
               <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
-                Join 1k+ others and never miss out on new features at AVVISE.
+                ©2024 AVVISE. All rights reserved. <br /> Join 1k+ others and
+                never miss out on new features.
               </p>
               <div className="flex mt-6 -mx-2">
                 <a
