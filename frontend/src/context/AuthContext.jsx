@@ -16,8 +16,8 @@ export const AuthProvider = ({ children }) => {
     const isAdmin = localStorage.setItem(isAdminState);
     setIsAdmin(isAdminState);
   };
-  console.log(localStorage.getItem("token"));
-  console.log(`isLogged in from Auth ${isLoggedIn}`);
+  // console.log(localStorage.getItem("token"));
+  // console.log(`isLogged in from Auth ${isLoggedIn}`);
 
   // Logout function
   const LogoutUser = () => {

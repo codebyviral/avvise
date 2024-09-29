@@ -42,7 +42,7 @@ const Signin = () => {
       if (response.ok) {
         setUser({ email: "", password: "" });
         const responseData = await response.json();
-        console.log("Response from server", responseData);
+        // console.log("Response from server", responseData);
         storeTokenInLocalStorage(responseData.token);
         storeUserId(responseData.userId);
         toast.success("Login success");
