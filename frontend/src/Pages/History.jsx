@@ -37,6 +37,15 @@ const History = () => {
     }, 500);
   };
 
+  const handleEditHistory = (itemId) => {
+    setHistoryId(itemId);
+    toast.success(
+      `This feature is launching soon. Thank you for your patience!`
+    );
+
+    // navigate("/calculator");
+  };
+
   const deleteHistoryItem = () => {
     const updatedHistory = history.filter((item) => item.id !== selectedItemId);
     setHistory(updatedHistory);
@@ -166,6 +175,16 @@ const History = () => {
                       )}
                     </button>
                     <div className="ml-auto mt-4 flex">
+                      <button
+                        onClick={() => handleEditHistory(item.id)}
+                        className="flex justify-center hover:opacity-80 mr-3"
+                      >
+                        <img
+                          className="w-7"
+                          src="https://img.icons8.com/?size=512&id=86374&format=png"
+                          alt="Delete"
+                        />
+                      </button>
                       <button
                         onClick={() => openModal(item.id)}
                         className="flex justify-center hover:opacity-80"

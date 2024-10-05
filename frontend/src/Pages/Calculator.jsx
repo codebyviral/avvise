@@ -17,7 +17,12 @@ const Calculator = () => {
   useEffect(() => {
     handleEnter();
   });
-  const { setAppQuestions, setNoOfQues, setMarkingType } = useAppContext();
+  const { setAppQuestions, setNoOfQues, setMarkingType, historyId } =
+    useAppContext();
+
+  const loadOldData = JSON.parse(localStorage.getItem("calculatedHistory"));
+  console.log("historyId", historyId);
+  console.log("Load Edit Data from history Id", loadOldData[0]);
   const renderInputs = () => {
     return totalQues.map((num, index) => (
       <div key={index} className="m-2 flex">
