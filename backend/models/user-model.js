@@ -13,7 +13,9 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        require: [true, 'Password is required']
+        require: function () {
+            return !this.isGoogleUser;
+        }
     },
     avatar: {
         type: String,

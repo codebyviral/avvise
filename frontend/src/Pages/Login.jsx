@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import {
   Navbar,
@@ -10,6 +11,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
 import { EmailSvg, PasswordSvg } from "../Components/Layouts/LayoutIndex";
+import { googleLogo } from "../assets/URLs";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Signin = () => {
   const [loading, setLoading] = useState(false);
@@ -30,7 +35,8 @@ const Signin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const loginURL = "https://avvise.onrender.com/api/auth/login";
+    const loginURL = "http://localhost:4000/api/auth/login";
+
     try {
       const response = await fetch(loginURL, {
         method: "POST",
@@ -58,6 +64,86 @@ const Signin = () => {
       setLoading(false);
     }
   };
+
+  const [googleUser, setGoogleUser] = useState([]);
+  const [profile, setProfile] = useState([]);
+
+  // Google login handler
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      setGoogleUser(codeResponse);
+    },
+    onError: (error) => console.log("Login failed", error),
+  });
+
+  // Google login handler
+  const googlelogin = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      setGoogleUser(codeResponse);
+      console.log("Google User:", codeResponse); // Updated to log codeResponse directly
+    },
+    onError: (error) => console.log("Login failed", error),
+  });
+
+  const handleGoogleSignup = async () => {
+    setLoading(true);
+    const redirectUri = "http://localhost:5173/signup";
+
+    if (!googleUser || !googleUser.access_token) {
+      toast.error("Google user data is missing");
+      setLoading(false);
+      return;
+    }
+    const googleSignupURL = "http://localhost:4000/api/auth/google";
+    try {
+      const response = await axios.post(googleSignupURL, {
+        access_token: googleUser.access_token,
+        redirectUri,
+      });
+
+      if (response.status === 200) {
+        const userID = response.data.userId;
+        storeTokenInLocalStorage(response.data.token);
+        storeUserId(userID);
+        toast.success("Google Signup Successful 🎉");
+        navigate("/");
+      } else {
+        toast.error(response.data.message || "Signup failed");
+      }
+    } catch (error) {
+      toast.error(
+        "Google Signup Error: " +
+          (error.response?.data?.message || "An error occurred")
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch Google profile after user logs in
+  useEffect(() => {
+    if (googleUser && googleUser.access_token) {
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${googleUser.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${googleUser.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          setProfile(res.data);
+          handleGoogleSignup(); // Call signup after profile is fetched
+        })
+        .catch((err) => {
+          console.error("Error fetching Google profile:", err);
+          toast.error("Failed to fetch Google profile.");
+        });
+    }
+  }, [googleUser]);
+
   return (
     <>
       <Navbar />
@@ -96,21 +182,33 @@ const Signin = () => {
                     </>
                   ) : (
                     <>
-                      <button className="mt-2 px-6 py-3 flex justify-center bg-black text-white rounded-lg hover:opacity-80">
+                      <button className="rounded-xl mt-3 w-auto px-6 border-2 p-2 border-slate-950 hover:bg-black hover:text-white">
                         Login
                       </button>
                     </>
                   )}
-                  {/* <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-lg md:w-1/2 hover:opacity-80 focus:outline-none focus:ring focus:ring-opacity-50">
-                    Sign up
-                  </button> */}
-
                   <a
                     href="#"
                     className="inline-block mt-4 text-center text-black md:mt-0 md:mx-6 hover:underline dark:text-blue-400"
                   >
                     Forgot your password?
                   </a>
+                </div>
+                <div className="mt-0">
+                  {/* Google Signup */}
+                  <div className="google-signup">
+                    <button
+                      onClick={login} // Trigger Google login when clicked
+                      className="rounded-xl mt-3 w-auto px-6 border-2 p-2 border-slate-950 hover:bg-black hover:text-white"
+                    >
+                      <img
+                        className="w-5 h-5 mr-3"
+                        src={googleLogo}
+                        alt="Google logo"
+                      />
+                      Continue with Google
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

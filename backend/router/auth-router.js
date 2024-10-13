@@ -17,6 +17,8 @@ router.get('/', (req, res) => {
 
 router.route("/signup").post(validate(signupSchema), authControllers.signup);
 router.route("/login").post(validate(loginSchema), authControllers.login);
+router.route("/google").post(authControllers.loginWithGoogle)
+
 
 // Configure multer for file storage
 const storage = multer.diskStorage({

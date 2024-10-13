@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./App.css";
 import {
   Calculator,
@@ -16,7 +17,9 @@ import {
   About,
 } from "./Pages/pageIndex";
 import { Routes, Route } from "react-router-dom";
-import "./app.js";
+
+// No need for dotenv import here; Vite handles environment variables automatically
+
 function App() {
   return (
     <>
