@@ -23,7 +23,7 @@ const Profile = () => {
   useEffect(() => {
     if (user_id) {
       const getAvatarUrl = async () => {
-        const user_avatar_url = `http://localhost:4000/api/avatar/profile/${user_id}`;
+        const user_avatar_url = `https://avvise.onrender.com/api/avatar/profile/${user_id}`;
         try {
           const avt_response = await fetch(user_avatar_url);
           if (!avt_response.ok) {
@@ -61,7 +61,7 @@ const Profile = () => {
   const handleAccountDelete = async () => {
     try {
       const delete_reponse = await fetch(
-        `http://localhost:4000/api/user/delete/${user_id}`,
+        `https://avvise.onrender.com/api/user/delete/${user_id}`,
         {
           method: "DELETE",
           headers: {
@@ -86,7 +86,7 @@ const Profile = () => {
     console.log("newName", newDetails.newName);
     try {
       const name_update_response = await fetch(
-        `http://localhost:4000/api/user/update/${user_id}`,
+        `https://avvise.onrender.com/api/user/update/${user_id}`,
         {
           method: "PATCH",
           headers: {
