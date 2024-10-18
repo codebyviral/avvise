@@ -17,8 +17,8 @@ const Footer = () => {
               </Link>
               ✨
               <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
-                ©2024 AVVISE. All rights reserved. <br /> Join 1k+ others and
-                never miss out on new features.
+                <a className="underline" href="https://github.com/codebyviral/avvise/blob/main/AvviseROC.pdf">©2024 AVVISE</a> . All rights reserved. <br /> Join
+                1k+ others and never miss out on new features.
               </p>
               <div className="flex mt-6 -mx-2">
                 <a
@@ -151,7 +151,7 @@ const Footer = () => {
                   href="mailto:viralvaghela.dev@gmail.com"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Viral Vaghela
+                  Email Us
                 </a>
               </div>
             </div>

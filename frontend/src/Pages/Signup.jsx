@@ -258,7 +258,7 @@ const Signup = () => {
                     placeholder="Password"
                   />
                 </div>
-                <button className="rounded-xl mt-3 w-auto px-6 border-2 p-2 border-slate-950 hover:bg-black hover:text-white">
+                <button className="rounded-xl mt-7 w-auto px-6 border-2 p-2 border-slate-950 hover:bg-black hover:text-white">
                   Create An Account
                 </button>
               </form>
@@ -267,7 +267,7 @@ const Signup = () => {
               <div className="google-signup">
                 <button
                   onClick={navigateLogin} // Trigger Google login when clicked
-                  className="rounded-xl mt-3 w-auto px-6 border-2 p-2 border-slate-950 hover:bg-black hover:text-white"
+                  className="rounded-xl mt-3 w-auto px-6 border-2  p-2 border-slate-950 hover:bg-black hover:text-white"
                 >
                   <img
                     className="w-5 h-5 mr-3"

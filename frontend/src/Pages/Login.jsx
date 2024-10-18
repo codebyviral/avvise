@@ -174,7 +174,6 @@ const Signin = () => {
                     placeholder="Password"
                   />
                 </div>
-
                 <div className="mt-8 md:flex md:items-center">
                   {loading ? (
                     <>
