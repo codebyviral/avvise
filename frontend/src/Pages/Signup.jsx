@@ -36,6 +36,12 @@ const Signup = () => {
   const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
 
+  // navigate to login page
+
+  const navigateLogin = () => {
+    navigate("/login");
+  };
+
   // Google login handler
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
@@ -76,7 +82,8 @@ const Signup = () => {
 
         // Handle avatar upload
         if (avatar) {
-          const avatarUrl = "https://avvise.onrender.com/api/auth/upload-avatar";
+          const avatarUrl =
+            "https://avvise.onrender.com/api/auth/upload-avatar";
           const formData = new FormData();
           formData.append("file", avatar);
           formData.append("userId", userID);
@@ -259,7 +266,7 @@ const Signup = () => {
               {/* Google Signup */}
               <div className="google-signup">
                 <button
-                  onClick={login} // Trigger Google login when clicked
+                  onClick={navigateLogin} // Trigger Google login when clicked
                   className="rounded-xl mt-3 w-auto px-6 border-2 p-2 border-slate-950 hover:bg-black hover:text-white"
                 >
                   <img

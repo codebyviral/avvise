@@ -189,7 +189,7 @@ const Signin = () => {
                   )}
                   <a
                     href="#"
-                    className="inline-block mt-4 text-center text-black md:mt-0 md:mx-6 hover:underline dark:text-blue-400"
+                    className="inline-block fg-password mt-4 text-center text-black md:mt-0 md:mx-6 hover:underline dark:text-blue-400"
                   >
                     Forgot your password?
                   </a>
