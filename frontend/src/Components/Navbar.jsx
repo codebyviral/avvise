@@ -159,7 +159,11 @@ const Navbar = () => {
                   <img
                     src={avatarUrl || profileIconURL}
                     className="object-cover w-full h-full"
-                    alt="avatar"
+                    alt={`Profile picture of ${"user"}`}
+                    onError={(e) => {
+                      e.target.onerror = null; 
+                      e.target.src = profileIconURL;
+                    }}
                   />
                 </div>
                 {isLoggedIn ? (

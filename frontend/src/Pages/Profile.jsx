@@ -117,6 +117,10 @@ const Profile = () => {
     }
   };
 
+  const resetPassword = () => {
+    toast.success("Password reset functionality will be available soon ✅");
+  };
+
   return (
     <>
       <Navbar />
@@ -137,8 +141,16 @@ const Profile = () => {
             <div className="relative rounded-full overflow-hidden w-40 h-40 bg-black">
               <img
                 className="object-cover w-full h-full"
-                src={userDetails.avatarUrl || localStorage.getItem("userImg")}
-                alt="Profile"
+                src={
+                  userDetails.avatarUrl ||
+                  localStorage.getItem("userImg") ||
+                  profileIconURL
+                }
+                alt={`Profile picture of ${userDetails.name || "user"}`}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = profileIconURL; 
+                }}
               />
               <label
                 htmlFor="profile-image"
@@ -199,7 +211,16 @@ const Profile = () => {
                 Update your email address for account notifications.
               </p>
             </div>
-            <div>
+            <div className="flex lg:justify-end">
+              <button
+                onClick={resetPassword}
+                id="saveChangeBtn"
+                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-black hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              >
+                Reset Password
+              </button>
+            </div>
+            {/* <div>
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
@@ -215,7 +236,7 @@ const Profile = () => {
               <p className="mt-2 text-sm text-gray-500">
                 Set a strong password to protect your account.
               </p>
-            </div>
+            </div> */}
             <div className="flex lg:justify-end">
               <button
                 onClick={updateAccountDetails}

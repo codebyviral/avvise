@@ -39,6 +39,7 @@ const Signup = () => {
   // navigate to login page
 
   const navigateLogin = () => {
+    window.scrollTo(0,0);
     navigate("/login");
   };
 

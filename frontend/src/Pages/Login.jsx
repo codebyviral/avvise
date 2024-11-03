@@ -80,7 +80,6 @@ const Signin = () => {
   const googlelogin = useGoogleLogin({
     onSuccess: (codeResponse) => {
       setGoogleUser(codeResponse);
-      console.log("Google User:", codeResponse); // Updated to log codeResponse directly
     },
     onError: (error) => console.log("Login failed", error),
   });
@@ -197,7 +196,7 @@ const Signin = () => {
                   {/* Google Signup */}
                   <div className="google-signup">
                     <button
-                      onClick={login} // Trigger Google login when clicked
+                      onClick={login}
                       className="rounded-xl mt-3 w-auto px-6 border-2 p-2 border-slate-950 hover:bg-black hover:text-white"
                     >
                       <img
