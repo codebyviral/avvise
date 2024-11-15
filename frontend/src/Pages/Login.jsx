@@ -35,7 +35,7 @@ const Signin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const loginURL = "https://avvise.onrender.com/api/auth/login";
+    const loginURL = "http://localhost:4000/api/auth/login";
 
     try {
       const response = await fetch(loginURL, {
@@ -93,7 +93,7 @@ const Signin = () => {
       setLoading(false);
       return;
     }
-    const googleSignupURL = "https://avvise.onrender.com/api/auth/google";
+    const googleSignupURL = "http://localhost:4000/api/auth/google";
     try {
       const response = await axios.post(googleSignupURL, {
         access_token: googleUser.access_token,
