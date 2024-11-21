@@ -16,7 +16,7 @@ const Navbar = () => {
   useEffect(() => {
     if (user_id) {
       const getAvatarUrl = async () => {
-        const user_avatar_url = `http://localhost:4000/api/avatar/profile/${user_id}`;
+        const user_avatar_url = `https://avvise.onrender.com/api/avatar/profile/${user_id}`;
         try {
           const avt_response = await fetch(user_avatar_url);
           setAvatarUrl(avt_response);

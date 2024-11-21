@@ -67,8 +67,8 @@ const Signup = () => {
     });
   };
 
-  const signupURL = "http://localhost:4000/api/auth/signup";
-  const googleSignupURL = "http://localhost:4000/api/auth/google";
+  const signupURL = "https://avvise.onrender.com/api/auth/signup";
+  const googleSignupURL = "https://avvise.onrender.com/api/auth/google";
 
   // Handle form submission for regular signup
   const handleSubmit = async (e) => {
@@ -84,7 +84,7 @@ const Signup = () => {
         // Handle avatar upload
         if (avatar) {
           const avatarUrl =
-            "http://localhost:4000/api/auth/upload-avatar";
+            "https://avvise.onrender.com/api/auth/upload-avatar";
           const formData = new FormData();
           formData.append("file", avatar);
           formData.append("userId", userID);

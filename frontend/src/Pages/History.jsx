@@ -87,7 +87,7 @@ const History = () => {
   const user_id = localStorage.getItem("userId");
 
   const uploadAll = async () => {
-    const postUrl = `http://localhost:4000/api/user/upload/omr/${user_id}`;
+    const postUrl = `https://avvise.onrender.com/api/user/upload/omr/${user_id}`;
 
     try {
       await axios.post(
