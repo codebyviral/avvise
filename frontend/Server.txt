@@ -1,4 +1,4 @@
-https://avvise.onrender.com
+https://avvise-backend.vercel.app/
 
-https://avvise.onrender.com
+https://avvise-backend.vercel.app/
 
