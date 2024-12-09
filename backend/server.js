@@ -57,4 +57,7 @@ async function verifyToken(req, res, next) {
 }
 app.use(verifyToken);
 
-export { verifyToken }
+export { verifyToken };
+export default app;
+
+
