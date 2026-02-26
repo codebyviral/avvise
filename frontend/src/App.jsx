@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import "./App.css";
 import {
-  Calculator,
   Home,
   GradingPage,
   NotFoundPage,
@@ -15,8 +14,10 @@ import {
   ReportBug,
   Admin,
   About,
+  Calculator,
 } from "./Pages/pageIndex";
 import { Routes, Route } from "react-router-dom";
+import { ProtectedRoutes } from "./Components/compIndex";
 
 // No need for dotenv import here; Vite handles environment variables automatically
 
@@ -25,7 +26,14 @@ function App() {
     <>
       <Routes>
         <Route index path="/" element={<Home />} />
-        <Route path="/calculator" element={<Calculator />} />
+        <Route
+          path="/calculator"
+          element={
+            <ProtectedRoutes>
+              <Calculator />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="/docs" element={<Docs />} />
         <Route path="/projects" element={<GradingPage />} />
         <Route path="/scan" element={<ComingSoon />} />

@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <AppProvider>
         <BrowserRouter>
           <Analytics />
-          <Toaster />
+          <Toaster position="bottom-center" />
           <App />
         </BrowserRouter>
       </AppProvider>
