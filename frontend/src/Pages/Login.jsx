@@ -35,7 +35,7 @@ const Signin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const loginURL = "https://avvise-backend.vercel.app/api/auth/login";
+    const loginURL = `${import.meta.env.VITE_API_URL}/api/auth/login`;
 
     try {
       const response = await fetch(loginURL, {
@@ -86,14 +86,14 @@ const Signin = () => {
 
   const handleGoogleSignup = async () => {
     setLoading(true);
-    const redirectUri = "http://localhost:5173/signup";
+    const redirectUri = `${import.meta.env.VITE_FRONTEND_URL}/signup`;
 
     if (!googleUser || !googleUser.access_token) {
       toast.error("Google user data is missing");
       setLoading(false);
       return;
     }
-    const googleSignupURL = "https://avvise-backend.vercel.app/api/auth/google";
+    const googleSignupURL = `${import.meta.env.VITE_API_URL}/api/auth/google`;
     try {
       const response = await axios.post(googleSignupURL, {
         access_token: googleUser.access_token,
@@ -112,7 +112,7 @@ const Signin = () => {
     } catch (error) {
       toast.error(
         "Google Signup Error: " +
-          (error.response?.data?.message || "An error occurred")
+          (error.response?.data?.message || "An error occurred"),
       );
     } finally {
       setLoading(false);
@@ -130,7 +130,7 @@ const Signin = () => {
               Authorization: `Bearer ${googleUser.access_token}`,
               Accept: "application/json",
             },
-          }
+          },
         )
         .then((res) => {
           setProfile(res.data);

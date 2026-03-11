@@ -39,7 +39,7 @@ const Signup = () => {
   // navigate to login page
 
   const navigateLogin = () => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     navigate("/login");
   };
 
@@ -67,8 +67,8 @@ const Signup = () => {
     });
   };
 
-  const signupURL = "https://avvise-backend.vercel.app/api/auth/signup";
-  const googleSignupURL = "https://avvise-backend.vercel.app/api/auth/google";
+  const signupURL = `${import.meta.env.VITE_API_URL}/api/auth/signup`;
+  const googleSignupURL = `${import.meta.env.VITE_API_URL}/api/auth/google`;
 
   // Handle form submission for regular signup
   const handleSubmit = async (e) => {
@@ -83,8 +83,7 @@ const Signup = () => {
 
         // Handle avatar upload
         if (avatar) {
-          const avatarUrl =
-            "https://avvise-backend.vercel.app/api/auth/upload-avatar";
+          const avatarUrl = `${import.meta.env.VITE_API_URL}/api/auth/upload-avatar`;
           const formData = new FormData();
           formData.append("file", avatar);
           formData.append("userId", userID);
@@ -159,7 +158,7 @@ const Signup = () => {
     } catch (error) {
       toast.error(
         "Google Signup Error: " +
-          (error.response?.data?.message || "An error occurred")
+          (error.response?.data?.message || "An error occurred"),
       );
     } finally {
       setLoading(false);
@@ -177,7 +176,7 @@ const Signup = () => {
               Authorization: `Bearer ${googleUser.access_token}`,
               Accept: "application/json",
             },
-          }
+          },
         )
         .then((res) => {
           setProfile(res.data);

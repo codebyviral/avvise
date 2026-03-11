@@ -32,6 +32,7 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log(email,password)
         const userExists = await User.findOne({ email })
         if (!userExists) {
             // Never let anyone know what is wrong where. eg. hackers
