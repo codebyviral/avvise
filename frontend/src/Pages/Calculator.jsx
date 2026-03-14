@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Navbar, Footer, Modal } from "../Components/compIndex";
 import { handleEnter } from "../app.js";
 import "../App.css";
@@ -31,10 +31,17 @@ const Calculator = () => {
   const [markingScheme, setMarkingScheme] = useState("noNegative");
   const [isOpen, setIsOpen] = useState(false);
 
-  const driverObj = driver({
-    showProgress: true,
-    steps: Steps,
-  });
+  const driverRef = useRef(null);
+
+  useEffect(() => {
+    driverRef.current = driver({
+      showProgress: true,
+      animate: true,
+      smoothScroll: true,
+      allowClose: true,
+      steps: Steps,
+    });
+  }, []);
 
   useEffect(() => {
     handleEnter();
@@ -55,7 +62,19 @@ const Calculator = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const arr = Array.from({ length: totalQuestions }, (_, i) => i + 1);
+
+    setAppQuestions(arr);
+    setNoOfQues(totalQuestions);
+  }, []);
+
   const handleQuestionsNums = (e) => {
+    // allow empty input so user can erase
+    if (e.target.value === "") {
+      setTotalQuestions("");
+      return;
+    }
     const num = parseInt(e.target.value, 10);
     if (!isNaN(num) && num > 0) {
       const arr = Array.from({ length: num }, (_, i) => i + 1);
@@ -79,7 +98,9 @@ const Calculator = () => {
   const answeredCount = Object.keys(userAnswers).length;
   const progress = ((answeredCount / totalQues.length) * 100).toFixed(0);
 
-  const driveTour = () => driverObj.drive();
+  const driveTour = () => {
+    driverRef.current?.drive();
+  };
 
   const toggleModal = () => setIsOpen(!isOpen);
 
@@ -97,7 +118,7 @@ const Calculator = () => {
               min="1"
               placeholder="Total Questions"
               onChange={handleQuestionsNums}
-              defaultValue={totalQuestions}
+              value={totalQuestions}
               className="border p-2 rounded-lg w-48"
             />
 
@@ -107,6 +128,7 @@ const Calculator = () => {
 
             <div className="w-40 bg-gray-200 rounded-full h-2">
               <div
+                id="progress-bar"
                 className="bg-blue-500 h-2 rounded-full"
                 style={{ width: `${progress}%` }}
               />
@@ -122,7 +144,10 @@ const Calculator = () => {
         </div>
 
         {/* Marking Schemes */}
-        <div className="max-w-4xl mx-auto mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          id="marking-schemes"
+          className="max-w-4xl mx-auto mt-6 grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
           {examSchemes.map((exam) => (
             <button
               key={exam.id}
@@ -154,7 +179,7 @@ const Calculator = () => {
         {/* OMR Answer Grid */}
         <div className="max-w-6xl mx-auto mt-10 grid md:grid-cols-2 gap-8 px-4">
           {/* User Answers */}
-          <div>
+          <div id="user-answers">
             <h3 className="font-bold text-center mb-4">Your Answers</h3>
 
             {totalQues.map((num) => (
@@ -181,7 +206,7 @@ const Calculator = () => {
           </div>
 
           {/* Real Answers */}
-          <div>
+          <div id="real-answers">
             <h3 className="font-bold text-center mb-4">Real Answers</h3>
             {totalQues.map((num) => (
               <div

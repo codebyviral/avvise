@@ -138,7 +138,7 @@ const CalculateFinal = () => {
       existingHistory.push(newEntry);
       window.localStorage.setItem(
         "calculatedHistory",
-        JSON.stringify(existingHistory)
+        JSON.stringify(existingHistory),
       );
       return [
         { name: "totalMarks", corrects: finalMarks },
@@ -159,6 +159,7 @@ const CalculateFinal = () => {
     <>
       <div className="flex justify-center">
         <button
+          id="calculate-btn"
           className="bg-black calculate-btn mt-10 px-6 py-2.5 mx-3 mb-10 rounded-lg hover:opacity-80 text-white dark:bg-purple-600"
           onClick={handleCalculation}
         >
@@ -169,7 +170,7 @@ const CalculateFinal = () => {
         <CustomModal
           message={"Please enter at least one question to proceed."}
           cancelMsg={"Close"}
-          bgColor={'bg-black'}
+          bgColor={"bg-black"}
           actionMsg={"Okay"}
           cancel={closeModal}
           action={closeModal}

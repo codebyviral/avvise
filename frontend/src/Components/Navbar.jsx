@@ -14,23 +14,36 @@ const Navbar = () => {
   const user_id = localStorage.getItem("userId");
   const [avatarUrl, setAvatarUrl] = useState("");
   useEffect(() => {
-    if (user_id) {
-      const getAvatarUrl = async () => {
-        const user_avatar_url = `${import.meta.env.VITE_API_URL}/api/avatar/profile/${user_id}`;
-        try {
-          const avt_response = await fetch(user_avatar_url);
-          setAvatarUrl(avt_response);
-          if (!avt_response.ok) {
-            throw new Error("Failed to fetch avatar URL");
-          }
-          const url_data = await avt_response.json();
-          setAvatarUrl(url_data.avatarUrl);
-        } catch (error) {
-          console.log("Fetch Avatar Url error: ", error);
-        }
-      };
-      getAvatarUrl();
+    if (!user_id) {
+      setAvatarUrl("");
+      return;
     }
+
+    const cachedAvatar = localStorage.getItem(`avatar_${user_id}`);
+
+    if (cachedAvatar) {
+      setAvatarUrl(cachedAvatar);
+      return;
+    }
+
+    const getAvatarUrl = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/avatar/profile/${user_id}`,
+        );
+
+        if (!response.ok) throw new Error("Failed to fetch avatar");
+
+        const data = await response.json();
+
+        setAvatarUrl(data.avatarUrl);
+        localStorage.setItem(`avatar_${user_id}`, data.avatarUrl);
+      } catch (error) {
+        console.log("Fetch Avatar Url error:", error);
+      }
+    };
+
+    getAvatarUrl();
   }, [user_id]);
   return (
     <nav className="relative bg-white shadow dark:bg-gray-800">
@@ -161,7 +174,7 @@ const Navbar = () => {
                     className="object-cover w-full h-full"
                     alt={`Profile picture of ${"user"}`}
                     onError={(e) => {
-                      e.target.onerror = null; 
+                      e.target.onerror = null;
                       e.target.src = profileIconURL;
                     }}
                   />
