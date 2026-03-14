@@ -25,6 +25,7 @@ const Calculator = () => {
   const { setAppQuestions, setNoOfQues, setMarkingType } = useAppContext();
 
   const [totalQues, setTotalQues] = useState([1, 2, 3, 4, 5]);
+  const [totalQuestions, setTotalQuestions] = useState(5);
   const [userAnswers, setUserAnswers] = useState({});
   const [realAnswers, setRealAnswers] = useState({});
   const [markingScheme, setMarkingScheme] = useState("noNegative");
@@ -61,6 +62,7 @@ const Calculator = () => {
       setTotalQues(arr);
       setAppQuestions(arr);
       setNoOfQues(num);
+      setTotalQuestions(num);
     }
   };
 
@@ -95,6 +97,7 @@ const Calculator = () => {
               min="1"
               placeholder="Total Questions"
               onChange={handleQuestionsNums}
+              defaultValue={totalQuestions}
               className="border p-2 rounded-lg w-48"
             />
 
@@ -147,19 +150,6 @@ const Calculator = () => {
         </div>
 
         {isOpen && <Modal />}
-
-        {/* Question Navigator */}
-        <div className="max-w-4xl mx-auto mt-8 grid grid-cols-10 gap-2">
-          {totalQues.map((q) => (
-            <button
-              key={q}
-              className={`border rounded text-sm p-1
-                ${userAnswers[q] ? "bg-green-400 text-white" : "bg-white"}`}
-            >
-              {q}
-            </button>
-          ))}
-        </div>
 
         {/* OMR Answer Grid */}
         <div className="max-w-6xl mx-auto mt-10 grid md:grid-cols-2 gap-8 px-4">
